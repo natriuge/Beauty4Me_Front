@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 
