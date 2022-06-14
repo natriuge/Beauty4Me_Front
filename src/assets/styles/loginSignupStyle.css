@@ -21,3 +21,19 @@
   color: #7868e6;
   background-color: #e4fbff;
 }
+
+.text-paragraph {
+  font-size: small;
+  font-weight: normal;
+  color: rgba(60, 60, 60, 0.984);
+}
+
+.text-skinType {
+  font-weight: normal;
+  color: rgba(83, 82, 82, 0.984);
+}
+
+.image-dec {
+  width: 250px;
+  height: 250px;
+}

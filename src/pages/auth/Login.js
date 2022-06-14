@@ -54,7 +54,7 @@ function Login(props) {
       <form onSubmit={handleSubmit}>
         <h1 className="mb-5 h1-title">Login</h1>
 
-        <div class="row mb-5">
+        <div className="row mb-5">
           <label
             htmlFor="loginFormEmail"
             className="col-sm-2 col-form-label text-page"
