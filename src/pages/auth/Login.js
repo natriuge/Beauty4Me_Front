@@ -1,3 +1,4 @@
+import Navbar from "../../components/Navbar";
 import React, { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
@@ -46,9 +47,10 @@ function Login(props) {
   }
 
   return (
+    <div>
+      <Navbar />
     <form onSubmit={handleSubmit}>
       <h1>Login</h1>
-
       <div>
         <label htmlFor="signupFormEmail">E-mail Address</label>
         <input
@@ -79,6 +81,7 @@ function Login(props) {
         <Link to="/signup">Don't have an account? Click here to signup!</Link>
       </div>
     </form>
+    </div>
   );
 }
 
