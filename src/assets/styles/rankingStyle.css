@@ -1,0 +1,36 @@
+.prod-card-container {
+  position: relative;
+  width: 100%;
+}
+
+.prod-img {
+  opacity: 1;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.card-middle-ranking {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.prod-card-container:hover .prod-img {
+  opacity: 0.3;
+}
+
+.prod-card-container:hover .card-middle-ranking {
+  opacity: 1;
+}
+
+.card-text-ranking {
+  background-color: #04aa6d;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}

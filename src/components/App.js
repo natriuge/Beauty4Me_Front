@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Signup from "../pages/auth/Signup";
 import Login from "../pages/auth/Login";
 // import ProtectedRoute from "../pages/auth/ProtectedRoute";
+import Ranking from "../pages/Ranking";
 
 import { AuthContextComponent } from "../contexts/authContext";
 
@@ -12,10 +13,11 @@ function App() {
   return (
     <AuthContextComponent>
       <Routes>
-       <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home />} />
         {/* <Route path="/" element={<ProtectedRoute component={<Home/>} />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/ranking" element={<Ranking />} />
       </Routes>
     </AuthContextComponent>
   );
