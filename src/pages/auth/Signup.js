@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Navbar from "../../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/loginSignupStyle.css";
 import hands from "../../assets/images/hands.jpg";
+import Navbar from "../../components/Navbar";
 
 function Signup(props) {
   const [state, setState] = useState({
@@ -49,21 +49,18 @@ function Signup(props) {
   }
 
   return (
-    //navbar
     <div className="container mt-5">
-      <div className="row">
-        <div className="col-12">
+      <Navbar />
+      <div className="row css-responsive">
+        <div className="col-6">
           <form onSubmit={handleSubmit}>
-            <h1 className="mb-5 h1-title">Signup!</h1>
+            <h1 className="mb-5 h1-title">Signing Up!</h1>
 
-            <div className="row mb-5">
-              <label
-                htmlFor="signupFormName"
-                className="col-sm-2 col-form-label text-page"
-              >
+            <div className="mb-4">
+              <label htmlFor="signupFormName" className="text-page">
                 Name
               </label>
-              <div className="col-sm-3">
+              <div className="">
                 <input
                   type="text"
                   name="name"
@@ -72,19 +69,15 @@ function Signup(props) {
                   error={errors.name}
                   onChange={handleChange}
                   className="form-control"
-                  placeholder="Complete Name"
                 />
               </div>
             </div>
 
-            <div className="row mb-3">
-              <label
-                htmlFor="signupFormEmail"
-                className="col-sm-2 col-form-label text-page"
-              >
+            <div className="mb-4">
+              <label htmlFor="signupFormEmail" className="text-page">
                 E-mail Address
               </label>
-              <div className="col-sm-3">
+              <div className="">
                 <input
                   type="email"
                   name="email"
@@ -93,19 +86,15 @@ function Signup(props) {
                   error={errors.email}
                   onChange={handleChange}
                   className="form-control"
-                  placeholder="your.name@email.com"
                 />
               </div>
             </div>
 
-            <div className="row mb-3">
-              <label
-                htmlFor="signupFormPassword"
-                className="col-sm-2 col-form-label text-page"
-              >
+            <div className="mb-4">
+              <label htmlFor="signupFormPassword" className="text-page">
                 Password
               </label>
-              <div className="col-sm-3">
+              <div className="">
                 <input
                   type="password"
                   name="password"
@@ -114,9 +103,8 @@ function Signup(props) {
                   error={errors.password}
                   onChange={handleChange}
                   className="form-control"
-                  placeholder="your password"
                 />
-                <div className="mt-1 text-paragraph">
+                <div className="mt-1 mb-4 text-paragraph">
                   <p>
                     Your password must include:
                     <li>at least 8 characters</li>
@@ -128,14 +116,11 @@ function Signup(props) {
               </div>
             </div>
 
-            <div className="row mb-3">
-              <label
-                htmlFor="signupFormSkinType"
-                className="col-sm-2 col-form-label text-page"
-              >
+            <div className="mb-4">
+              <label htmlFor="signupFormSkinType" className="text-page">
                 Your Skin Type
               </label>
-              <div className="col-sm-3 text-skinType">
+              <div className="text-skinType border my-radio">
                 <input
                   className="mb-2"
                   type="radio"
@@ -173,10 +158,10 @@ function Signup(props) {
 
             <div className="mb-5 mt-5">
               <button
-                className="btn-login-signup btn-lg border border-4 rounded-pill"
+                className="btn-login-signup btn-login-signup-responsive"
                 type="submit"
               >
-                Signup!
+                Create Account
               </button>
             </div>
 
@@ -188,8 +173,12 @@ function Signup(props) {
           </form>
         </div>
 
-        <div className="col-12">
-          <img src={hands} className="image-dec" alt="hands ilustration" />
+        <div className="col-6 css-responsive">
+          <img
+            src={hands}
+            className="image-dec image-dec-responsive"
+            alt="hands ilustration"
+          />
         </div>
       </div>
     </div>
