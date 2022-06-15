@@ -2,7 +2,7 @@ import "../assets/styles/index.css";
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import Img from "../images/beauty.jpg";
+import Img from "../assets/images/beauty.jpg";
 
 function Home() {
   return (
@@ -11,7 +11,6 @@ function Home() {
 
       <main>
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-       
           {/* <div className="carousel-indicators">
             <button
               type="button"
@@ -52,11 +51,15 @@ function Home() {
               <div className="container">
                 <div className="carousel-caption text-start cover-container d-flex flex-column">
                   <h1>
-                    True beauty comes<br/> from within
+                    True beauty comes
+                    <br /> from within
                   </h1>
                   <p>
-                  <p className="carousel-caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                  Pellentesque pharetra at elit at aliquet. </p>
+                    <p className="carousel-caption-text">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      <br />
+                      Pellentesque pharetra at elit at aliquet.{" "}
+                    </p>
                     <Link className="btn btn-lg carousel-caption-btn" to="#">
                       Sign up today
                     </Link>
