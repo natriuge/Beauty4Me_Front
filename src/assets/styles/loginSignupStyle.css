@@ -1,0 +1,39 @@
+.btn-login-signup {
+  background-color: #b8b5ff;
+  color: #7868e6;
+  border-color: #e4fbff;
+}
+
+.h1-title {
+  color: #b8b5ff;
+  font-weight: bold;
+  text-decoration: overline;
+  text-decoration-color: #e4fbff;
+}
+
+.text-page {
+  font-style: italic;
+  font-weight: bold;
+  color: rgba(197, 191, 191, 0.984);
+}
+
+.link-decoration {
+  color: #7868e6;
+  background-color: #e4fbff;
+}
+
+.text-paragraph {
+  font-size: small;
+  font-weight: normal;
+  color: rgba(60, 60, 60, 0.984);
+}
+
+.text-skinType {
+  font-weight: normal;
+  color: rgba(83, 82, 82, 0.984);
+}
+
+.image-dec {
+  width: 250px;
+  height: 250px;
+}
