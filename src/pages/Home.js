@@ -2,7 +2,7 @@ import "../assets/styles/index.css";
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import Img from "../images/beauty.jpg";
+import Img from "../assets/images/beauty.jpg";
 
 function Home() {
   return (
