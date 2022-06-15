@@ -12,7 +12,7 @@ import axios from "axios";
 
 //apagar este depois que tivermos a url do deploy e usar o acima
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://localhost:4000",
 });
 
 // Configura a instância do Axios para injetar o cabeçalho de autenticação antes de cada requisição
