@@ -1,4 +1,3 @@
-import Navbar from "../../components/Navbar";
 import React, { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
@@ -7,6 +6,7 @@ import { AuthContext } from "../../contexts/authContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/loginSignupStyle.css";
+import Navbar from "../../components/Navbar";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -50,8 +50,9 @@ function Login(props) {
   }
 
   return (
-    //navbar
     <div className="container mt-5">
+      <Navbar />
+
       <form onSubmit={handleSubmit}>
         <h1 className="mb-5 h1-title">Login</h1>
 
