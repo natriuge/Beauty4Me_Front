@@ -1,22 +1,23 @@
 import React from "react";
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   return (
-    <nav>
-      <ul className="pagination">
-        {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} href="!#" className="page-link">
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div>
+      {Array.from(Array(pages), (state, index) => {
+        return (
+          <button
+            style={
+              index === currentPage ? { backgroundColor: "#b8b5ff" } : null
+            }
+            className="pagination-btn-css"
+            value={index}
+            onClick={(e) => setCurrentPage(Number(e.target.value))}
+          >
+            {index + 1}
+          </button>
+        );
+      })}
+    </div>
   );
 };
 

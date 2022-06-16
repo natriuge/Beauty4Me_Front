@@ -68,3 +68,31 @@
   font-weight: bold;
   color: rgba(197, 191, 191, 0.984);
 }
+
+.selector-css {
+  font-style: italic;
+  color: rgba(197, 191, 191, 0.984);
+}
+
+.selector-box {
+  background-color: #e4fbff;
+  border: 1px solid #7868e6;
+  font-weight: bolder;
+  font-weight: 100;
+  color: #7868e6;
+}
+
+.pagination-btn-css {
+  font-weight: 100;
+  color: #7868e6;
+  background-color: rgba(245, 239, 239, 0.984);
+  border: 1px solid #c2eaf1;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.pagination-btn-css:hover {
+  background-color: #e4fbff;
+  border: 1px solid #7868e6;
+  font-weight: bolder;
+}

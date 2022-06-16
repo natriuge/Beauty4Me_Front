@@ -96,6 +96,7 @@ function Login(props) {
               <button
                 className="btn-login-signup btn-login-signup-responsive"
                 type="submit"
+                onClick={() => navigate("/")}
               >
                 Let me in!
               </button>
