@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
+
 .prod-card-container {
   position: relative;
   width: 100%;
@@ -29,8 +31,40 @@
 }
 
 .card-text-ranking {
-  background-color: #04aa6d;
-  color: white;
-  font-size: 16px;
+  background-color: #b8b5ff;
+  color: #e4fbff;
   padding: 16px 32px;
+  border: 2px solid #e4fbff;
+  border-radius: 5em;
+}
+
+.h1-title {
+  color: #b8b5ff;
+  font-weight: bold;
+  text-decoration: overline;
+  text-decoration-color: #e4fbff;
+}
+
+.h4-title {
+  font-style: italic;
+  font-weight: bold;
+  color: rgba(197, 191, 191, 0.984);
+}
+
+.h6-name {
+  font-weight: bold;
+  color: #b8b5ff;
+}
+
+.p-brand-name {
+  font-weight: normal;
+  color: #7868e6;
+  text-decoration: overline;
+  text-decoration-color: #60dbf1;
+  /* text-decoration-color: #e4fbff; */
+}
+
+.p-ranting {
+  font-weight: bold;
+  color: rgba(197, 191, 191, 0.984);
 }
