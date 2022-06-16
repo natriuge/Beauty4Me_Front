@@ -83,7 +83,7 @@ function Ranking() {
                       />
                       <div className="card-middle-ranking">
                         <button
-                          // onClick={() => navigate("/NOME ROTA NAT M")}
+                          onClick={() => navigate("ProductDetails")}
                           className="btn card-text-ranking"
                         >
                           <i className="bi bi-search"></i>

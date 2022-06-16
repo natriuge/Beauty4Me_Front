@@ -8,6 +8,7 @@ import Login from "../pages/auth/Login";
 import Ranking from "../pages/Ranking";
 
 import { AuthContextComponent } from "../contexts/authContext";
+import ProductDetails from "./ProductDetails";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ranking" element={<Ranking />} />
+        <Route path="/product-detail" element={<ProductDetails />} />
       </Routes>
     </AuthContextComponent>
   );
