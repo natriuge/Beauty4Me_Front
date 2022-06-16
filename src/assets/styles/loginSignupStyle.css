@@ -1,7 +1,11 @@
 .btn-login-signup {
+  border-radius: 5px;
+  border: 1px solid #e4fbff;
   background-color: #b8b5ff;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
   color: #7868e6;
-  border-color: #e4fbff;
 }
 
 .h1-title {
@@ -36,4 +40,60 @@
 .image-dec {
   width: 250px;
   height: 250px;
+  margin: 7rem;
+}
+
+.my-radio {
+  accent-color: #7868e6;
+}
+
+/* responsive */
+
+@media (min-width: 150px) and (max-width: 450px) {
+  .css-responsive {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: start;
+  }
+
+  .image-dec-responsive {
+    width: 200px;
+    height: 200px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .btn-login-signup-responsive {
+    border-radius: 5px;
+    border: 1px solid #e4fbff;
+    background-color: #b8b5ff;
+    padding: 5px 10px;
+    font-size: 0.93em;
+    cursor: pointer;
+    color: #7868e6;
+  }
+
+  .h1-title {
+    font-size: 2.1rem;
+  }
+
+  .text-page {
+    font-size: medium;
+  }
+
+  .link-decoration {
+    font-size: medium;
+  }
+
+  .text-paragraph {
+    font-size: smaller;
+    display: inline;
+  }
+
+  .text-skinType {
+    font-size: small;
+  }
 }

@@ -7,6 +7,7 @@ import { AuthContext } from "../../contexts/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/loginSignupStyle.css";
 import Navbar from "../../components/Navbar";
+import hands from "../../assets/images/hands.jpg";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -52,67 +53,70 @@ function Login(props) {
   return (
     <div className="container mt-5">
       <Navbar />
+      <div className="row css-responsive">
+        <div className="col-6">
+          <form onSubmit={handleSubmit}>
+            <h1 className="mb-5 h1-title">Login</h1>
 
-      <form onSubmit={handleSubmit}>
-        <h1 className="mb-5 h1-title">Login</h1>
+            <div className="mb-5">
+              <label htmlFor="loginFormEmail" className="text-page">
+                E-mail Address
+              </label>
+              <div className="">
+                <input
+                  type="email"
+                  name="email"
+                  id="loginFormEmail"
+                  value={state.email}
+                  error={errors.email}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+            </div>
 
-        <div className="row mb-5">
-          <label
-            htmlFor="loginFormEmail"
-            className="col-sm-2 col-form-label text-page"
-          >
-            E-mail Address
-          </label>
-          <div className="col-sm-3">
-            <input
-              type="email"
-              name="email"
-              id="loginFormEmail"
-              value={state.email}
-              error={errors.email}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="your.name@email.com"
-            />
-          </div>
+            <div className="mb-4">
+              <label htmlFor="loginFormPassword" className="text-page">
+                Password
+              </label>
+              <div className="">
+                <input
+                  type="password"
+                  name="password"
+                  id="loginFormPassword"
+                  value={state.password}
+                  error={errors.password}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+            </div>
+
+            <div className="mb-5 mt-5">
+              <button
+                className="btn-login-signup btn-login-signup-responsive"
+                type="submit"
+                onClick={() => navigate("/")}
+              >
+                Let me in!
+              </button>
+            </div>
+
+            <div className="mb-5">
+              <Link className="link-decoration" to="/signup">
+                Don't have an account? Click here to sign up!
+              </Link>
+            </div>
+          </form>
         </div>
-
-        <div className="row mb-3">
-          <label
-            htmlFor="loginFormPassword"
-            className="col-sm-2 col-form-label text-page"
-          >
-            Password
-          </label>
-          <div className="col-sm-3">
-            <input
-              type="password"
-              name="password"
-              id="loginFormPassword"
-              value={state.password}
-              error={errors.password}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="your password"
-            />
-          </div>
+        <div className="col-6 css-responsive">
+          <img
+            src={hands}
+            className="image-dec image-dec-responsive"
+            alt="hands ilustration"
+          />
         </div>
-
-        <div className="mb-5 mt-5">
-          <button
-            className="btn-login-signup btn-lg border border-4 rounded-pill"
-            type="submit"
-          >
-            Login!
-          </button>
-        </div>
-
-        <div className="mb-5">
-          <Link className="link-decoration" to="/signup">
-            Don't have an account? Click here to signup!
-          </Link>
-        </div>
-      </form>
+      </div>
     </div>
   );
 }
