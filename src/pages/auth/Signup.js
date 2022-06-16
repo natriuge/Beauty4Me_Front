@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
+import hands from "../../assets/images/hands.jpg";
+import Navbar from "../../components/Navbar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/loginSignupStyle.css";
-import hands from "../../assets/images/hands.jpg";
-import Navbar from "../../components/Navbar";
 
 function Signup(props) {
   const [state, setState] = useState({
