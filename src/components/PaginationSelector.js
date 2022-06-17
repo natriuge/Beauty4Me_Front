@@ -3,7 +3,7 @@ import React from "react";
 const PaginationSelector = ({ productsPerPage, setProductsPerPage }) => {
   return (
     <div className="mb-3 d-flex justify-content-end selector-css">
-      Products by page...
+      Products by page
       <select
         className="selector-box"
         value={productsPerPage}

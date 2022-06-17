@@ -74,11 +74,11 @@ function Ranking() {
                 element;
               return (
                 <div key={_id} className="col">
-                  <div className="card h-100">
+                  <div className="card h-100 d-flex border-card">
                     <div className="prod-card-container">
                       <img
                         src={imageDetails}
-                        className="card-img-top prod-img"
+                        className="card-img-top prod-img p-3"
                         alt={productName}
                       />
                       <div className="card-middle-ranking">
@@ -90,10 +90,12 @@ function Ranking() {
                         </button>
                       </div>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body flex-grow-1">
                       <h6 className="card-title h6-name">{productName}</h6>
                       <p className="card-text p-brand-name">{brandName}</p>
-                      <p className="card-text p-ranting">
+                    </div>
+                    <div className="d-flex justify-content-center">
+                      <p className="card-text p-ranting pb-3">
                         {rating}
                         <Ratings>{rating}</Ratings>
                       </p>

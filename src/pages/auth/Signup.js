@@ -120,7 +120,7 @@ function Signup(props) {
               <label htmlFor="signupFormSkinType" className="text-page">
                 Your Skin Type
               </label>
-              <div className="text-skinType border my-radio">
+              <div className="text-skinType my-radio">
                 <input
                   className="mb-2"
                   type="radio"
