@@ -108,12 +108,9 @@ body {
   color: white;
 }
 
-.svg rect {
-  background-image: url("../images/beauty.jpg");
-}
 
 .hero-img {
-  height: 110%;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

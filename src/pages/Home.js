@@ -28,60 +28,60 @@ function Home() {
     <div>
       <Navbar />
 
-        <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img className="img-fluid" src={Img} alt="First slide" />
+      <div id="myCarousel">
+        <div className="carousel-inner">
+          <img className="hero-img" src={Img} alt="First slide" />
 
-              <div className="container">
-                <div className="carousel-caption text-start cover-container d-flex flex-column">
-                  <h1>
-                    True beauty comes
-                    <br /> from within
-                  </h1>
-                  <p className="carousel-caption-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    <br />
-                    Pellentesque pharetra at elit at aliquet.{" "}
-                  </p>
-                  <Link className="btn btn-lg carousel-caption-btn" to="#">
-                    Sign up today
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              {products.map((product) => {
-                const { productName, imageIcon, brandName, rating } = product;
-
-                return (
-                  <div className="col-4">
-                    <div className="card" style={{ width: "18rem" }}>
-                      <img src={imageIcon} className="card-img-top" alt="..." />
-                      <div className="card-body">
-                        <h5 className="card-title">{productName}</h5>
-                        <p className="card-text">{brandName}</p>
-                        <p className="card-rating">{rating}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+          <div className="container">
+            <div className="carousel-caption text-start cover-container d-flex flex-column">
+              <h1>
+                True beauty comes
+                <br /> from within
+              </h1>
+              <p className="carousel-caption-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <br />
+                Pellentesque pharetra at elit at aliquet.{" "}
+              </p>
+              <Link className="btn btn-lg carousel-caption-btn" to="#">
+                Sign up today
+              </Link>
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <div className="row">
+          {products.map((product) => {
+            const { productName, imageIcon, brandName, rating } = product;
 
-        <footer className="container">
-          <p className="float-end">
-            <link to="#" />
-            Back to top
-          </p>
-          <p>
-            &copy; 2017–2022 Company, Inc. &middot; <link to="#" />
-            Privacy &middot; <link to="#" />
-            Terms
-          </p>
-        </footer>
+            return (
+              <div className="col-4">
+                <div className="card" style={{ width: "18rem" }}>
+                  <img src={imageIcon} className="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">{productName}</h5>
+                    <p className="card-text">{brandName}</p>
+                    <p className="card-rating">{rating}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <footer className="container">
+        <p className="float-end">
+          <link to="#" />
+          Back to top
+        </p>
+        <p>
+          &copy; 2017–2022 Company, Inc. &middot; <link to="#" />
+          Privacy &middot; <link to="#" />
+          Terms
+        </p>
+      </footer>
 
       <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     </div>
