@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 import hands from "../../assets/images/hands.jpg";
 import Navbar from "../../components/Navbar";
+import FormLoginSignUp from "../../components/FormLoginSignUp";
+import BtnLoginSignUp from "../../components/BtnLoginSignUp";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/loginSignupStyle.css";
@@ -56,63 +58,43 @@ function Signup(props) {
           <form onSubmit={handleSubmit}>
             <h1 className="mb-5 h1-title">Signing Up!</h1>
 
-            <div className="mb-4">
-              <label htmlFor="signupFormName" className="text-page">
-                Name
-              </label>
-              <div className="">
-                <input
-                  type="text"
-                  name="name"
-                  id="signupFormName"
-                  value={state.name}
-                  error={errors.name}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
+            <FormLoginSignUp
+              label="Name"
+              type="text"
+              name="name"
+              id="signupFormName"
+              value={state.name}
+              error={errors.name}
+              onChange={handleChange}
+            />
 
-            <div className="mb-4">
-              <label htmlFor="signupFormEmail" className="text-page">
-                E-mail Address
-              </label>
-              <div className="">
-                <input
-                  type="email"
-                  name="email"
-                  id="signupFormEmail"
-                  value={state.email}
-                  error={errors.email}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="signupFormPassword" className="text-page">
-                Password
-              </label>
-              <div className="">
-                <input
-                  type="password"
-                  name="password"
-                  id="signupFormPassword"
-                  value={state.password}
-                  error={errors.password}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-                <div className="mt-1 mb-4 text-paragraph">
-                  <p>
-                    Your password must include:
-                    <li>at least 8 characters</li>
-                    <li>an uppercase character</li>
-                    <li>numbers</li>
-                    <li>symbols (@#$%)</li>
-                  </p>
-                </div>
+            <FormLoginSignUp
+              label="E-mail Address"
+              type="email"
+              name="email"
+              id="signupFormEmail"
+              value={state.email}
+              error={errors.email}
+              onChange={handleChange}
+            />
+            <div>
+              <FormLoginSignUp
+                label="Password"
+                type="password"
+                name="password"
+                id="signupFormPassword"
+                value={state.password}
+                error={errors.password}
+                onChange={handleChange}
+              />
+              <div className="mb-5 text-right text-paragraph">
+                <p>
+                  Your password must include:
+                  <li>at least 8 characters</li>
+                  <li>an uppercase character</li>
+                  <li>numbers</li>
+                  <li>symbols (@#$%)</li>
+                </p>
               </div>
             </div>
 
@@ -156,14 +138,7 @@ function Signup(props) {
               </div>
             </div>
 
-            <div className="mb-5 mt-5">
-              <button
-                className="btn-login-signup btn-login-signup-responsive"
-                type="submit"
-              >
-                Create Account
-              </button>
-            </div>
+            <BtnLoginSignUp>Create Account</BtnLoginSignUp>
 
             <div className="mb-5">
               <Link className="link-decoration" to="/login">

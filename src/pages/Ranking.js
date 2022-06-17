@@ -94,18 +94,18 @@ function Ranking() {
                       <h6 className="card-title h6-name">{productName}</h6>
                       <p className="card-text p-brand-name">{brandName}</p>
                     </div>
-                    <div className="d-flex justify-content-center">
-                      <p className="card-text p-ranting pb-3">
+                    <div className="d-flex ">
+                      <div className="p-ranting">
                         {rating}
                         <Ratings>{rating}</Ratings>
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               );
             })}
           </div>
-          <div className=" row justify-content-center">
+          <div className="row justify-content-center">
             <Pagination
               pages={pages}
               currentPage={currentPage}

@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
-
 import { AuthContext } from "../../contexts/authContext";
+import FormLoginSignUp from "../../components/FormLoginSignUp";
+import Navbar from "../../components/Navbar";
+import hands from "../../assets/images/hands.jpg";
+import BtnLoginSignUp from "../../components/BtnLoginSignUp";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../assets/styles/loginSignupStyle.css";
-import Navbar from "../../components/Navbar";
-import hands from "../../assets/images/hands.jpg";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -58,49 +59,27 @@ function Login(props) {
           <form onSubmit={handleSubmit}>
             <h1 className="mb-5 h1-title">Login</h1>
 
-            <div className="mb-5">
-              <label htmlFor="loginFormEmail" className="text-page">
-                E-mail Address
-              </label>
-              <div className="">
-                <input
-                  type="email"
-                  name="email"
-                  id="loginFormEmail"
-                  value={state.email}
-                  error={errors.email}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
+            <FormLoginSignUp
+              label="E-mail Address"
+              type="email"
+              name="email"
+              id="loginFormEmail"
+              value={state.email}
+              error={errors.email}
+              onChange={handleChange}
+            />
 
-            <div className="mb-4">
-              <label htmlFor="loginFormPassword" className="text-page">
-                Password
-              </label>
-              <div className="">
-                <input
-                  type="password"
-                  name="password"
-                  id="loginFormPassword"
-                  value={state.password}
-                  error={errors.password}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
+            <FormLoginSignUp
+              label="Password"
+              type="password"
+              name="password"
+              id="loginFormPassword"
+              value={state.password}
+              error={errors.password}
+              onChange={handleChange}
+            />
 
-            <div className="mb-5 mt-5">
-              <button
-                className="btn-login-signup btn-login-signup-responsive"
-                type="submit"
-                onClick={() => navigate("/")}
-              >
-                Let me in!
-              </button>
-            </div>
+            <BtnLoginSignUp>Let me in!</BtnLoginSignUp>
 
             <div className="mb-5">
               <Link className="link-decoration" to="/signup">
