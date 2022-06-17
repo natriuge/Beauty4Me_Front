@@ -52,13 +52,13 @@
 }
 
 .h6-name {
-  font-weight: bold;
-  color: #b8b5ff;
+  font-weight: normal;
+  color: rgb(0, 0, 0);
 }
 
 .p-brand-name {
-  font-weight: normal;
-  color: #7868e6;
+  font-weight: bolder;
+  color: rgb(0, 0, 0);
   text-decoration: overline;
   text-decoration-color: #60dbf1;
   /* text-decoration-color: #e4fbff; */
@@ -66,7 +66,7 @@
 
 .p-ranting {
   font-weight: bold;
-  color: rgba(197, 191, 191, 0.984);
+  color: #b8b5ff;
 }
 
 .selector-css {
@@ -80,6 +80,9 @@
   font-weight: bolder;
   font-weight: 100;
   color: #7868e6;
+  margin-left: 0.3rem;
+  width: 3rem;
+  height: auto;
 }
 
 .pagination-btn-css {
@@ -89,10 +92,16 @@
   border: 1px solid #c2eaf1;
   margin: 4px;
   cursor: pointer;
+  width: 2rem;
+  height: auto;
 }
 
 .pagination-btn-css:hover {
   background-color: #e4fbff;
   border: 1px solid #7868e6;
   font-weight: bolder;
+}
+
+.border-card {
+  border-radius: 2rem;
 }
