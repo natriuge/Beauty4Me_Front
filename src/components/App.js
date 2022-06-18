@@ -6,6 +6,7 @@ import Signup from "../pages/auth/Signup";
 import Login from "../pages/auth/Login";
 // import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import Ranking from "../pages/Ranking";
+import NotFound from "../pages/NotFound";
 
 import { AuthContextComponent } from "../contexts/authContext";
 import ProductDetails from "./ProductDetails";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/product-detail" element={<ProductDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthContextComponent>
   );
