@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
 import { AuthContext } from "../../contexts/authContext";
-import FormLoginSignUp from "../../components/FormLoginSignUp";
+import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
 import Navbar from "../../components/Navbar";
 import hands from "../../assets/images/hands.jpg";
-import BtnLoginSignUp from "../../components/BtnLoginSignUp";
+import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/styles/loginSignupStyle.css";
+import "../../components/form-control-login-signup/loginSignupStyle.css";
 
 function Login(props) {
   const authContext = useContext(AuthContext);

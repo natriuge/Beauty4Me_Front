@@ -5,8 +5,8 @@ import Home from "../pages/Home";
 import Signup from "../pages/auth/Signup";
 import Login from "../pages/auth/Login";
 // import ProtectedRoute from "../pages/auth/ProtectedRoute";
-import Ranking from "../pages/Ranking";
-import NotFound from "../pages/NotFound";
+import Ranking from "../pages/ranking/Ranking";
+import NotFound from "../pages/not-found/NotFound";
 
 import { AuthContextComponent } from "../contexts/authContext";
 import ProductDetails from "./ProductDetails";

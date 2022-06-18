@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import { axios } from "axios";
 import api from "../../src/apis/api";
-import HTMLReactParser  from "html-react-parser"
+import HTMLReactParser from "html-react-parser";
 
 function ProductDetails() {
   const [productsList, setProductsList] = useState([]);
@@ -22,7 +22,7 @@ function ProductDetails() {
     }
   }
 
-  console.log(productsList)
+  console.log(productsList);
 
   return (
     <>

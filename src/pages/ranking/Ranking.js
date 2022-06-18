@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../apis/api";
-import Ratings from "../components/FixedRatingStars";
-import Navbar from "../components/Navbar";
-import LoadingSpinner from "../components/LoadingSpinner";
-import Pagination from "../components/Pagination";
-import PaginationSelector from "../components/PaginationSelector";
+import api from "../../apis/api";
+import Ratings from "../../components/ranking-rating/FixedRatingStars";
+import Navbar from "../../components/Navbar";
+import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
+import Pagination from "../../components/pagination/Pagination";
+import PaginationSelector from "../../components/pagination/PaginationSelector";
 
-import "../assets/styles/rankingStyle.css";
+import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Ranking() {

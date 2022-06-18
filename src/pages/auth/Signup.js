@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 import hands from "../../assets/images/hands.jpg";
 import Navbar from "../../components/Navbar";
-import FormLoginSignUp from "../../components/FormLoginSignUp";
-import BtnLoginSignUp from "../../components/BtnLoginSignUp";
+import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
+import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/styles/loginSignupStyle.css";
+import "../../components/form-control-login-signup/loginSignupStyle.css";
 
 function Signup(props) {
   const [state, setState] = useState({
@@ -39,23 +39,26 @@ function Signup(props) {
       const response = await api.post("/signup", state);
       setErrors({ name: "", password: "", email: "", userSkinType: "" });
       navigate("/login");
-      console.log(response.data);
+      console.log("RESPONSA DATA", response.data);
     } catch (err) {
       if (err.response) {
-        console.error(err.response);
-        return setErrors({ ...err.response.data.errors });
+        console.error("ERRO", err.response);
+        // console.log("SET ERRORS", err.response.data.msg);
+        return setErrors({ ...err.response.data });
       }
+      // console.log("SET ERRORS", errors);
 
       console.error(err);
     }
   }
+  console.log("errors", errors);
 
   return (
     <div className="container mt-5">
       <Navbar />
       <div className="row css-responsive">
         <div className="col-6">
-          <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+          <form onSubmit={handleSubmit}>
             <h1 className="mb-5 h1-title">Signing Up!</h1>
 
             <FormLoginSignUp
@@ -66,6 +69,7 @@ function Signup(props) {
               value={state.name}
               error={errors.name}
               onChange={handleChange}
+              required
             />
 
             <FormLoginSignUp
@@ -76,6 +80,7 @@ function Signup(props) {
               value={state.email}
               error={errors.email}
               onChange={handleChange}
+              required
             />
             <div>
               <FormLoginSignUp
@@ -86,16 +91,8 @@ function Signup(props) {
                 value={state.password}
                 error={errors.password}
                 onChange={handleChange}
+                required
               />
-              <div className="mb-5 text-right text-paragraph">
-                <p>
-                  Your password must include:
-                  <li>at least 8 characters</li>
-                  <li>an uppercase character</li>
-                  <li>numbers</li>
-                  <li>symbols (@#$%)</li>
-                </p>
-              </div>
             </div>
 
             <div className="mb-4">

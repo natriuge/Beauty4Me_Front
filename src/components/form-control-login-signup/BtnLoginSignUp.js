@@ -1,4 +1,4 @@
-import "../assets/styles/loginSignupStyle.css";
+import "../form-control-login-signup/loginSignupStyle.css";
 
 function BtnLoginSignUp({ children }) {
   return (
