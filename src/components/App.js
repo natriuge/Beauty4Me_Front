@@ -7,7 +7,7 @@ import Login from "../pages/auth/Login";
 import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import Navbar from "./Navbar";
 import { AuthContextComponent } from "../contexts/authContext";
-import ProductDetails from "../pages/ProductDetails";
+import ProductDetails from "../pages/ProductDetail/ProductDetails";
 
 function App() {
   return (
