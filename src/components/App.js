@@ -4,15 +4,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "../pages/Home";
 import Signup from "../pages/auth/Signup";
 import Login from "../pages/auth/Login";
+import Navbar from "./Navbar";
 // import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import Ranking from "../pages/Ranking";
 
 import { AuthContextComponent } from "../contexts/authContext";
-import ProductDetails from "./ProductDetails";
+import ProductDetails from "../pages/ProductDetails";
 
 function App() {
   return (
     <AuthContextComponent>
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/" element={<ProtectedRoute component={<Home/>} />} /> */}
