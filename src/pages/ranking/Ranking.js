@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 import Ratings from "../../components/ranking-rating/FixedRatingStars";
-import Navbar from "../../components/Navbar";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
@@ -51,7 +50,6 @@ function Ranking() {
 
   return (
     <div className="container mt-5">
-      <Navbar />
 
       {loading ? (
         <LoadingSpinner />
