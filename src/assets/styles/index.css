@@ -9,7 +9,7 @@
 body {
   padding-top: 3rem;
   padding-bottom: 3rem;
-  color: #5a5a5a;
+  color: #2c2c2c;
 }
 
 /* CUSTOMIZE THE CAROUSEL
@@ -88,9 +88,25 @@ body {
 }
 
 .navbar-dark {
-  background-color: #ff616d;
+  background-color: rgb(255, 255, 255);
   display: flex;
   align-items: center;
+  color:#2c2c2c;
+  align-items: self-end;
+}
+.nav-font{
+  color: #2c2c2c
+}
+.topbar {
+  /* background-color: #FF7878; red */
+  /* background-color: #a0a2f9; */
+  background-color: rgb(165, 132, 238);
+}
+.topbar-text{
+  color: #fff;
+  font-weight : "bold";
+  text-align: center;
+  padding: 0.2rem;
 }
 
 .nav-masthead .nav-link:hover,
@@ -104,8 +120,8 @@ body {
 }
 
 .btn-search {
-  background-color: #66de93;
-  color: white;
+  /* background-color: #66de93; */
+  color: rgb(0, 0, 0);
 }
 
 .svg rect {
@@ -125,7 +141,7 @@ body {
 }
 
 .carousel-caption-btn {
-  background-color: #ff616d;
+  background-color: #FF7878;
   color: white;
 }
 
@@ -142,4 +158,8 @@ body {
 
 .navbar-brand {
   font-family: "Varela Round", sans-serif;
+}
+
+.search-input{
+  border-radius: 2rem;
 }
