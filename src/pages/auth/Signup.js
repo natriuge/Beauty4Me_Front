@@ -93,6 +93,16 @@ function Signup(props) {
                 onChange={handleChange}
                 required
               />
+              {/* <FormLoginSignUp
+                   label="Your Skin Type"
+                type=""
+                name=""
+                id=""
+                value={state.}
+                error={errors.}
+                onChange={handleChange}
+                required
+              /> */}
             </div>
 
             <div className="mb-4">
