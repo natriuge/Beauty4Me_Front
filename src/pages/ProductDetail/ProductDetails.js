@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import Ratings from "../../components/FixedRatingStars";
+import Ratings from "../../components/ranking-rating/FixedRatingStars";
 import api from "../../apis/api";
 import ReviewForm from "../../components/Review/ReviewForm";
 import HTMLReactParser from "html-react-parser";
 import { AuthContext } from "../../contexts/authContext";
 
 import "../ProductDetail/productDetails.css"
-import "../../assets/styles/rankingStyle.css";
+import "../ranking/rankingStyle.css"
   
 
 function ProductDetails() {
@@ -78,7 +78,7 @@ function ProductDetails() {
   }
 
   function handleChange(event){
-    setNewReview({ ...newReview, productId: id [event.target.name]: event.target.value });
+    setNewReview({ ...newReview, productId: id, [event.target.name]: event.target.value });
   }
   //  function isAuthor() {
   //    return newReview.authorId._id === loggedInUser.user._id;

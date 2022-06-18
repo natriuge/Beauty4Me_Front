@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Ratings from "./FixedRatingStars";
+import Ratings from "../components/ranking-rating/FixedRatingStars";
 
 function Card(props) {
   const products = props.product;
