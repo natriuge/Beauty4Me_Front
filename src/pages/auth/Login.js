@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
-
 import { AuthContext } from "../../contexts/authContext";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/styles/loginSignupStyle.css";
+import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
 import Navbar from "../../components/Navbar";
 import hands from "../../assets/images/hands.jpg";
+import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../components/form-control-login-signup/loginSignupStyle.css";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -26,7 +27,7 @@ function Login(props) {
   function handleChange(event) {
     setState({
       ...state,
-      [event.currentTarget.name]: event.currentTarget.value,
+      [event.currentTarget.name]: event.currentTarget.value, //event.currentTarget.name está entre chaves para indicar que é ele quem vai para o value
     });
   }
 
@@ -55,52 +56,31 @@ function Login(props) {
       <Navbar />
       <div className="row css-responsive">
         <div className="col-6">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="needs-validation" noValidate>
             <h1 className="mb-5 h1-title">Login</h1>
 
-            <div className="mb-5">
-              <label htmlFor="loginFormEmail" className="text-page">
-                E-mail Address
-              </label>
-              <div className="">
-                <input
-                  type="email"
-                  name="email"
-                  id="loginFormEmail"
-                  value={state.email}
-                  error={errors.email}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
+            <FormLoginSignUp
+              label="E-mail Address"
+              type="email"
+              name="email"
+              id="loginFormEmail"
+              value={state.email}
+              error={errors.email}
+              onChange={handleChange}
+              errorMessage="It should be a valid email address"
+            />
 
-            <div className="mb-4">
-              <label htmlFor="loginFormPassword" className="text-page">
-                Password
-              </label>
-              <div className="">
-                <input
-                  type="password"
-                  name="password"
-                  id="loginFormPassword"
-                  value={state.password}
-                  error={errors.password}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
+            <FormLoginSignUp
+              label="Password"
+              type="password"
+              name="password"
+              id="loginFormPassword"
+              value={state.password}
+              error={errors.password}
+              onChange={handleChange}
+            />
 
-            <div className="mb-5 mt-5">
-              <button
-                className="btn-login-signup btn-login-signup-responsive"
-                type="submit"
-                onClick={() => navigate("/")}
-              >
-                Let me in!
-              </button>
-            </div>
+            <BtnLoginSignUp>Let me in!</BtnLoginSignUp>
 
             <div className="mb-5">
               <Link className="link-decoration" to="/signup">

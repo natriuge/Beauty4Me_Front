@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 import hands from "../../assets/images/hands.jpg";
 import Navbar from "../../components/Navbar";
+import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
+import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/styles/loginSignupStyle.css";
+import "../../components/form-control-login-signup/loginSignupStyle.css";
 
 function Signup(props) {
   const [state, setState] = useState({
@@ -37,16 +39,19 @@ function Signup(props) {
       const response = await api.post("/signup", state);
       setErrors({ name: "", password: "", email: "", userSkinType: "" });
       navigate("/login");
-      console.log(response.data);
+      console.log("RESPONSA DATA", response.data);
     } catch (err) {
       if (err.response) {
-        console.error(err.response);
-        return setErrors({ ...err.response.data.errors });
+        console.error("ERRO", err.response);
+        // console.log("SET ERRORS", err.response.data.msg);
+        return setErrors({ ...err.response.data });
       }
+      // console.log("SET ERRORS", errors);
 
       console.error(err);
     }
   }
+  console.log("errors", errors);
 
   return (
     <div className="container mt-5">
@@ -56,64 +61,48 @@ function Signup(props) {
           <form onSubmit={handleSubmit}>
             <h1 className="mb-5 h1-title">Signing Up!</h1>
 
-            <div className="mb-4">
-              <label htmlFor="signupFormName" className="text-page">
-                Name
-              </label>
-              <div className="">
-                <input
-                  type="text"
-                  name="name"
-                  id="signupFormName"
-                  value={state.name}
-                  error={errors.name}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
+            <FormLoginSignUp
+              label="Name"
+              type="text"
+              name="name"
+              id="signupFormName"
+              value={state.name}
+              error={errors.name}
+              onChange={handleChange}
+              required
+            />
 
-            <div className="mb-4">
-              <label htmlFor="signupFormEmail" className="text-page">
-                E-mail Address
-              </label>
-              <div className="">
-                <input
-                  type="email"
-                  name="email"
-                  id="signupFormEmail"
-                  value={state.email}
-                  error={errors.email}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="signupFormPassword" className="text-page">
-                Password
-              </label>
-              <div className="">
-                <input
-                  type="password"
-                  name="password"
-                  id="signupFormPassword"
-                  value={state.password}
-                  error={errors.password}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-                <div className="mt-1 mb-4 text-paragraph">
-                  <p>
-                    Your password must include:
-                    <li>at least 8 characters</li>
-                    <li>an uppercase character</li>
-                    <li>numbers</li>
-                    <li>symbols (@#$%)</li>
-                  </p>
-                </div>
-              </div>
+            <FormLoginSignUp
+              label="E-mail Address"
+              type="email"
+              name="email"
+              id="signupFormEmail"
+              value={state.email}
+              error={errors.email}
+              onChange={handleChange}
+              required
+            />
+            <div>
+              <FormLoginSignUp
+                label="Password"
+                type="password"
+                name="password"
+                id="signupFormPassword"
+                value={state.password}
+                error={errors.password}
+                onChange={handleChange}
+                required
+              />
+              {/* <FormLoginSignUp
+                   label="Your Skin Type"
+                type=""
+                name=""
+                id=""
+                value={state.}
+                error={errors.}
+                onChange={handleChange}
+                required
+              /> */}
             </div>
 
             <div className="mb-4">
@@ -127,6 +116,7 @@ function Signup(props) {
                   name="userSkinType"
                   onChange={handleChange}
                   value="Normal"
+                  required
                 />{" "}
                 Normal <br />
                 <input
@@ -156,14 +146,7 @@ function Signup(props) {
               </div>
             </div>
 
-            <div className="mb-5 mt-5">
-              <button
-                className="btn-login-signup btn-login-signup-responsive"
-                type="submit"
-              >
-                Create Account
-              </button>
-            </div>
+            <BtnLoginSignUp>Create Account</BtnLoginSignUp>
 
             <div className="mb-5">
               <Link className="link-decoration" to="/login">

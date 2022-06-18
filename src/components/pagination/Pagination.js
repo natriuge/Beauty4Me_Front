@@ -6,6 +6,7 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   const currentPages = Array.from(state, (currentNumber, index) => {
     return (
       <button
+        key={currentNumber}
         style={
           currentNumber === currentPage ? { backgroundColor: "#b8b5ff" } : null
         }
@@ -55,7 +56,7 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   return (
     <div>
       {currentPages}
-      <span style={{ backgroundColor: "#b8b5ff" }}>...</span>
+      <span style={{ color: "#b8b5ff" }}>...</span>
       <button
         style={
           pages - 1 === currentPage ? { backgroundColor: "#b8b5ff" } : null

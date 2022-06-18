@@ -36,6 +36,7 @@
   padding: 16px 32px;
   border: 2px solid #e4fbff;
   border-radius: 5em;
+  box-sizing: border-box;
 }
 
 .h1-title {
@@ -67,6 +68,8 @@
 .p-ranting {
   font-weight: bold;
   color: #b8b5ff;
+  /* min-height: 1px; */
+  padding: 1.25rem;
 }
 
 .selector-css {

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../apis/api";
-import Ratings from "../components/FixedRatingStars";
-import Navbar from "../components/Navbar";
-import LoadingSpinner from "../components/LoadingSpinner";
-import Pagination from "../components/Pagination";
-import PaginationSelector from "../components/PaginationSelector";
+import api from "../../apis/api";
+import Ratings from "../../components/ranking-rating/FixedRatingStars";
+import Navbar from "../../components/Navbar";
+import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
+import Pagination from "../../components/pagination/Pagination";
+import PaginationSelector from "../../components/pagination/PaginationSelector";
 
-import "../assets/styles/rankingStyle.css";
+import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Ranking() {
   const [state, setState] = useState([]);
-  const [setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,7 +41,7 @@ function Ranking() {
       }
     }
     fetchProducts();
-  }, []);
+  }, [errorMessage]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
   useEffect(() => {
     setCurrentPage(0);
@@ -94,18 +94,18 @@ function Ranking() {
                       <h6 className="card-title h6-name">{productName}</h6>
                       <p className="card-text p-brand-name">{brandName}</p>
                     </div>
-                    <div className="d-flex justify-content-center">
-                      <p className="card-text p-ranting pb-3">
+                    <div className="d-flex ">
+                      <div className="p-ranting">
                         {rating}
                         <Ratings>{rating}</Ratings>
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               );
             })}
           </div>
-          <div className=" row justify-content-center">
+          <div className="row justify-content-center">
             <Pagination
               pages={pages}
               currentPage={currentPage}
