@@ -13,9 +13,8 @@ function FormLoginSignUp(props) {
         value={props.value}
         onChange={props.onChange}
         className="form-control"
-        required={props.required}
       />
-      {props.error ? <div>{props.error}</div> : null}
+      {props.error ? <div className="msg-err-css">{props.error}</div> : null}
     </div>
   );
 }

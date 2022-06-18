@@ -42,15 +42,12 @@ function Signup(props) {
     } catch (err) {
       if (err.response) {
         console.error("ERRO", err.response);
-        // console.log("SET ERRORS", err.response.data.msg);
         return setErrors({ ...err.response.data });
       }
-      // console.log("SET ERRORS", errors);
-
+      console.log("SET ERRORS", err.response);
       console.error(err);
     }
   }
-  console.log("errors", errors);
 
   return (
     <div className="container mt-5">
@@ -67,7 +64,6 @@ function Signup(props) {
               value={state.name}
               error={errors.name}
               onChange={handleChange}
-              required
             />
 
             <FormLoginSignUp
@@ -78,7 +74,6 @@ function Signup(props) {
               value={state.email}
               error={errors.email}
               onChange={handleChange}
-              required
             />
             <div>
               <FormLoginSignUp
@@ -89,18 +84,7 @@ function Signup(props) {
                 value={state.password}
                 error={errors.password}
                 onChange={handleChange}
-                required
               />
-              {/* <FormLoginSignUp
-                   label="Your Skin Type"
-                type=""
-                name=""
-                id=""
-                value={state.}
-                error={errors.}
-                onChange={handleChange}
-                required
-              /> */}
             </div>
 
             <div className="mb-4">
@@ -114,7 +98,6 @@ function Signup(props) {
                   name="userSkinType"
                   onChange={handleChange}
                   value="Normal"
-                  required
                 />{" "}
                 Normal <br />
                 <input
@@ -141,6 +124,9 @@ function Signup(props) {
                   value="Combination"
                 />{" "}
                 Combination <br />
+                {errors.userSkinType ? (
+                  <div className="msg-err-css">{errors.userSkinType}</div>
+                ) : null}
               </div>
             </div>
 
