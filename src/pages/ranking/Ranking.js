@@ -43,6 +43,8 @@ function Ranking() {
     fetchProducts();
   }, [errorMessage]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
+  console.log("STATE RANKING", state);
+
   useEffect(() => {
     setCurrentPage(0);
   }, [productsPerPage]);
@@ -83,7 +85,7 @@ function Ranking() {
                       />
                       <div className="card-middle-ranking">
                         <button
-                          onClick={() => navigate("ProductDetails")}
+                          onClick={() => navigate(`/login/${_id}`)}
                           className="btn card-text-ranking"
                         >
                           <i className="bi bi-search"></i>
