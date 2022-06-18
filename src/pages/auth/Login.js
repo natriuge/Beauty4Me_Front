@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
 import { AuthContext } from "../../contexts/authContext";
 import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 import hands from "../../assets/images/hands.jpg";
 import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
 

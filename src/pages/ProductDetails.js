@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Ratings from "../components/FixedRatingStars";
+import Ratings from "../components/ranking-rating/FixedRatingStars";
 import api from "../apis/api";
 import ReviewForm from "../components/ReviewForm";
 import HTMLReactParser from "html-react-parser";
 
 import "../assets/styles/productDetails.css";
-import "../assets/styles/rankingStyle.css";
+import "../components/ranking-rating/FixedRatingStars";
 
 function ProductDetails() {
   const [productsList, setProductsList] = useState([]);

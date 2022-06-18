@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 import hands from "../../assets/images/hands.jpg";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
 import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
 
