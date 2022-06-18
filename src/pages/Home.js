@@ -1,22 +1,23 @@
-import "../assets/styles/index.css";
+import "../assets/styles/home.css";
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Navbar from "../components/Navbar";
+import LoadingSpinner from "../components/LoadingSpinner";
 import { Link } from "react-router-dom";
-import Img from "../assets/images/beauty.jpg";
-import "bootstrap/dist/css/bootstrap.min.css";
 import api from "../apis/api";
+import Card from "../components/Card";
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchProducts() {
       try {
+        setLoading(true);
         const response = await api.get("/products");
-        console.log(response.data);
         setProducts([...response.data]);
+        setLoading(false);
       } catch (err) {
         console.error(err);
       }
@@ -28,62 +29,45 @@ function Home() {
     <div>
       <Navbar />
 
-      <div id="myCarousel">
-        <div className="carousel-inner">
-          <img className="hero-img" src={Img} alt="First slide" />
-
-          <div className="container">
-            <div className="carousel-caption text-start cover-container d-flex flex-column">
-              <h1>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <div id="home-layout">
+            <div className="hero-img" />
+            <div className="hero-text">
+              <h1 className="responsive-slogan">
                 True beauty comes
                 <br /> from within
               </h1>
-              <p className="carousel-caption-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <p className="responsive-txt">
+                Search products, share your reviews with others
                 <br />
-                Pellentesque pharetra at elit at aliquet.{" "}
+                and create your favorite skincare list.{" "}
               </p>
-              <Link className="btn btn-lg carousel-caption-btn" to="#">
+              <button type="button" class="btn btn-primary">
                 Sign up today
-              </Link>
+              </button>
             </div>
           </div>
-        </div>
-      </div>
-      <div>
-        <div className="row">
-          {products.map((product) => {
-            const { productName, imageIcon, brandName, rating } = product;
 
-            return (
-              <div className="col-4">
-                <div className="card" style={{ width: "18rem" }}>
-                  <img src={imageIcon} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">{productName}</h5>
-                    <p className="card-text">{brandName}</p>
-                    <p className="card-rating">{rating}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+          <Card product={products} />
 
-      <footer className="container">
-        <p className="float-end">
-          <link to="#" />
-          Back to top
-        </p>
-        <p>
-          &copy; 2017–2022 Company, Inc. &middot; <link to="#" />
-          Privacy &middot; <link to="#" />
-          Terms
-        </p>
-      </footer>
+          <footer className="container">
+            <p className="float-end">
+              <link to="#" />
+              Back to top
+            </p>
+            <p>
+              &copy; 2017–2022 Company, Inc. &middot; <link to="#" />
+              Privacy &middot; <link to="#" />
+              Terms
+            </p>
+          </footer>
 
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        </>
+      )}
     </div>
   );
 }
