@@ -1,7 +1,6 @@
 import "../home/home.css";
 import React from "react";
 import { useState, useEffect } from "react";
-import Navbar from "../../components/navbar/Navbar";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import { Link } from "react-router-dom";
 import api from "../../apis/api";
@@ -27,8 +26,6 @@ function Home() {
 
   return (
     <div>
-      <Navbar />
-
       {loading ? (
         <LoadingSpinner />
       ) : (

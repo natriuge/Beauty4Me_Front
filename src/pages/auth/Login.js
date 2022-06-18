@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
 import { AuthContext } from "../../contexts/authContext";
 import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
-import Navbar from "../../components/navbar/Navbar";
 import hands from "../../assets/images/hands.jpg";
 import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
 
@@ -53,7 +52,6 @@ function Login(props) {
 
   return (
     <div className="container mt-5">
-      <Navbar />
       <div className="row css-responsive">
         <div className="col-6">
           <form onSubmit={handleSubmit} className="needs-validation" noValidate>

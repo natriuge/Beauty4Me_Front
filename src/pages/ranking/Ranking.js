@@ -50,7 +50,6 @@ function Ranking() {
 
   return (
     <div className="container mt-5">
-      <Navbar />
 
       {loading ? (
         <LoadingSpinner />
