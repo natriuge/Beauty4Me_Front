@@ -10,7 +10,7 @@ import Ranking from "../pages/ranking/Ranking";
 import NotFound from "../pages/not-found/NotFound";
 
 import { AuthContextComponent } from "../contexts/authContext";
-import ProductDetails from "../pages/ProductDetails";
+import ProductDetails from "../pages/ProductDetail/ProductDetails";
 
 function App() {
   return (
