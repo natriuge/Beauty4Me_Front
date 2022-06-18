@@ -55,7 +55,7 @@ function Signup(props) {
       <Navbar />
       <div className="row css-responsive">
         <div className="col-6">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="needs-validation" noValidate>
             <h1 className="mb-5 h1-title">Signing Up!</h1>
 
             <FormLoginSignUp
@@ -109,6 +109,7 @@ function Signup(props) {
                   name="userSkinType"
                   onChange={handleChange}
                   value="Normal"
+                  required
                 />{" "}
                 Normal <br />
                 <input

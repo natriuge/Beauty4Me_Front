@@ -27,7 +27,7 @@ function Login(props) {
   function handleChange(event) {
     setState({
       ...state,
-      [event.currentTarget.name]: event.currentTarget.value,
+      [event.currentTarget.name]: event.currentTarget.value, //event.currentTarget.name está entre chaves para indicar que é ele quem vai para o value
     });
   }
 
@@ -56,7 +56,7 @@ function Login(props) {
       <Navbar />
       <div className="row css-responsive">
         <div className="col-6">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="needs-validation" noValidate>
             <h1 className="mb-5 h1-title">Login</h1>
 
             <FormLoginSignUp
@@ -67,6 +67,7 @@ function Login(props) {
               value={state.email}
               error={errors.email}
               onChange={handleChange}
+              errorMessage="It should be a valid email address"
             />
 
             <FormLoginSignUp

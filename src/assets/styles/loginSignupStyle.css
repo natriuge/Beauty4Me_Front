@@ -47,6 +47,15 @@
   accent-color: #7868e6;
 }
 
+span {
+  color: red;
+  display: none;
+}
+
+input:invalid ~ span {
+  display: block;
+}
+
 /* responsive */
 
 @media (min-width: 150px) and (max-width: 450px) {

@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Ranking() {
   const [state, setState] = useState([]);
-  const [setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,7 +41,7 @@ function Ranking() {
       }
     }
     fetchProducts();
-  }, []);
+  }, [errorMessage]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
   useEffect(() => {
     setCurrentPage(0);
