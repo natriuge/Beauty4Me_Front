@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD:src/pages/Ranking.js
-import api from "../apis/api";
-import Ratings from "../components/FixedRatingStars";
-import Navbar from "../components/Navbar";
-import LoadingSpinner from "../components/LoadingSpinner";
-import Pagination from "../components/Pagination";
-import PaginationSelector from "../components/PaginationSelector";
-import Card from "../components/Card"
-=======
 import api from "../../apis/api";
 import Ratings from "../../components/ranking-rating/FixedRatingStars";
-import Navbar from "../../components/Navbar";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
->>>>>>> afe3ecef79339123507289d3bba7058514ae5cb7:src/pages/ranking/Ranking.js
 
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -59,7 +48,6 @@ function Ranking() {
 
   return (
     <div className="container mt-5">
-      <Navbar />
 
       {loading ? (
         <LoadingSpinner />
@@ -75,10 +63,6 @@ function Ranking() {
             productsPerPage={productsPerPage}
             setProductsPerPage={setProductsPerPage}
           />
-<<<<<<< HEAD:src/pages/Ranking.js
-          <Card product={currentProducts}/>
-          <div className=" row justify-content-center">
-=======
           <div
             className="row row-cols-1 row-cols-md-5 g-4 mb-5"
             style={{ gap: "2rem 0rem" }}
@@ -120,7 +104,6 @@ function Ranking() {
             })}
           </div>
           <div className="row justify-content-center">
->>>>>>> afe3ecef79339123507289d3bba7058514ae5cb7:src/pages/ranking/Ranking.js
             <Pagination
               pages={pages}
               currentPage={currentPage}
