@@ -6,7 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
-import Card from "../../components/Card"
+import Card from "../../components/Card";
 
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -50,7 +50,6 @@ function Ranking() {
 
   return (
     <div className="container mt-5">
-
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -65,7 +64,46 @@ function Ranking() {
             productsPerPage={productsPerPage}
             setProductsPerPage={setProductsPerPage}
           />
-          <Card product={currentProducts}/>
+          <div
+            className="row row-cols-1 row-cols-md-5 g-4 mb-5"
+            style={{ gap: "2rem 0rem" }}
+          >
+            {currentProducts.map((element) => {
+              const { _id, productName, brandName, rating, imageDetails } =
+                element;
+              return (
+                <div key={_id} className="col">
+                  <div className="card h-100 d-flex border-card">
+                    <div className="prod-card-container">
+                      <img
+                        src={imageDetails}
+                        className="card-img-top prod-img p-3"
+                        alt={productName}
+                      />
+                      <div className="card-middle-ranking">
+                        <button
+                          onClick={() => navigate("ProductDetails")}
+                          className="btn card-text-ranking"
+                        >
+                          <i className="bi bi-search"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="card-body flex-grow-1">
+                      <h6 className="card-title h6-name">{productName}</h6>
+                      <p className="card-text p-brand-name">{brandName}</p>
+                    </div>
+                    <div className="d-flex ">
+                      <div className="p-ranting">
+                        {rating}
+                        <Ratings>{rating}</Ratings>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
           <div className=" row justify-content-center">
             <Pagination
               pages={pages}

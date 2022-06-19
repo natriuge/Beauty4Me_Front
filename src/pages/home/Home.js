@@ -15,6 +15,7 @@ function Home() {
       try {
         setLoading(true);
         const response = await api.get("/products");
+        console.log(response);
         setProducts([...response.data]);
         setLoading(false);
       } catch (err) {
