@@ -48,6 +48,10 @@
   accent-color: #7868e6;
 }
 
+.msg-err-css {
+  color: red;
+}
+
 /* responsive */
 
 @media (min-width: 150px) and (max-width: 450px) {

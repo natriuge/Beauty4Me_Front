@@ -1,4 +1,3 @@
-import Navbar from "../../components/navbar/Navbar";
 import "../not-found/noutFound.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import hands from "../../assets/images/hands.jpg";
@@ -6,7 +5,7 @@ import hands from "../../assets/images/hands.jpg";
 function NotFound() {
   return (
     <div className="mt-5">
-      <Navbar />
+
 
       <div className="container mt-5">
         <div className="row-sm-12 align-self-center text-sm-center css-responsive-nf">

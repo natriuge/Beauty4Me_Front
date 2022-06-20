@@ -46,7 +46,7 @@ function Login(props) {
       navigate(from, { replace: true });
     } catch (err) {
       console.error(err.response);
-      setErrors({ ...err.response.data.errors });
+      setErrors({ ...err.response.data });
     }
   }
 
@@ -63,7 +63,7 @@ function Login(props) {
               name="email"
               id="loginFormEmail"
               value={state.email}
-              error={errors.email}
+              error={errors.notRegister ? errors.notRegister : errors.notEmail}
               onChange={handleChange}
               errorMessage="It should be a valid email address"
             />
@@ -74,7 +74,9 @@ function Login(props) {
               name="password"
               id="loginFormPassword"
               value={state.password}
-              error={errors.password}
+              error={
+                errors.wrongPassord ? errors.wrongPassord : errors.loginPassword
+              }
               onChange={handleChange}
             />
 

@@ -1,4 +1,4 @@
-import ReactStars from "../components/ranking-rating/FixedRatingStars";
+import ReactStars from "../../components/ranking-rating/FixedRatingStars";
 
 const ReviewForm = (props) => {
   const ratingChanged = (newRating) => {
@@ -19,18 +19,27 @@ const ReviewForm = (props) => {
           activeColor="#ffd700"
         />
       </div>
+        
       <div className="mb-3">
         <label for="exampleFormControlTextarea1" className="form-label">
           <strong>Your review</strong>
         </label>
         <textarea
           className="form-control"
-          id="exampleFormControlTextarea1"
+          id={props.id}
           rows="3"
+          type={props.type}
+          value={props.value}
+          name={props.name}
+          onChange={props.onChange}
+
         ></textarea>
-        <button type="button" className="btn btn-outline-secondary mt-2">
+        {/* <button 
+        type="submit"
+         className="btn btn-outline-secondary mt-2" 
+         onClick={props.onClick}>
           <strong>send</strong>
-        </button>
+        </button> */}
       </div>
     </div>
   );

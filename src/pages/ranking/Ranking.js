@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 import Ratings from "../../components/ranking-rating/FixedRatingStars";
-import Navbar from "../../components/navbar/Navbar";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
-import Card from "../../components/Card";
 
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -44,12 +42,15 @@ function Ranking() {
     fetchProducts();
   }, [errorMessage]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
+  console.log("STATE RANKING", state);
+
   useEffect(() => {
     setCurrentPage(0);
   }, [productsPerPage]);
 
   return (
     <div className="container mt-5">
+
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -82,7 +83,7 @@ function Ranking() {
                       />
                       <div className="card-middle-ranking">
                         <button
-                          onClick={() => navigate("ProductDetails")}
+                          onClick={() => navigate(`/product-detail/${_id}`)}
                           className="btn card-text-ranking"
                         >
                           <i className="bi bi-search"></i>
@@ -104,7 +105,7 @@ function Ranking() {
               );
             })}
           </div>
-          <div className=" row justify-content-center">
+          <div className="row justify-content-center">
             <Pagination
               pages={pages}
               currentPage={currentPage}
