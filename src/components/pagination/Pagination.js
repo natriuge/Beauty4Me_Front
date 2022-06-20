@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
+
 const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   const [state, setState] = useState([0, 1, 2, 3]);
 
   const currentPages = Array.from(state, (currentNumber, index) => {
+    console.log('currentNumber', currentNumber)
     return (
       <button
         key={currentNumber}
@@ -72,3 +74,4 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
 };
 
 export default Pagination;
+
