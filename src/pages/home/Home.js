@@ -14,7 +14,6 @@ function Home() {
   const [productsPerPage, setProductsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(0);
 
-  
   const pages = Math.ceil(state.length / productsPerPage);
 
   const startIndex = currentPage * productsPerPage;
@@ -37,7 +36,7 @@ function Home() {
       }
     }
     fetchProducts();
-  }, [errorMessage]); 
+  }, [errorMessage]);
 
   console.log("STATE RANKING", state);
 
@@ -70,7 +69,11 @@ function Home() {
                 <br />
                 and create your favorite skincare list.{" "}
               </p>
-              <button type="button" class="btn btn-primary">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onClick={() => navigate("/signup")}
+              >
                 Sign up today
               </button>
             </div>

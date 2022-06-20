@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
 import "../navbar/navbar.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FormControlSearch from "../form-control-search-bar/FormControlSearch";
 
 function Navbar() {
+  const [state, setState] = useState("");
+  const navigate = useNavigate();
+
+  function handleDiscover(event) {
+    setState(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
     setActive(!isActive);
@@ -49,16 +62,21 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
-            <input
-              className="form-control search-input"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-             <button className="btn btn-search" type="submit">
-                Search
-              </button>
+          <form
+            type="search"
+            placeholder="Search"
+            onSubmit={handleSubmit}
+            autocomplete="off"
+          >
+            <FormControlSearch onChange={handleDiscover} value={state} />
+
+            <button
+              className="btn btn-search"
+              type="submit"
+              onClick={() => navigate(`/search/${state}`)}
+            >
+              Search
+            </button>
           </form>
         </div>
       </nav>
