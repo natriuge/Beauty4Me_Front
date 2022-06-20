@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../apis/api";
 import Ratings from "../../components/ranking-rating/FixedRatingStars";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
@@ -16,6 +16,8 @@ function Search() {
   const [productsPerPage, setProductsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
 
+  const { keyword } = useParams();
+
   //math.ceil  -> arredonda o número para cima. ex: 11.1 vira 12
   const pages = Math.ceil(state.length / productsPerPage);
 
@@ -31,7 +33,7 @@ function Search() {
     async function fetchProducts() {
       try {
         setLoading(true);
-        const response = await api.get("/products");
+        const response = await api.get(`/product-search?q=${keyword}`);
         setState([...response.data]);
         setLoading(false);
       } catch (err) {
@@ -40,9 +42,8 @@ function Search() {
       }
     }
     fetchProducts();
-  }, [errorMessage]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
+  }, [errorMessage, keyword]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
-  console.log("STATE RANKING", state);
 
   useEffect(() => {
     setCurrentPage(0);
@@ -56,10 +57,10 @@ function Search() {
       ) : (
         <>
           <div className="mb-5">
-            <h1 className="h1-title">Ranking Page</h1>
-            <h4 className="h4-title">
+            <h1 className="h1-title">Results containing... <i> {keyword}</i></h1>
+            {/* <h4 className="h4-title">
               Check out the best products by customers review
-            </h4>
+            </h4> */}
           </div>
           <PaginationSelector
             productsPerPage={productsPerPage}
