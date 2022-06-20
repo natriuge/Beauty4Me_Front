@@ -1,4 +1,10 @@
+.profile-page {
+  width: 100vw;
+  height: 100vh;
+  margin: 2rem;
+}
+
 .ilustration {
-  width: 150%;
+  width: 80%;
   height: auto;
 }

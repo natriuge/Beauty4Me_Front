@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
 
-import hands from "../../assets/images/hands.jpg";
 import ilustration from "../../assets/images/ilustration.jpg";
+import hands from "../../assets/images/hands.jpg";
 import "./profileStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -13,13 +12,14 @@ function Profile() {
     useContext(AuthContext);
 
   const [userReviews, setuserReviews] = useState([]);
+  const [productsReviewsByUser, setproductsReviewsByUser] = useState([]);
 
   useEffect(() => {
     async function fetchUserReviews() {
       try {
-        const response = await api.get("/review");
+        const response = await api.get("/review/:authorId");
 
-        console.log(response.data);
+        console.log("DATA", response.data);
 
         setuserReviews([...response.data]);
       } catch (err) {
@@ -27,12 +27,44 @@ function Profile() {
       }
     }
     fetchUserReviews();
-  }, [userReviews]);
+  }, []);
 
-  console.log(loggedInUser);
+  console.log("userReviews", userReviews);
+
+  const idSpecificProduct = userReviews.map((review) => {
+    return review.productId;
+  });
+
+  const id = idSpecificProduct.map((prod) => {
+    return prod;
+  });
+
+  console.log("id", id);
+
+  useEffect(() => {
+    async function fetchproductsReviewedByUser() {
+      try {
+        const response = await api.get(`/product/${idSpecificProduct}`);
+
+        console.log("PRODUTOS", response.data);
+
+        setproductsReviewsByUser([...response.data]);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchproductsReviewedByUser();
+  }, [idSpecificProduct]);
+
+  console.log("productsReviewsByUser", productsReviewsByUser);
+
+  function ReviewClick(event) {
+    event.preventDefault();
+    console.log("The link was clicked.");
+  }
 
   return (
-    <div className="container mt-5">
+    <div className="profile-page">
       <div className="row d-flex flex-nowrap">
         <div className="col-4 align-items-start me-5">
           <img src={hands} className="card-img mt-5" alt="hands ilustration" />
@@ -57,10 +89,19 @@ function Profile() {
             </ul>
           </div>
         </div>
-
-        {}
         <div className="col-6 align-items-center m-5">
-          <img src={ilustration} className="ilustration" alt="ilustration" />
+          <h1>ONDE O TEXTO ESTÁ</h1>
+          {/* <img src={ilustration} className="ilustration" alt="ilustration" /> */}
+          <h3>My Reviews</h3>
+          {userReviews.map((eachReview) => {
+            return (
+              <div>
+                <h7>{eachReview.productId.productName}</h7>
+                <h8>{eachReview.authorRating}</h8>
+                <h8>{eachReview.comment}</h8>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
