@@ -54,7 +54,7 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   }
 
   return (
-    <div>
+    <div className="mb-5">
       {currentPages}
       <span style={{ color: "#b8b5ff" }}>...</span>
       <button

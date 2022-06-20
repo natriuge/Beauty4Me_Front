@@ -1,4 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext({ token: "", user: {} });
 
@@ -19,9 +21,12 @@ function AuthContextComponent(props) {
 
   useEffect(() => setLoading(false), [loggedInUser.user]);
 
+  const navigate = useNavigate();
+
   function handleLogout() {
     window.localStorage.removeItem("loggedInUser");
     setLoggedInUser({ token: "", user: {} });
+    navigate("/");
   }
 
   //dessa função eu vou exportar o provider.

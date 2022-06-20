@@ -1,10 +1,10 @@
-import "../assets/styles/home.css";
+import "../home/home.css";
 import React from "react";
 import { useState, useEffect } from "react";
-import LoadingSpinner from "../components/loading-spinner/LoadingSpinner";
+import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import { Link } from "react-router-dom";
-import api from "../apis/api";
-import Card from "../components/Card";
+import api from "../../apis/api";
+import Card from "../../components/Card";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -15,6 +15,7 @@ function Home() {
       try {
         setLoading(true);
         const response = await api.get("/products");
+        console.log(response);
         setProducts([...response.data]);
         setLoading(false);
       } catch (err) {

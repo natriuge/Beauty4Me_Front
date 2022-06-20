@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import "../assets/styles/navbar.css";
 import React, { useState } from "react";
+// import { AuthContext } from "../contexts/authContext";
 
 function Navbar() {
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
     setActive(!isActive);
   };
+
   return (
     <div>
       <div className="topbar">
