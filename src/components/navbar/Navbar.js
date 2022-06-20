@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../assets/styles/navbar.css";
+import "../navbar/navbar.css";
 import React, { useState } from "react";
 
 function Navbar() {
@@ -32,12 +32,7 @@ function Navbar() {
         <div
           className={isActive ? "navbar-collapse" : "collapse navbar-collapse"}
         >
-          <ul className="navbar-nav m-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
+          <ul id="nav-list" className="navbar-nav m-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/ranking">
                 Ranking
@@ -54,16 +49,16 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <form className="form-inline my-2 my-lg-0">
+          <form className="d-flex">
             <input
-              className="form-control mr-sm-2"
+              className="form-control search-input"
               type="search"
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-primary my-2 my-sm-0" type="submit">
-              Search
-            </button>
+             <button className="btn btn-search" type="submit">
+                Search
+              </button>
           </form>
         </div>
       </nav>
