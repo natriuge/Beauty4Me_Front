@@ -5,13 +5,18 @@ import Ratings from "../../components/ranking-rating/FixedRatingStars";
 import api from "../../apis/api";
 import ReviewForm from "../../components/Review/ReviewForm";
 import HTMLReactParser from "html-react-parser";
+import EditReviewModal from "../../components/EditReviewModal"
 import { AuthContext } from "../../contexts/authContext";
-
-import "../ProductDetail/productDetails.css";
-import "../ranking/rankingStyle.css";
+import { VscEdit } from "react-icons/vsc";
+import  Button  from "react-bootstrap/Button";
+import { BsTrash } from "react-icons/bs";
+import "../ProductDetail/productDetails.css"
+import "../ranking/rankingStyle.css"
+  
 
 function ProductDetails() {
   const [product, setProduct] = useState();
+  const [userReviews, setUserReviews] = useState([]);
   const [activeTab, setActiveTab] = useState("tab1");
   const [newReview, setNewReview] = useState({
     authorId: null,
@@ -26,11 +31,25 @@ function ProductDetails() {
     productId: null,
   });
 
+  //  const handleShow = (_id) => {
+  //    setUserReviews(_id);
+  //    setShowModal(true);
+  //  };
+  //  const [showModal, setShowModal] = useState(false);
+
+  //  const handleClose = () => setShowModal(false);
+
+
+  
   const navigate = useNavigate();
 
   const { id } = useParams();
+  
+  const { loggedInUser, setLoggedInUser, loading, handleLogout } =
+    useContext(AuthContext);
+  
 
-  const { loggedInUser } = useContext(AuthContext);
+  // console.log(loggedInUser, loading, setLoggedInUser, handleLogout)
 
   const handleTab1 = () => {
     setActiveTab("tab1");
@@ -51,25 +70,61 @@ function ProductDetails() {
     }
   }
 
-  useEffect(() => {
+  async function getUsersReviews() {
+    try {
+      const response = await api.get(`/review?id=${id}`);
+      setUserReviews(response.data);
+    } catch (err) {
+      console.error(err.response);
+    }
+  }
+
+  useEffect(() => { 
     getProduct();
   }, [id]);
 
-  console.log("oi", product);
+  // This will only run after the product update
+  useEffect(() => { 
+    getUsersReviews()
+  }, [product])
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
       const response = await api.post("/review", newReview);
-      setErrors({ authorId: "", comment: "", authorRating: 0, productId: "" });
+      // Add new review to the list of user's reviews
+      setUserReviews([...userReviews, response.data])
+      
+      setErrors({ authorId: null, comment: "", authorRating: 0, productId: null });
       // navigate("/")
-      console.log(response.data);
+    } catch(err){
+      console.error(err.response);
+      return setErrors({ ...err.response.data.errors });
+    }
+  }
+
+  async function deleteUserReview(reviewId) {
+    try {
+      const response = await api.delete(`/review/${reviewId}`);
+      // Add new review to the list of user's reviews
+      const newReviews = userReviews.filter(reviews => reviews._id !== response.data._id);
+      setUserReviews(newReviews);
     } catch (err) {
       console.error(err.response);
       return setErrors({ ...err.response.data.errors });
     }
-    console.log(errors);
+  }
+
+  async function updateUserReview(reviewId) {
+    try {
+      const response = await api.patch(`/review/${reviewId}`);
+      const newReviews = userReviews.filter(reviews => reviews._id !== response.data._id);
+      setUserReviews(newReviews);
+      } catch (err) {
+        console.error(err.reponse);
+        return setErrors({ ...err.response.data.errors });
+      }
   }
 
   function handleChange(event) {
@@ -79,8 +134,14 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
+    const authorsId = userReviews.map((reviews) => reviews.authorId);
+
   //  function isAuthor() {
-  //    return newReview.authorId._id === loggedInUser.user._id;
+  //   const authorsId = userReviews.map(reviews => reviews.authorId)
+  //   const id = authorsId.map((authorId) => authorId === loggedInUser.user._id);
+  //   console.log( "id", id);
+  //   console.log("logged user id", loggedInUser.user._id);
+  //    return id;
   //  }
 
   return (
@@ -158,15 +219,48 @@ function ProductDetails() {
                 <strong className="text-background">PRODUCT REVIEWS</strong>
               </h5>
             </div>
-            {product.sephoraReviews.map((review) => {
+            {product.sephoraReviews.map((review, index) => {
               return (
-                <div key={review.ProductId}>
+                <div key={`${review.ProductId}__${index}`}>
                   <div>
                     <Ratings>{review.Rating}</Ratings>
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
                   <em>{review.ReviewText}</em>
+                  <hr className="featurette-divider" />
+                </div>
+              );
+            })}
+            {userReviews.map((userReview) => {
+              return (
+                <div key={userReview._id}>
+                  {/* <div> */}
+                  {authorsId.map((authorId) => authorId === loggedInUser.user._id) ? (
+                  <div>
+                    <button onClick={() => deleteUserReview(userReview._id)}>
+                      delete
+                    </button>
+                    {/* <button onClick={() => handleShow(userReview._id)}>
+                      edit
+                    </button> */}
+                  </div>
+                  ): null
+                  }
+
+                  {/* <Ratings>{userReview.Rating}</Ratings> */}
+                  {/* <strong className="mb-5">{userReview.UserNickname}</strong> */}
+                  {/* <br /> */}
+                  {/* </div> */}
+                  {/* {isAuthor() && (
+                    <div>
+                     escrita por
+                    <p>{loggedInUser.user.name}</p>
+                    </div>
+                   )} */}
+                  <br />
+                  <p>{userReview.comment}</p>
+                    {/* TEM Q RENDERIZAR O NOME DO USER(AUTHOR) */}
                   <hr className="featurette-divider" />
                 </div>
               );
@@ -198,9 +292,19 @@ function ProductDetails() {
             </button>
           </div>
           {/* )} */}
+          {/* <EditReviewModal
+            show={showModal}
+            handleClose={handleClose}
+            handleUpdate={updateUserReview}
+            handleChange={handleChange}
+            value={newReview.comment}
+            name="comment"
+          /> */}
         </div>
       )}
     </>
   );
 }
 export default ProductDetails;
+
+//testing
