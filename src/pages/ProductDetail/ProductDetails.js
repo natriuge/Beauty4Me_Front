@@ -10,6 +10,7 @@ import { AuthContext } from "../../contexts/authContext";
 import { VscEdit } from "react-icons/vsc";
 import  Button  from "react-bootstrap/Button";
 import { BsTrash } from "react-icons/bs";
+import ToggleButton from "react-bootstrap/ToggleButton";
 import "../ProductDetail/productDetails.css"
 import "../ranking/rankingStyle.css"
   
@@ -18,13 +19,16 @@ function ProductDetails() {
   const [product, setProduct] = useState();
   const [userReviews, setUserReviews] = useState([]);
   const [activeTab, setActiveTab] = useState("tab1");
+  const [checked, setChecked] = useState(false);
   const [newReview, setNewReview] = useState({
+    authorName: "",
     authorId: null,
     comment: "",
     authorRating: 0,
-    productId: null,
-  });
+    productId: null
+  })
   const [errors, setErrors] = useState({
+    authorName: null,
     authorId: null,
     comment: null,
     authorRating: null,
@@ -48,9 +52,6 @@ function ProductDetails() {
   const { loggedInUser, setLoggedInUser, loading, handleLogout } =
     useContext(AuthContext);
   
-
-  // console.log(loggedInUser, loading, setLoggedInUser, handleLogout)
-
   const handleTab1 = () => {
     setActiveTab("tab1");
   };
@@ -91,16 +92,16 @@ function ProductDetails() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    try {
+    try{
       const response = await api.post("/review", newReview);
       // Add new review to the list of user's reviews
       setUserReviews([...userReviews, response.data])
       
-      setErrors({ authorId: null, comment: "", authorRating: 0, productId: null });
+      setErrors({ authorName: "",authorId: null, comment: "", authorRating: 0, productId: null });
       // navigate("/")
     } catch(err){
       console.error(err.response);
-      return setErrors({ ...err.response.data.errors });
+      return setErrors({...err.response.data.errors})
     }
   }
 
@@ -126,13 +127,20 @@ function ProductDetails() {
         return setErrors({ ...err.response.data.errors });
       }
   }
+   async function addFavoriteProduct() {
 
-  function handleChange(event) {
-    setNewReview({
-      ...newReview,
-      productId: id,
-      [event.target.name]: event.target.value,
-    });
+    try {
+      console.log(id);
+      const response = await api.patch(`/product/${id}`);  
+      console.log(response.data)
+      } catch (err) {
+        console.error(err.reponse);
+        // setErrors({ ...err.response.data.errors });
+      }
+  }
+
+  function handleChange(event){
+    setNewReview({ ...newReview, productId: id, authorName: loggedInUser.user.name, [event.target.name]: event.target.value });
   }
     const authorsId = userReviews.map((reviews) => reviews.authorId);
 
@@ -144,6 +152,9 @@ function ProductDetails() {
   //    return id;
   //  }
 
+    function isAuthor(id){
+       return loggedInUser.user._id === id;
+    }
   return (
     <>
       {product && (
@@ -177,7 +188,21 @@ function ProductDetails() {
                 <h5>
                   <strong>RATING</strong>
                 </h5>
-                <Ratings>{product.rating}</Ratings>
+                {/* <Ratings>{product.rating}</Ratings> */}
+
+                <button onClick={addFavoriteProduct}>favorite</button>
+                
+                <ToggleButton
+                  className="mb-2"
+                  id="toggle-check"
+                  type="checkbox"
+                  variant="outline-primary"
+                  checked={checked}
+                  value="1"
+                  onChange={(e) => setChecked(e.currentTarget.checked)}
+                >
+                  <h5>+</h5>
+                </ToggleButton>
               </div>
               <h5 className="ml-5 mt-5">
                 <strong>AVERAGE PRICE</strong>
@@ -222,6 +247,7 @@ function ProductDetails() {
             {product.sephoraReviews.map((review, index) => {
               return (
                 <div key={`${review.ProductId}__${index}`}>
+                  <div></div>
                   <div>
                     <Ratings>{review.Rating}</Ratings>
                     <strong className="mb-5">{review.UserNickname}</strong>
@@ -236,7 +262,8 @@ function ProductDetails() {
               return (
                 <div key={userReview._id}>
                   {/* <div> */}
-                  {authorsId.map((authorId) => authorId === loggedInUser.user._id) ? (
+                  {isAuthor(userReview.authorId) && (
+
                   <div>
                     <button onClick={() => deleteUserReview(userReview._id)}>
                       delete
@@ -245,9 +272,7 @@ function ProductDetails() {
                       edit
                     </button> */}
                   </div>
-                  ): null
-                  }
-
+                  )}
                   {/* <Ratings>{userReview.Rating}</Ratings> */}
                   {/* <strong className="mb-5">{userReview.UserNickname}</strong> */}
                   {/* <br /> */}
@@ -259,8 +284,9 @@ function ProductDetails() {
                     </div>
                    )} */}
                   <br />
+                  <p>{userReview.authorName}</p>
                   <p>{userReview.comment}</p>
-                    {/* TEM Q RENDERIZAR O NOME DO USER(AUTHOR) */}
+                  {/* TEM Q RENDERIZAR O NOME DO USER(AUTHOR) */}
                   <hr className="featurette-divider" />
                 </div>
               );
@@ -306,5 +332,3 @@ function ProductDetails() {
   );
 }
 export default ProductDetails;
-
-//testing

@@ -25,6 +25,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route
+          path="/profile"
+          element={<ProtectedRoute component={Profile} />}
+        />
+        <Route
           path="/product-detail/:id"
           element={<ProtectedRoute component={ProductDetails} />}
         />

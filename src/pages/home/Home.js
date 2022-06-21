@@ -38,7 +38,7 @@ function Home() {
     fetchProducts();
   }, [errorMessage]);
 
-  console.log("STATE RANKING", state);
+  // console.log("STATE RANKING", state);
 
   useEffect(() => {
     setCurrentPage(0);
@@ -102,7 +102,7 @@ function Home() {
                             >
                               <i className="bi bi-search"></i>
                             </button>
-                            {console.log("OLÁ", element._id)}
+                            {element._id}
                           </div>
                         </div>
                         <div className="card-body flex-grow-1">
