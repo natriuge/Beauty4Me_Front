@@ -42,7 +42,7 @@ function Home() {
                 <br />
                 and create your favorite skincare list.{" "}
               </p>
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 Sign up today
               </button>
             </div>

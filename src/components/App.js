@@ -5,7 +5,7 @@ import Home from "../pages/Home";
 import Signup from "../pages/auth/Signup";
 import Login from "../pages/auth/Login";
 import Navbar from "./Navbar";
-// import ProtectedRoute from "../pages/auth/ProtectedRoute";
+import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import Ranking from "../pages/ranking/Ranking";
 import NotFound from "../pages/not-found/NotFound";
 
@@ -18,11 +18,14 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/" element={<ProtectedRoute component={<Home/>} />} /> */}
+        {/* <Route path="/" element={<ProtectedRoute component={<Home />} />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ranking" element={<Ranking />} />
-        <Route path="/product-detail/:id" element={<ProductDetails/>} />
+        <Route
+          path="/product-detail/:id"
+          element={<ProtectedRoute component={ProductDetails} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthContextComponent>
