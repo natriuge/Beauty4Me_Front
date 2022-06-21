@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Roboto:wght@100;300;400&family=Varela+Round&family=Work+Sans:wght@300&display=swap");
 
-.home-layout{
-margin-bottom: -280px;
+.home-layout {
+  margin-bottom: -280px;
 }
 
 .hero-img {
@@ -23,17 +23,17 @@ margin-bottom: -280px;
   color: white;
 }
 
-.btn-primary{
+.btn-primary {
   margin-top: 8px;
-  background-color: #aaa8fc!important;
-  border-color: #9f9ef9!important;
+  background-color: #aaa8fc !important;
+  border-color: #9f9ef9 !important;
   color: #fff;
 }
 
 .responsive-slogan {
   font-family: "Roboto", sans-serif;
   font-size: 55px;
- margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .responsive-txt {
@@ -48,16 +48,16 @@ margin-bottom: -280px;
   font-weight: bold;
   text-decoration: overline;
   text-decoration-color: #e4fbff;
-  font-size: 25px!important;
+  font-size: 25px !important;
 }
 
 .p-ranting {
   margin-top: -25px;
 }
 
-.footer-txt{
-font-family: "Roboto", sans-serif;
-font-weight: lighter!important;
+.footer-txt {
+  font-family: "Roboto", sans-serif;
+  font-weight: lighter !important;
 }
 
 @media (min-width: 150px) and (max-width: 450px) {
@@ -72,7 +72,4 @@ font-weight: lighter!important;
     font-weight: lighter;
     font-size: 18px;
   }
-
-
 }
-
