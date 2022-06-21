@@ -38,9 +38,7 @@ function ProductDetails() {
   //  const [showModal, setShowModal] = useState(false);
 
   //  const handleClose = () => setShowModal(false);
-
-
-  
+ 
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -70,6 +68,8 @@ function ProductDetails() {
     }
   }
 
+  console.log('product!!!!!!!!!!!', product)
+
   async function getUsersReviews() {
     try {
       const response = await api.get(`/review?id=${id}`);
@@ -78,6 +78,8 @@ function ProductDetails() {
       console.error(err.response);
     }
   }
+
+  console.log('review!!!!!!!!!!!', userReviews)
 
   useEffect(() => { 
     getProduct();
@@ -147,6 +149,7 @@ function ProductDetails() {
   return (
     <>
       {product && (
+        console.log('productsdfsdfasfasfsfsd', product),
         <div key={product._id}>
           <div className="product-container">
             <div>
@@ -223,7 +226,7 @@ function ProductDetails() {
               return (
                 <div key={`${review.ProductId}__${index}`}>
                   <div>
-                    <Ratings>{review.Rating}</Ratings>
+                    {/* <Ratings>{console.log('review.Rating', review.Rating, 'index', index)}</Ratings> */}
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
@@ -232,7 +235,7 @@ function ProductDetails() {
                 </div>
               );
             })}
-            {userReviews.map((userReview) => {
+            {userReviews.map((userReview) => { 
               return (
                 <div key={userReview._id}>
                   {/* <div> */}

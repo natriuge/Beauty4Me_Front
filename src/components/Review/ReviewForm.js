@@ -2,7 +2,7 @@ import ReactStars from "../../components/ranking-rating/FixedRatingStars";
 
 const ReviewForm = (props) => {
   const ratingChanged = (newRating) => {
-    console.log(newRating); 
+    
   };
   return (
     <div>
