@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
 import "../navbar/navbar.css";
 import React, { useState } from "react";
-<<<<<<< HEAD:src/components/Navbar.js
-// import { AuthContext } from "../contexts/authContext";
-=======
 import { useNavigate } from "react-router-dom";
 import FormControlSearch from "../form-control-search-bar/FormControlSearch";
->>>>>>> bcc12029223b5f34861a4c5667f757e20bbc7c2c:src/components/navbar/Navbar.js
 
 function Navbar() {
   const [state, setState] = useState("");
@@ -24,7 +20,6 @@ function Navbar() {
   const handleToggle = () => {
     setActive(!isActive);
   };
-
   return (
     <div>
       <div className="topbar">

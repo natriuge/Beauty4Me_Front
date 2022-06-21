@@ -4,7 +4,7 @@
   background-color: rgb(165, 132, 238);
 }
 
-.topbar-text{
+.topbar-text {
   color: #fff;
   font-weight: "bold";
   text-align: center;
@@ -23,8 +23,7 @@
   padding-bottom: 0.1rem;
 }
 
-
-.search-input{
+.search-input {
   border-radius: 5rem;
 }
 
@@ -35,15 +34,13 @@
 }
 
 .navbar-nav {
-  float:none;
-  margin:0 auto;
+  float: none;
+  margin: 0 auto;
   display: block;
   text-align: left;
 }
 
-#nav-list{
+#nav-list {
   margin-top: 10px;
   margin-bottom: 10px;
-  
 }
-
