@@ -50,7 +50,6 @@ function Ranking() {
 
   return (
     <div className="container mt-5">
-
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -94,7 +93,7 @@ function Ranking() {
                       <h6 className="card-title h6-name">{productName}</h6>
                       <p className="card-text p-brand-name">{brandName}</p>
                     </div>
-                    <div className="d-flex ">
+                    <div className="d-flex">
                       <div className="p-ranting">
                         {rating}
                         <Ratings>{rating}</Ratings>
