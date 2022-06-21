@@ -4,7 +4,7 @@
   background-color: rgb(165, 132, 238);
 }
 
-.topbar-text{
+.topbar-text {
   color: #fff;
   font-weight: "bold";
   text-align: center;
@@ -23,9 +23,24 @@
   padding-bottom: 0.1rem;
 }
 
-.btn-primary {
-  background-color: #7868e6 !important;
-  border-color: #7868e6 !important;
-  color: #fff;
+.search-input {
+  border-radius: 5rem;
 }
 
+.btn-search {
+  /* background-color: #66de93; */
+  color: rgb(0, 0, 0);
+  border-radius: 2rem;
+}
+
+.navbar-nav {
+  float: none;
+  margin: 0 auto;
+  display: block;
+  text-align: left;
+}
+
+#nav-list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

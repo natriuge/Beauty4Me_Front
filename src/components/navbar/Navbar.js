@@ -1,8 +1,21 @@
 import { Link } from "react-router-dom";
-import "../assets/styles/navbar.css";
+import "../navbar/navbar.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FormControlSearch from "../form-control-search-bar/FormControlSearch";
 
 function Navbar() {
+  const [state, setState] = useState("");
+  const navigate = useNavigate();
+
+  function handleDiscover(event) {
+    setState(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
     setActive(!isActive);
@@ -32,12 +45,7 @@ function Navbar() {
         <div
           className={isActive ? "navbar-collapse" : "collapse navbar-collapse"}
         >
-          <ul className="navbar-nav m-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
+          <ul id="nav-list" className="navbar-nav m-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/ranking">
                 Ranking
@@ -54,14 +62,19 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-primary my-2 my-sm-0" type="submit">
+          <form
+            type="search"
+            placeholder="Search"
+            onSubmit={handleSubmit}
+            autocomplete="off"
+          >
+            <FormControlSearch onChange={handleDiscover} value={state} />
+
+            <button
+              className="btn btn-search"
+              type="submit"
+              onClick={() => navigate(`/search/${state}`)}
+            >
               Search
             </button>
           </form>

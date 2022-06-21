@@ -1,4 +1,3 @@
-
 import "../not-found/noutFound.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import hands from "../../assets/images/hands.jpg";

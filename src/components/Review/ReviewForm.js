@@ -1,4 +1,4 @@
-import ReactStars from "react-rating-stars-component";
+import ReactStars from "../../components/ranking-rating/FixedRatingStars";
 
 const ReviewForm = (props) => {
   const ratingChanged = (newRating) => {

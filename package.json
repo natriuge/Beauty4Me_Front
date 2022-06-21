@@ -7,14 +7,16 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
     "axios": "^0.21.0",
-    "bootstrap": "^4.6.1",
+    "bootstrap": "^5.2.0-beta1",
     "bootstrap-icons": "^1.8.3",
     "cors": "^2.8.5",
     "html-react-parser": "^1.4.14",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.5",
     "react-dom": "^17.0.1",
-    "react-icons": "^4.4.0",
+
+    "react-elastic-carousel": "^0.11.5",
+
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.1",

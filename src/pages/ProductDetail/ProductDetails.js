@@ -22,8 +22,8 @@ function ProductDetails() {
     authorId: null,
     comment: "",
     authorRating: 0,
-    productId: null
-  })
+    productId: null,
+  });
   const [errors, setErrors] = useState({
     authorId: null,
     comment: null,
@@ -91,7 +91,7 @@ function ProductDetails() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    try{
+    try {
       const response = await api.post("/review", newReview);
       // Add new review to the list of user's reviews
       setUserReviews([...userReviews, response.data])
@@ -100,7 +100,7 @@ function ProductDetails() {
       // navigate("/")
     } catch(err){
       console.error(err.response);
-      return setErrors({...err.response.data.errors})
+      return setErrors({ ...err.response.data.errors });
     }
   }
 
@@ -127,8 +127,12 @@ function ProductDetails() {
       }
   }
 
-  function handleChange(event){
-    setNewReview({ ...newReview, productId: id, [event.target.name]: event.target.value });
+  function handleChange(event) {
+    setNewReview({
+      ...newReview,
+      productId: id,
+      [event.target.name]: event.target.value,
+    });
   }
     const authorsId = userReviews.map((reviews) => reviews.authorId);
 
@@ -302,3 +306,5 @@ function ProductDetails() {
   );
 }
 export default ProductDetails;
+
+//testing

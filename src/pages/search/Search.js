@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../apis/api";
 import Ratings from "../../components/ranking-rating/FixedRatingStars";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
@@ -9,12 +9,14 @@ import PaginationSelector from "../../components/pagination/PaginationSelector";
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Ranking() {
+function Search() {
   const [state, setState] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
+
+  const { keyword } = useParams();
 
   //math.ceil  -> arredonda o número para cima. ex: 11.1 vira 12
   const pages = Math.ceil(state.length / productsPerPage);
@@ -31,7 +33,7 @@ function Ranking() {
     async function fetchProducts() {
       try {
         setLoading(true);
-        const response = await api.get("/products");
+        const response = await api.get(`/product-search?q=${keyword}`);
         setState([...response.data]);
         setLoading(false);
       } catch (err) {
@@ -40,9 +42,8 @@ function Ranking() {
       }
     }
     fetchProducts();
-  }, [errorMessage]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
+  }, [errorMessage, keyword]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
-  console.log("STATE RANKING", state);
 
   useEffect(() => {
     setCurrentPage(0);
@@ -50,15 +51,16 @@ function Ranking() {
 
   return (
     <div className="container mt-5">
+
       {loading ? (
         <LoadingSpinner />
       ) : (
         <>
           <div className="mb-5">
-            <h1 className="h1-title">Ranking Page</h1>
-            <h4 className="h4-title">
+            <h1 className="h1-title">Results containing... <i> {keyword}</i></h1>
+            {/* <h4 className="h4-title">
               Check out the best products by customers review
-            </h4>
+            </h4> */}
           </div>
           <PaginationSelector
             productsPerPage={productsPerPage}
@@ -93,7 +95,7 @@ function Ranking() {
                       <h6 className="card-title h6-name">{productName}</h6>
                       <p className="card-text p-brand-name">{brandName}</p>
                     </div>
-                    <div className="d-flex">
+                    <div className="d-flex ">
                       <div className="p-ranting">
                         {rating}
                         <Ratings>{rating}</Ratings>
@@ -117,4 +119,4 @@ function Ranking() {
   );
 }
 
-export default Ranking;
+export default Search;
