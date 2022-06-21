@@ -1,8 +1,8 @@
-import ReactStars from "../../components/ranking-rating/FixedRatingStars";
+import ReactStars from "react-rating-stars-component";
 
 const ReviewForm = (props) => {
   const ratingChanged = (newRating) => {
-    
+    console.log(newRating);
   };
   return (
     <div>
@@ -19,7 +19,7 @@ const ReviewForm = (props) => {
           activeColor="#ffd700"
         />
       </div>
-        
+
       <div className="mb-3">
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
           <strong>Your review</strong>
@@ -32,7 +32,6 @@ const ReviewForm = (props) => {
           value={props.value}
           name={props.name}
           onChange={props.onChange}
-
         ></textarea>
         {/* <button 
         type="submit"
