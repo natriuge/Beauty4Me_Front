@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
-
+import Sidebar from '../../components/sidebar/Sidebar'
 import ilustration from "../../assets/images/ilustration.jpg";
 import hands from "../../assets/images/hands.jpg";
 import "./profileStyle.css";
@@ -65,6 +65,7 @@ function Profile() {
 
   return (
     <div className="profile-page">
+    <Sidebar />
       <div className="row d-flex flex-nowrap">
         <div className="col-4 align-items-start me-5">
           <img src={hands} className="card-img mt-5" alt="hands ilustration" />
