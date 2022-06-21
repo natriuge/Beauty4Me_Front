@@ -57,7 +57,12 @@ margin-bottom: -280px;
 
 .footer-txt{
 font-family: "Roboto", sans-serif;
-font-weight: lighter!important;
+}
+
+.card{
+height: 100%!important;
+align-items: stretch!important;
+
 }
 
 @media (min-width: 150px) and (max-width: 450px) {
