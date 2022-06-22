@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
 
 import ilustration from "../../assets/images/ilustration.jpg";
 import hands from "../../assets/images/hands.jpg";
@@ -75,11 +76,11 @@ function Profile() {
             </h6>
             <ul>
               <li>
-                <button className="btn btn-link">Favorite Products</button>
+                <Link to="/favorites">Favorites</Link>
               </li>
               <li>
                 {" "}
-                <button className="btn btn-link">My Reviews</button>
+                <Link to="/my-reviews">My Reviews</Link>
               </li>
               <li>
                 <button className="btn btn-link" onClick={handleLogout}>
@@ -90,10 +91,10 @@ function Profile() {
           </div>
         </div>
         <div className="col-6 align-items-center m-5">
-          <h1>ONDE O TEXTO ESTÁ</h1>
+          {/* //outlet */}
+          {/* <h1>ONDE O TEXTO ESTÁ</h1> */}
           {/* <img src={ilustration} className="ilustration" alt="ilustration" /> */}
-
-          <h3>My Reviews</h3>
+          {/* <h3>My Reviews</h3>
           {userReviews.map((eachReview) => {
             return (
               <div>
@@ -111,9 +112,10 @@ function Profile() {
                 </ul>
               </div>
             );
-          })}
+          })} */}
         </div>
       </div>
+      <Outlet />
     </div>
   );
 }

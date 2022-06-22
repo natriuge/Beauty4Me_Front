@@ -3,10 +3,9 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function EditReviewModal(props) {
-
-//     const ReviewForm = (props) => {
-//   const ratingChanged = (newRating) => {
-//     console.log(newRating);
+  //     const ReviewForm = (props) => {
+  //   const ratingChanged = (newRating) => {
+  //     console.log(newRating);
 
   return (
     <div>
@@ -14,7 +13,7 @@ function EditReviewModal(props) {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-             {/* <ReactStars
+              {/* <ReactStars
                  count={props.count}
                  onChange={ratingChanged}
                  size={24}
@@ -35,7 +34,13 @@ function EditReviewModal(props) {
           <Button variant="secondary" onClick={props.handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.handleUpdate}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              props.setShowModal(false);
+              props.handleUpdate();
+            }}
+          >
             Save Changes
           </Button>
         </Modal.Footer>

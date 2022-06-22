@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import api from "../../apis/api";
-import Ratings from "../../components/ranking-rating/FixedRatingStars";
+import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-elastic-carousel";
 
@@ -38,7 +38,7 @@ function Home() {
     fetchProducts();
   }, [errorMessage]);
 
-  console.log("STATE RANKING", state);
+  // console.log("STATE RANKING", state);
 
   useEffect(() => {
     setCurrentPage(0);
@@ -71,7 +71,7 @@ function Home() {
               </p>
               <button
                 type="button"
-                className="btn btn-primary"
+                class="btn btn-primary"
                 onClick={() => navigate("/signup")}
               >
                 Sign up today
@@ -85,7 +85,7 @@ function Home() {
               <Carousel breakPoints={breakPoints}>
                 {state.map((element) => (
                   <div className="container">
-                    <div key={element._id} className="col">
+                    <div key={element._id} className="col card-detail">
                       <div className="card h-100 d-flex border-card">
                         <div className="prod-card-container">
                           <img
@@ -102,7 +102,6 @@ function Home() {
                             >
                               <i className="bi bi-search"></i>
                             </button>
-                            {console.log("OLÁ", element._id)}
                           </div>
                         </div>
                         <div className="card-body flex-grow-1">
@@ -116,7 +115,14 @@ function Home() {
                         <div className="d-flex">
                           <div className="p-ranting">
                             {element.rating}
-                            <Ratings>{element.rating}</Ratings>
+                            <ReactStars
+                              count={5}
+                              value={element.rating}
+                              size={24}
+                              activeColor="#ffd700"
+                              isHalf={true}
+                              edit={false}
+                            />
                           </div>
                         </div>
                       </div>
