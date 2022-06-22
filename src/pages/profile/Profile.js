@@ -64,14 +64,32 @@ function Profile() {
     }
   }
 
+  console.log("profile pic", profilePicture);
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(() => {
+    async function fetchUserInfo() {
+      try {
+        const response = await api.get(`/profile/${loggedInUser.user._id}`);
+        console.log("O QUE TA VINU", response.data);
+        setUserInfo({ ...response.data });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchUserInfo();
+  }, [loggedInUser.user._id]);
+
+  console.log("userInfo", userInfo);
+
   return (
     <div className="profile-page">
       <div className="row d-flex flex-nowrap">
         <div className="col-4 align-items-start me-5">
           <img
-            src={loggedInUser.user.profilePictureUrl}
+            src={userInfo.profilePictureUrl}
             className="card-img mt-5"
-            alt="hands ilustration"
+            alt="Profile pic"
           />
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -81,11 +99,6 @@ function Profile() {
                 id="profileFormPicture"
                 onChange={handleChange}
               />
-              {/* {profilePicture.error ? (
-                <div className="msg-err-css">
-                  {profilePicture.error.msgUpload}
-                </div>
-              ) : null} */}
               <BtnLoginSignUp>Save</BtnLoginSignUp>
             </div>
           </form>
@@ -112,31 +125,9 @@ function Profile() {
           </div>
         </div>
         <div className="col-6 align-items-center m-5">
-          {/* //outlet */}
-          {/* <h1>ONDE O TEXTO ESTÁ</h1> */}
-          {/* <img src={ilustration} className="ilustration" alt="ilustration" /> */}
-          {/* <h3>My Reviews</h3>
-          {userReviews.map((eachReview) => {
-            return (
-              <div>
-                <ul>
-                  <li>
-                    <h7>Nome produto:{eachReview.productId.productName}</h7>
-                  </li>
-                  <li>
-                    {" "}
-                    <h8>Rating:{eachReview.authorRating}</h8>
-                  </li>
-                  <li>
-                    <h8>Comentário:{eachReview.comment}</h8>
-                  </li>
-                </ul>
-              </div>
-            );
-          })} */}
+          <Outlet />
         </div>
       </div>
-      <Outlet />
     </div>
   );
 }
