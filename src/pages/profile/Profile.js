@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
-import Sidebar from '../../components/sidebar/Sidebar'
+
 import ilustration from "../../assets/images/ilustration.jpg";
 import hands from "../../assets/images/hands.jpg";
 import "./profileStyle.css";
@@ -65,7 +65,6 @@ function Profile() {
 
   return (
     <div className="profile-page">
-    <Sidebar />
       <div className="row d-flex flex-nowrap">
         <div className="col-4 align-items-start me-5">
           <img src={hands} className="card-img mt-5" alt="hands ilustration" />
@@ -93,13 +92,23 @@ function Profile() {
         <div className="col-6 align-items-center m-5">
           <h1>ONDE O TEXTO ESTÁ</h1>
           {/* <img src={ilustration} className="ilustration" alt="ilustration" /> */}
+
           <h3>My Reviews</h3>
           {userReviews.map((eachReview) => {
             return (
               <div>
-                <h7>{eachReview.productId.productName}</h7>
-                <h8>{eachReview.authorRating}</h8>
-                <h8>{eachReview.comment}</h8>
+                <ul>
+                  <li>
+                    <h7>Nome produto:{eachReview.productId.productName}</h7>
+                  </li>
+                  <li>
+                    {" "}
+                    <h8>Rating:{eachReview.authorRating}</h8>
+                  </li>
+                  <li>
+                    <h8>Comentário:{eachReview.comment}</h8>
+                  </li>
+                </ul>
               </div>
             );
           })}

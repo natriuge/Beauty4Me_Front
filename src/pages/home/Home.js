@@ -71,7 +71,7 @@ function Home() {
               </p>
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={() => navigate("/signup")}
               >
                 Sign up today
@@ -85,7 +85,7 @@ function Home() {
               <Carousel breakPoints={breakPoints}>
                 {state.map((element) => (
                   <div className="container">
-                    <div key={element._id} className="card-detail col">
+                    <div key={element._id} className="col">
                       <div className="card h-100 d-flex border-card">
                         <div className="prod-card-container">
                           <img

@@ -20,9 +20,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/" element={<ProtectedRoute component={<Home />} />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/search/:keyword" element={<Search />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route
           path="/profile"
@@ -38,6 +38,6 @@ function App() {
   );
 }
 
-<Route path="/search/:keyword" element={<Search />} />;
+
 
 export default App;
