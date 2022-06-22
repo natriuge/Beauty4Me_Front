@@ -1,74 +1,95 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
-
-import ilustration from "../../assets/images/ilustration.jpg";
+import { Link, Outlet } from "react-router-dom";
 import hands from "../../assets/images/hands.jpg";
+import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
 import "./profileStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Profile() {
-  const { loggedInUser, loading, setLoggedInUser, handleLogout } =
-    useContext(AuthContext);
+  const { loggedInUser, handleLogout } = useContext(AuthContext);
 
-  const [userReviews, setuserReviews] = useState([]);
-  const [productsReviewsByUser, setproductsReviewsByUser] = useState([]);
-
-  useEffect(() => {
-    async function fetchUserReviews() {
-      try {
-        const response = await api.get("/review/:authorId");
-
-        console.log("DATA", response.data);
-
-        setuserReviews([...response.data]);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    fetchUserReviews();
-  }, []);
-
-  console.log("userReviews", userReviews);
-
-  const idSpecificProduct = userReviews.map((review) => {
-    return review.productId;
+  const [profilePicture, setprofilePicture] = useState({
+    picture: "",
   });
 
-  const id = idSpecificProduct.map((prod) => {
-    return prod;
-  });
-
-  console.log("id", id);
-
-  useEffect(() => {
-    async function fetchproductsReviewedByUser() {
-      try {
-        const response = await api.get(`/product/${idSpecificProduct}`);
-
-        console.log("PRODUTOS", response.data);
-
-        setproductsReviewsByUser([...response.data]);
-      } catch (err) {
-        console.error(err);
-      }
+  function handleChange({ target }) {
+    const { name, files } = target;
+    if (files) {
+      setprofilePicture({ ...profilePicture, [name]: files[0] });
+      return;
     }
-    fetchproductsReviewedByUser();
-  }, [idSpecificProduct]);
+    return profilePicture;
+  }
 
-  console.log("productsReviewsByUser", productsReviewsByUser);
+  console.log("profilePicture", profilePicture);
 
-  function ReviewClick(event) {
-    event.preventDefault();
-    console.log("The link was clicked.");
+  async function handleFileUpload(file) {
+    // 1. Criar uma instância da construtora FormData
+    const formData = new FormData();
+
+    // 2. Criar um campo para armazenar nosso arquivo nessa instância
+    formData.append("profilePicture", file); // O primeiro argumento de append precisa ser a mesma string passada para o método 'single' do middleware uploader na sua rota do backend
+
+    // 3. Enviar essa instância para a API
+    const response = await api.post("/upload", formData);
+
+    return response.data;
+  }
+
+  async function handleSubmit(event) {
+    try {
+      event.preventDefault();
+
+      // Envia o arquivo que o usuário selecionou para a rota de upload de arquivo
+      if (profilePicture.picture) {
+        const { fileUrl } = await handleFileUpload(profilePicture.picture);
+
+        const clone = { ...profilePicture };
+
+        delete clone.picture;
+        // Mandar os dados pra API
+        const response = await api.patch("/profile/:_id", {
+          ...clone,
+          profilePictureUrl: fileUrl,
+        });
+
+        console.log("FINAL", response.data);
+      } else {
+        await api.patch("/profile/:_id", profilePicture);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
     <div className="profile-page">
       <div className="row d-flex flex-nowrap">
         <div className="col-4 align-items-start me-5">
-          <img src={hands} className="card-img mt-5" alt="hands ilustration" />
+          <img
+            src={loggedInUser.user.profilePictureUrl}
+            className="card-img mt-5"
+            alt="hands ilustration"
+          />
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <input
+                type="file"
+                name="picture"
+                id="profileFormPicture"
+                onChange={handleChange}
+              />
+              {/* {profilePicture.error ? (
+                <div className="msg-err-css">
+                  {profilePicture.error.msgUpload}
+                </div>
+              ) : null} */}
+              <BtnLoginSignUp>Save</BtnLoginSignUp>
+            </div>
+          </form>
+
           <div className="mt-5 ">
             <h6 className="mb-3">Welcome Back, {loggedInUser.user.name}</h6>
             <h6 className="mb-3">
@@ -76,11 +97,11 @@ function Profile() {
             </h6>
             <ul>
               <li>
-                <Link to="/favorites">Favorites</Link>
+                <Link to="favorites">Favorites</Link>
               </li>
               <li>
                 {" "}
-                <Link to="/my-reviews">My Reviews</Link>
+                <Link to="my-reviews">My Reviews</Link>
               </li>
               <li>
                 <button className="btn btn-link" onClick={handleLogout}>
