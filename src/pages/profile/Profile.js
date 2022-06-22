@@ -2,12 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
 import { Link, Outlet } from "react-router-dom";
-import hands from "../../assets/images/hands.jpg";
 import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
+import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
+
 import "./profileStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Profile() {
+  const [loading, setLoading] = useState(false);
+
   const { loggedInUser, handleLogout } = useContext(AuthContext);
 
   const [profilePicture, setprofilePicture] = useState({
@@ -34,16 +37,16 @@ function Profile() {
 
     // 3. Enviar essa instância para a API
     const response = await api.post("/upload", formData);
-
     return response.data;
   }
 
   async function handleSubmit(event) {
     try {
       event.preventDefault();
-
       // Envia o arquivo que o usuário selecionou para a rota de upload de arquivo
       if (profilePicture.picture) {
+        setLoading(true);
+
         const { fileUrl } = await handleFileUpload(profilePicture.picture);
 
         const clone = { ...profilePicture };
@@ -54,33 +57,36 @@ function Profile() {
           ...clone,
           profilePictureUrl: fileUrl,
         });
-
+        document.location.reload(true);
+        setLoading(false);
         console.log("FINAL", response.data);
       } else {
+        setLoading(true);
         await api.patch("/profile/:_id", profilePicture);
+        document.location.reload(true);
+        setLoading(false);
       }
     } catch (err) {
       console.error(err);
     }
   }
 
-  console.log("profile pic", profilePicture);
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     async function fetchUserInfo() {
       try {
+        setLoading(true);
         const response = await api.get(`/profile/${loggedInUser.user._id}`);
         console.log("O QUE TA VINU", response.data);
         setUserInfo({ ...response.data });
+        setLoading(false);
       } catch (err) {
         console.error(err);
       }
     }
     fetchUserInfo();
   }, [loggedInUser.user._id]);
-
-  console.log("userInfo", userInfo);
 
   return (
     <div className="profile-page">
@@ -93,6 +99,7 @@ function Profile() {
           />
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
+              <label htmlFor="picture">Change Profile Picture</label>
               <input
                 type="file"
                 name="picture"
