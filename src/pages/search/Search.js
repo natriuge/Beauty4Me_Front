@@ -44,20 +44,20 @@ function Search() {
     fetchProducts();
   }, [errorMessage, keyword]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
-
   useEffect(() => {
     setCurrentPage(0);
   }, [productsPerPage]);
 
   return (
     <div className="container mt-5">
-
       {loading ? (
         <LoadingSpinner />
       ) : (
         <>
           <div className="mb-5">
-            <h1 className="h1-title">Results containing... <i> {keyword}</i></h1>
+            <h1 className="h1-title">
+              Results containing... <i> {keyword}</i>
+            </h1>
             {/* <h4 className="h4-title">
               Check out the best products by customers review
             </h4> */}

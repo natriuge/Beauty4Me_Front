@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";import api from "../../apis/api";
+import ReactStars from "react-rating-stars-component";
+import api from "../../apis/api";
 import ReviewForm from "../../components/Review/ReviewForm";
 import HTMLReactParser from "html-react-parser";
 import EditReviewModal from "../../components/EditReviewModal";
@@ -169,7 +170,17 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
- 
+
+  // const authorsId = userReviews.map((reviews) => reviews.authorId);
+
+  //  function isAuthor() {
+  //   const authorsId = userReviews.map(reviews => reviews.authorId)
+  //   const id = authorsId.map((authorId) => authorId === loggedInUser.user._id);
+  //   console.log( "id", id);
+  //   console.log("logged user id", loggedInUser.user._id);
+  //    return id;
+  //  }
+
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
@@ -283,7 +294,7 @@ function ProductDetails() {
                       isHalf={true}
                       edit={false}
                     />
-                  
+
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
@@ -312,7 +323,7 @@ function ProductDetails() {
                           setShowModal(true);
                         }}
                       >
-                        editar
+                        edit
                       </button>
 
                       {/*                     
@@ -355,6 +366,7 @@ function ProductDetails() {
               <strong>logged!</strong>
             </Link>
           </div>
+
           {loggedInUser.user._id && (
             <div className="review-form mt-0">
               <ReviewForm
