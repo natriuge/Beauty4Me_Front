@@ -22,7 +22,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/search/:keyword" element={<Search />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route
           path="/profile"
@@ -30,14 +29,15 @@ function App() {
         />
         <Route
           path="/product-detail/:id"
-          element={<ProtectedRoute component={ProductDetails} />}
+          element={<ProductDetails />}
         />
         <Route path="*" element={<NotFound />} />
+        <Route path="/search/:keyword" element={<Search />} />;
       </Routes>
     </AuthContextComponent>
   );
 }
 
 
-
 export default App;
+

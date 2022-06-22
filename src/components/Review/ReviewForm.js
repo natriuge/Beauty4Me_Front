@@ -1,9 +1,6 @@
 import ReactStars from "react-rating-stars-component";
 
-const ReviewForm = (props) => {
-  const ratingChanged = (newRating) => {
-    console.log(newRating);
-  };
+function ReviewForm(props) {
   return (
     <div>
       <div>
@@ -13,10 +10,12 @@ const ReviewForm = (props) => {
           </h5>
         </label>
         <ReactStars
-          count={5} //props
-          onChange={ratingChanged} //mexer no onChange
+          count={5}
+          value={props.count}
+          onChange={props.onRatingChange}
           size={24}
           activeColor="#ffd700"
+          isHalf={true}
         />
       </div>
 
@@ -42,5 +41,6 @@ const ReviewForm = (props) => {
       </div>
     </div>
   );
-};
+}
 export default ReviewForm;
+

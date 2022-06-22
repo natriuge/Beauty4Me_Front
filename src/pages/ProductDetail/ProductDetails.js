@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import Ratings from "../../components/ranking-rating/FixedRatingStars";
-import api from "../../apis/api";
+import ReactStars from "react-rating-stars-component";import api from "../../apis/api";
 import ReviewForm from "../../components/Review/ReviewForm";
 import HTMLReactParser from "html-react-parser";
 import EditReviewModal from "../../components/EditReviewModal";
@@ -170,16 +169,7 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
-  // const authorsId = userReviews.map((reviews) => reviews.authorId);
-
-  //  function isAuthor() {
-  //   const authorsId = userReviews.map(reviews => reviews.authorId)
-  //   const id = authorsId.map((authorId) => authorId === loggedInUser.user._id);
-  //   console.log( "id", id);
-  //   console.log("logged user id", loggedInUser.user._id);
-  //    return id;
-  //  }
-
+ 
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
@@ -216,7 +206,15 @@ function ProductDetails() {
                 <h5>
                   <strong>RATING</strong>
                 </h5>
-                <Ratings>{product.rating}</Ratings>
+
+                <ReactStars
+                  count={5}
+                  value={product.rating}
+                  size={24}
+                  activeColor="#ffd700"
+                  isHalf={true}
+                  edit={false}
+                />
 
                 <button onClick={addFavoriteProduct}>favorite</button>
 
@@ -277,7 +275,15 @@ function ProductDetails() {
                 <div key={`${review.ProductId}__${index}`}>
                   <div></div>
                   <div>
-                    {/* <Ratings>{review.Rating}</Ratings> */}
+                    <ReactStars
+                      count={5}
+                      value={review.Rating}
+                      size={24}
+                      activeColor="#ffd700"
+                      isHalf={true}
+                      edit={false}
+                    />
+                  
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
@@ -328,6 +334,14 @@ function ProductDetails() {
                   <br />
                   <p>{userReview.authorName}</p>
                   <p>{userReview.comment}</p>
+                  <ReactStars
+                    count={5}
+                    value={userReview.authorRating}
+                    size={24}
+                    activeColor="#ffd700"
+                    isHalf={true}
+                    edit={false}
+                  />
                   {/* TEM Q RENDERIZAR O NOME DO USER(AUTHOR) */}
                   <hr className="featurette-divider" />
                 </div>
@@ -341,25 +355,28 @@ function ProductDetails() {
               <strong>logged!</strong>
             </Link>
           </div>
-          {/* {isAuthor() && ( */}
-          <div className="review-form mt-0">
-            <ReviewForm
-              type="form"
-              id="newReview"
-              value={newReview.comment}
-              name="comment"
-              onChange={handleChange}
-              // onClick={handleSubmit}
-            />
-            <button
-              type="submit"
-              className="btn btn-outline-secondary mt-2"
-              onClick={handleSubmit}
-            >
-              <strong>send</strong>
-            </button>
-          </div>
-          {/* )} */}
+          {loggedInUser.user._id && (
+            <div className="review-form mt-0">
+              <ReviewForm
+                type="form"
+                id="newReview"
+                value={newReview.comment}
+                name="comment"
+                onChange={handleChange}
+                onRatingChange={(newRating) => {
+                  setNewReview({ ...newReview, authorRating: newRating });
+                }}
+                count={newReview.authorRating}
+              />
+              <button
+                type="submit"
+                className="btn btn-outline-secondary mt-2"
+                onClick={handleSubmit}
+              >
+                <strong>send</strong>
+              </button>
+            </div>
+          )}
           <EditReviewModal
             show={showModal}
             setShowModal={setShowModal}
@@ -369,7 +386,6 @@ function ProductDetails() {
             value={userReviewUpdate.comment}
             name="comment"
           />
-
         </div>
       )}
     </>
