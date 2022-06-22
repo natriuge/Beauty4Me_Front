@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../apis/api";
-import Ratings from "../../components/ranking-rating/FixedRatingStars";
+import ReactStars from "react-rating-stars-component";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
@@ -44,20 +44,20 @@ function Search() {
     fetchProducts();
   }, [errorMessage, keyword]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
 
-
   useEffect(() => {
     setCurrentPage(0);
   }, [productsPerPage]);
 
   return (
     <div className="container mt-5">
-
       {loading ? (
         <LoadingSpinner />
       ) : (
         <>
           <div className="mb-5">
-            <h1 className="h1-title">Results containing... <i> {keyword}</i></h1>
+            <h1 className="h1-title">
+              Results containing... <i> {keyword}</i>
+            </h1>
             {/* <h4 className="h4-title">
               Check out the best products by customers review
             </h4> */}
@@ -98,7 +98,14 @@ function Search() {
                     <div className="d-flex ">
                       <div className="p-ranting">
                         {rating}
-                        <Ratings>{rating}</Ratings>
+                        <ReactStars
+                          count={5}
+                          value={rating}
+                          size={24}
+                          activeColor="#ffd700"
+                          isHalf={true}
+                          edit={false}
+                        />{" "}
                       </div>
                     </div>
                   </div>

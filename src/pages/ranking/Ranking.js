@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-import Ratings from "../../components/ranking-rating/FixedRatingStars";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
+import ReactStars from "react-rating-stars-component";
 
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -96,7 +96,14 @@ function Ranking() {
                     <div className="d-flex">
                       <div className="p-ranting">
                         {rating}
-                        <Ratings>{rating}</Ratings>
+                        <ReactStars
+                          count={5}
+                          value={rating}
+                          size={24}
+                          activeColor="#ffd700"
+                          isHalf={true}
+                          edit={false}
+                        />
                       </div>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import Ratings from "../../components/ranking-rating/FixedRatingStars";
+import ReactStars from "react-rating-stars-component";
 import api from "../../apis/api";
 import ReviewForm from "../../components/Review/ReviewForm";
 import HTMLReactParser from "html-react-parser";
@@ -140,6 +140,7 @@ function ProductDetails() {
       console.error(err.reponse);
       // return setErrors({ ...err.response.data.errors });
     }
+<<<<<<< HEAD
   }
 
   function updateUserReviewHandleChange(event) {
@@ -151,6 +152,19 @@ function ProductDetails() {
     });
   }
 
+=======
+  }
+
+  function updateUserReviewHandleChange(event) {
+    setUserReviewUpdate({
+      ...userReviews,
+      // productId: id,
+      // authorName: loggedInUser.user.name,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
   async function addFavoriteProduct() {
     try {
       console.log(id);
@@ -170,6 +184,9 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
+<<<<<<< HEAD
+
+=======
   // const authorsId = userReviews.map((reviews) => reviews.authorId);
 
   //  function isAuthor() {
@@ -180,6 +197,7 @@ function ProductDetails() {
   //    return id;
   //  }
 
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
@@ -216,7 +234,19 @@ function ProductDetails() {
                 <h5>
                   <strong>RATING</strong>
                 </h5>
+<<<<<<< HEAD
+
+                <ReactStars
+                  count={5}
+                  value={product.rating}
+                  size={24}
+                  activeColor="#ffd700"
+                  isHalf={true}
+                  edit={false}
+                />
+=======
                 <Ratings>{product.rating}</Ratings>
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
 
                 <button onClick={addFavoriteProduct}>favorite</button>
 
@@ -277,7 +307,19 @@ function ProductDetails() {
                 <div key={`${review.ProductId}__${index}`}>
                   <div></div>
                   <div>
+<<<<<<< HEAD
+                    <ReactStars
+                      count={5}
+                      value={review.Rating}
+                      size={24}
+                      activeColor="#ffd700"
+                      isHalf={true}
+                      edit={false}
+                    />
+
+=======
                     {/* <Ratings>{review.Rating}</Ratings> */}
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
@@ -306,7 +348,11 @@ function ProductDetails() {
                           setShowModal(true);
                         }}
                       >
+<<<<<<< HEAD
+                        edit
+=======
                         editar
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
                       </button>
 
                       {/*                     
@@ -328,6 +374,14 @@ function ProductDetails() {
                   <br />
                   <p>{userReview.authorName}</p>
                   <p>{userReview.comment}</p>
+                  <ReactStars
+                    count={5}
+                    value={userReview.authorRating}
+                    size={24}
+                    activeColor="#ffd700"
+                    isHalf={true}
+                    edit={false}
+                  />
                   {/* TEM Q RENDERIZAR O NOME DO USER(AUTHOR) */}
                   <hr className="featurette-divider" />
                 </div>
@@ -341,6 +395,30 @@ function ProductDetails() {
               <strong>logged!</strong>
             </Link>
           </div>
+<<<<<<< HEAD
+          {loggedInUser.user._id && (
+            <div className="review-form mt-0">
+              <ReviewForm
+                type="form"
+                id="newReview"
+                value={newReview.comment}
+                name="comment"
+                onChange={handleChange}
+                onRatingChange={(newRating) => {
+                  setNewReview({ ...newReview, authorRating: newRating });
+                }}
+                count={newReview.authorRating}
+              />
+              <button
+                type="submit"
+                className="btn btn-outline-secondary mt-2"
+                onClick={handleSubmit}
+              >
+                <strong>send</strong>
+              </button>
+            </div>
+          )}
+=======
           {/* {isAuthor() && ( */}
           <div className="review-form mt-0">
             <ReviewForm
@@ -360,6 +438,7 @@ function ProductDetails() {
             </button>
           </div>
           {/* )} */}
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
           <EditReviewModal
             show={showModal}
             setShowModal={setShowModal}
@@ -369,7 +448,10 @@ function ProductDetails() {
             value={userReviewUpdate.comment}
             name="comment"
           />
+<<<<<<< HEAD
+=======
 
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
         </div>
       )}
     </>
