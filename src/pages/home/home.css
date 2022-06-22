@@ -53,6 +53,7 @@
 
 .p-ranting {
   margin-top: -25px;
+  margin-bottom: 50px;
 }
 
 .footer-txt {
@@ -60,8 +61,30 @@
   font-weight: lighter !important;
 }
 
+<<<<<<< HEAD
 .card-detail {
   height: 60vh;
+=======
+.card-detail{
+  height: 53vh;
+}
+
+.prod-img {
+  opacity: 1;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.card-middle-ranking {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+>>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
 }
 
 @media (min-width: 150px) and (max-width: 450px) {

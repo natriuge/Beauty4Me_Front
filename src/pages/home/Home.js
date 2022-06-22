@@ -71,7 +71,7 @@ function Home() {
               </p>
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={() => navigate("/signup")}
               >
                 Sign up today
