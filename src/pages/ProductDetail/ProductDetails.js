@@ -140,7 +140,6 @@ function ProductDetails() {
       console.error(err.reponse);
       // return setErrors({ ...err.response.data.errors });
     }
-<<<<<<< HEAD
   }
 
   function updateUserReviewHandleChange(event) {
@@ -152,19 +151,6 @@ function ProductDetails() {
     });
   }
 
-=======
-  }
-
-  function updateUserReviewHandleChange(event) {
-    setUserReviewUpdate({
-      ...userReviews,
-      // productId: id,
-      // authorName: loggedInUser.user.name,
-      [event.target.name]: event.target.value,
-    });
-  }
-
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
   async function addFavoriteProduct() {
     try {
       console.log(id);
@@ -184,20 +170,6 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
-<<<<<<< HEAD
-
-=======
-  // const authorsId = userReviews.map((reviews) => reviews.authorId);
-
-  //  function isAuthor() {
-  //   const authorsId = userReviews.map(reviews => reviews.authorId)
-  //   const id = authorsId.map((authorId) => authorId === loggedInUser.user._id);
-  //   console.log( "id", id);
-  //   console.log("logged user id", loggedInUser.user._id);
-  //    return id;
-  //  }
-
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
@@ -234,7 +206,6 @@ function ProductDetails() {
                 <h5>
                   <strong>RATING</strong>
                 </h5>
-<<<<<<< HEAD
 
                 <ReactStars
                   count={5}
@@ -244,9 +215,6 @@ function ProductDetails() {
                   isHalf={true}
                   edit={false}
                 />
-=======
-                <Ratings>{product.rating}</Ratings>
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
 
                 <button onClick={addFavoriteProduct}>favorite</button>
 
@@ -307,7 +275,6 @@ function ProductDetails() {
                 <div key={`${review.ProductId}__${index}`}>
                   <div></div>
                   <div>
-<<<<<<< HEAD
                     <ReactStars
                       count={5}
                       value={review.Rating}
@@ -317,9 +284,6 @@ function ProductDetails() {
                       edit={false}
                     />
 
-=======
-                    {/* <Ratings>{review.Rating}</Ratings> */}
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
@@ -348,11 +312,7 @@ function ProductDetails() {
                           setShowModal(true);
                         }}
                       >
-<<<<<<< HEAD
                         edit
-=======
-                        editar
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
                       </button>
 
                       {/*                     
@@ -395,7 +355,6 @@ function ProductDetails() {
               <strong>logged!</strong>
             </Link>
           </div>
-<<<<<<< HEAD
           {loggedInUser.user._id && (
             <div className="review-form mt-0">
               <ReviewForm
@@ -418,27 +377,6 @@ function ProductDetails() {
               </button>
             </div>
           )}
-=======
-          {/* {isAuthor() && ( */}
-          <div className="review-form mt-0">
-            <ReviewForm
-              type="form"
-              id="newReview"
-              value={newReview.comment}
-              name="comment"
-              onChange={handleChange}
-              // onClick={handleSubmit}
-            />
-            <button
-              type="submit"
-              className="btn btn-outline-secondary mt-2"
-              onClick={handleSubmit}
-            >
-              <strong>send</strong>
-            </button>
-          </div>
-          {/* )} */}
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
           <EditReviewModal
             show={showModal}
             setShowModal={setShowModal}
@@ -448,10 +386,6 @@ function ProductDetails() {
             value={userReviewUpdate.comment}
             name="comment"
           />
-<<<<<<< HEAD
-=======
-
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
         </div>
       )}
     </>
