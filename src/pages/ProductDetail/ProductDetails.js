@@ -5,15 +5,14 @@ import Ratings from "../../components/ranking-rating/FixedRatingStars";
 import api from "../../apis/api";
 import ReviewForm from "../../components/Review/ReviewForm";
 import HTMLReactParser from "html-react-parser";
-import EditReviewModal from "../../components/EditReviewModal"
+import EditReviewModal from "../../components/EditReviewModal";
 import { AuthContext } from "../../contexts/authContext";
 import { VscEdit } from "react-icons/vsc";
-import  Button  from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import { BsTrash } from "react-icons/bs";
 import ToggleButton from "react-bootstrap/ToggleButton";
-import "../ProductDetail/productDetails.css"
-import "../ranking/rankingStyle.css"
-  
+import "../ProductDetail/productDetails.css";
+import "../ranking/rankingStyle.css";
 
 function ProductDetails() {
   const [product, setProduct] = useState();
@@ -25,8 +24,8 @@ function ProductDetails() {
     authorId: null,
     comment: "",
     authorRating: 0,
-    productId: null
-  })
+    productId: null,
+  });
   const [errors, setErrors] = useState({
     authorName: null,
     authorId: null,
@@ -34,24 +33,30 @@ function ProductDetails() {
     authorRating: null,
     productId: null,
   });
+  const [userReviewUpdate, setUserReviewUpdate] = useState({
+    authorName: "",
+    authorId: null,
+    comment: "",
+    authorRating: 0,
+    productId: null,
+  });
 
-  //  const handleShow = (_id) => {
-  //    setUserReviews(_id);
-  //    setShowModal(true);
-  //  };
-  //  const [showModal, setShowModal] = useState(false);
+  const handleShow = (_id) => {
+    setUserReviews(_id);
+    setShowModal(true);
+  };
 
-  //  const handleClose = () => setShowModal(false);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleClose = () => setShowModal(false);
 
-  
   const navigate = useNavigate();
 
   const { id } = useParams();
-  
+
   const { loggedInUser, setLoggedInUser, loading, handleLogout } =
     useContext(AuthContext);
-  
+
   const handleTab1 = () => {
     setActiveTab("tab1");
   };
@@ -80,28 +85,34 @@ function ProductDetails() {
     }
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     getProduct();
   }, [id]);
 
   // This will only run after the product update
-  useEffect(() => { 
-    getUsersReviews()
-  }, [product])
+  useEffect(() => {
+    getUsersReviews();
+  }, [product]);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    try{
+    try {
       const response = await api.post("/review", newReview);
       // Add new review to the list of user's reviews
-      setUserReviews([...userReviews, response.data])
-      
-      setErrors({ authorName: "",authorId: null, comment: "", authorRating: 0, productId: null });
+      setUserReviews([...userReviews, response.data]);
+
+      setErrors({
+        authorName: "",
+        authorId: null,
+        comment: "",
+        authorRating: 0,
+        productId: null,
+      });
       // navigate("/")
-    } catch(err){
+    } catch (err) {
       console.error(err.response);
-      return setErrors({...err.response.data.errors})
+      return setErrors({ ...err.response.data.errors });
     }
   }
 
@@ -109,7 +120,9 @@ function ProductDetails() {
     try {
       const response = await api.delete(`/review/${reviewId}`);
       // Add new review to the list of user's reviews
-      const newReviews = userReviews.filter(reviews => reviews._id !== response.data._id);
+      const newReviews = userReviews.filter(
+        (reviews) => reviews._id !== response.data._id
+      );
       setUserReviews(newReviews);
     } catch (err) {
       console.error(err.response);
@@ -117,32 +130,47 @@ function ProductDetails() {
     }
   }
 
-  async function updateUserReview(reviewId) {
+  async function updateUserReview() {
     try {
-      const response = await api.patch(`/review/${reviewId}`);
-      const newReviews = userReviews.filter(reviews => reviews._id !== response.data._id);
-      setUserReviews(newReviews);
-      } catch (err) {
-        console.error(err.reponse);
-        return setErrors({ ...err.response.data.errors });
-      }
+      const clone = { ...userReviewUpdate };
+      delete clone._id;
+      const response = await api.patch(`/review/${userReviews[0]._id}`, clone);
+      setUserReviews([...userReviews, response.data]);
+    } catch (err) {
+      console.error(err.reponse);
+      // return setErrors({ ...err.response.data.errors });
+    }
   }
-   async function addFavoriteProduct() {
 
+  function updateUserReviewHandleChange(event) {
+    setUserReviewUpdate({
+      ...userReviews,
+      // productId: id,
+      // authorName: loggedInUser.user.name,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  async function addFavoriteProduct() {
     try {
       console.log(id);
-      const response = await api.patch(`/product/${id}`);  
-      console.log(response.data)
-      } catch (err) {
-        console.error(err.reponse);
-        // setErrors({ ...err.response.data.errors });
-      }
+      const response = await api.patch(`/product/${id}`);
+      console.log(response.data);
+    } catch (err) {
+      console.error(err.reponse);
+      // setErrors({ ...err.response.data.errors });
+    }
   }
 
-  function handleChange(event){
-    setNewReview({ ...newReview, productId: id, authorName: loggedInUser.user.name, [event.target.name]: event.target.value });
+  function handleChange(event) {
+    setNewReview({
+      ...newReview,
+      productId: id,
+      authorName: loggedInUser.user.name,
+      [event.target.name]: event.target.value,
+    });
   }
-    const authorsId = userReviews.map((reviews) => reviews.authorId);
+  // const authorsId = userReviews.map((reviews) => reviews.authorId);
 
   //  function isAuthor() {
   //   const authorsId = userReviews.map(reviews => reviews.authorId)
@@ -152,9 +180,9 @@ function ProductDetails() {
   //    return id;
   //  }
 
-    function isAuthor(id){
-       return loggedInUser.user._id === id;
-    }
+  function isAuthor(id) {
+    return loggedInUser.user._id === id;
+  }
   return (
     <>
       {product && (
@@ -188,10 +216,10 @@ function ProductDetails() {
                 <h5>
                   <strong>RATING</strong>
                 </h5>
-                {/* <Ratings>{product.rating}</Ratings> */}
+                <Ratings>{product.rating}</Ratings>
 
                 <button onClick={addFavoriteProduct}>favorite</button>
-                
+
                 <ToggleButton
                   className="mb-2"
                   id="toggle-check"
@@ -249,7 +277,7 @@ function ProductDetails() {
                 <div key={`${review.ProductId}__${index}`}>
                   <div></div>
                   <div>
-                    <Ratings>{review.Rating}</Ratings>
+                    {/* <Ratings>{review.Rating}</Ratings> */}
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
@@ -258,20 +286,34 @@ function ProductDetails() {
                 </div>
               );
             })}
-            {userReviews.map((userReview) => {
+            {userReviews.map((userReview, index) => {
+              console.log("user Review", userReviews);
               return (
                 <div key={userReview._id}>
                   {/* <div> */}
                   {isAuthor(userReview.authorId) && (
+                    <div>
+                      <button onClick={() => deleteUserReview(userReview._id)}>
+                        delete
+                      </button>
+                      <button
+                        id={userReview._id}
+                        onClick={(event) => {
+                          console.log("TARGET AQUI Ó", event.target);
+                          console.log("TARGET ID ID", event.target.id);
+                          setUserReviews([userReviews[index]]);
+                          setUserReviewUpdate({ ...userReviews[index] });
+                          setShowModal(true);
+                        }}
+                      >
+                        editar
+                      </button>
 
-                  <div>
-                    <button onClick={() => deleteUserReview(userReview._id)}>
-                      delete
-                    </button>
-                    {/* <button onClick={() => handleShow(userReview._id)}>
-                      edit
-                    </button> */}
-                  </div>
+                      {/*                     
+                      <button onClick={() =>  }>
+                        edit
+                      </button> */}
+                    </div>
                   )}
                   {/* <Ratings>{userReview.Rating}</Ratings> */}
                   {/* <strong className="mb-5">{userReview.UserNickname}</strong> */}
@@ -294,7 +336,7 @@ function ProductDetails() {
           </div>
           {/* só aparece se o user não estiver logado */}
           <div className="align-items">
-            To create a review you need to be
+            To create a review you need to be&nbsp;
             <Link className="nav-link active text-dark pl-1" to="/login">
               <strong>logged!</strong>
             </Link>
@@ -318,14 +360,16 @@ function ProductDetails() {
             </button>
           </div>
           {/* )} */}
-          {/* <EditReviewModal
+          <EditReviewModal
             show={showModal}
+            setShowModal={setShowModal}
             handleClose={handleClose}
             handleUpdate={updateUserReview}
-            handleChange={handleChange}
-            value={newReview.comment}
+            handleChange={updateUserReviewHandleChange}
+            value={userReviewUpdate.comment}
             name="comment"
-          /> */}
+          />
+
         </div>
       )}
     </>

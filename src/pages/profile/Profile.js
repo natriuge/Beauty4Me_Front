@@ -92,13 +92,23 @@ function Profile() {
         <div className="col-6 align-items-center m-5">
           <h1>ONDE O TEXTO ESTÁ</h1>
           {/* <img src={ilustration} className="ilustration" alt="ilustration" /> */}
+
           <h3>My Reviews</h3>
           {userReviews.map((eachReview) => {
             return (
               <div>
-                <h7>{eachReview.productId.productName}</h7>
-                <h8>{eachReview.authorRating}</h8>
-                <h8>{eachReview.comment}</h8>
+                <ul>
+                  <li>
+                    <h7>Nome produto:{eachReview.productId.productName}</h7>
+                  </li>
+                  <li>
+                    {" "}
+                    <h8>Rating:{eachReview.authorRating}</h8>
+                  </li>
+                  <li>
+                    <h8>Comentário:{eachReview.comment}</h8>
+                  </li>
+                </ul>
               </div>
             );
           })}

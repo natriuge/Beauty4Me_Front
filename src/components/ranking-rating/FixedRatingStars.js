@@ -1,4 +1,3 @@
-
 const Rating = (props) => {
   let rate = Math.round(Number(props.children));
 
