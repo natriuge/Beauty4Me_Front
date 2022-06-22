@@ -85,7 +85,7 @@ function Home() {
               <Carousel breakPoints={breakPoints}>
                 {state.map((element) => (
                   <div className="container">
-                    <div key={element._id} className="col">
+                    <div key={element._id} className="col card-detail">
                       <div className="card h-100 d-flex border-card">
                         <div className="prod-card-container">
                           <img
@@ -102,7 +102,6 @@ function Home() {
                             >
                               <i className="bi bi-search"></i>
                             </button>
-                            {element._id}
                           </div>
                         </div>
                         <div className="card-body flex-grow-1">

@@ -336,7 +336,7 @@ function ProductDetails() {
           </div>
           {/* só aparece se o user não estiver logado */}
           <div className="align-items">
-            To create a review you need to be
+            To create a review you need to be&nbsp;
             <Link className="nav-link active text-dark pl-1" to="/login">
               <strong>logged!</strong>
             </Link>

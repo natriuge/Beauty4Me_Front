@@ -10,6 +10,7 @@
     "bootstrap": "^5.2.0-beta1",
     "bootstrap-icons": "^1.8.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "html-react-parser": "^1.4.14",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.5",
