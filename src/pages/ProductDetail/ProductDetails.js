@@ -134,6 +134,7 @@ function ProductDetails() {
     try {
       const clone = { ...userReviewUpdate };
       delete clone._id;
+
       const response = await api.patch(`/review/${userReviewUpdate._id}`, clone);
 
       const newUserReviews = userReviews.map(review => {
@@ -180,6 +181,7 @@ function ProductDetails() {
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
+
   return (
     <>
       {product && (
@@ -345,6 +347,7 @@ function ProductDetails() {
               );
             })}
           </div>
+          
           {!loggedInUser.user._id && (
             <div className="align-items">
               To create a review you need to be&nbsp;
@@ -390,6 +393,7 @@ function ProductDetails() {
               });
             }}
             count={userReviewUpdate.authorRating}
+
           />
         </div>
       )}

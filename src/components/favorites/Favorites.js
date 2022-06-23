@@ -1,76 +1,108 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-import ReactStars from "react-rating-stars-component";
+import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
+import ReactStars from "react-rating-stars-component";
+import { AuthContext } from "../../contexts/authContext";
 
-import "../ranking/rankingStyle.css";
+import "../favorites/favorites.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Search() {
-  const [state, setState] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
+function Favorites() {
+  const [userFavorites, setuserFavorites] = useState([]);
+  // const [productsFavoritesByUser, setproductsFavoritesByUser] = useState([]);
+  const [userFavoriteProducts, setUserFavoriteProducts] = useState([]);
+  const { loggedInUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const { keyword } = useParams();
+  console.log();
+
+  useEffect(() => {
+    async function fetchUserFavorites() {
+      try {
+        setLoading(true);
+        const response = await api.get(`/profile/${loggedInUser.user._id}`);
+
+        console.log("resposta do response", response.data);
+        setuserFavorites([...response.data.favoriteProducts]);
+
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchUserFavorites();
+  }, [loggedInUser.user._id]);
+
+  const navigate = useNavigate();
 
   //math.ceil  -> arredonda o número para cima. ex: 11.1 vira 12
-  const pages = Math.ceil(state.length / productsPerPage);
+  const pages = Math.ceil(userFavorites.length / productsPerPage);
 
   //fatiar nosso array de produtos
   const startIndex = currentPage * productsPerPage;
   const endIndex = startIndex + productsPerPage;
-  const currentProducts = state.slice(startIndex, endIndex);
+  const currentProducts = userFavorites.slice(startIndex, endIndex);
 
-  const navigate = useNavigate();
+  console.log("favoritos atualizado", userFavorites);
+  // console.log("userReviews", userReviews);
 
-  //fazer o meu request de produtos no BD
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        setLoading(true);
-        const response = await api.get(`/product-search?q=${keyword}`);
-        setState([...response.data]);
-        setLoading(false);
-      } catch (err) {
-        setErrorMessage("Unable to get products list");
-        setLoading(false);
-      }
-    }
-    fetchProducts();
-  }, [errorMessage, keyword]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
+  // const idSpecificProduct = userReviews.map((review) => {
+  //   return review.productId;
+  // });
 
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [productsPerPage]);
+  // const id = idSpecificProduct.map((prod) => {
+  //   return prod;
+  // });
+
+  // console.log("id", id);
+
+  // useEffect(() => {
+  //   async function fetchproductsReviewedByUser() {
+  //     try {
+  //       const response = await api.get(`/product/${idSpecificProduct}`);
+
+  //       // console.log("PRODUTOS", response.data);
+
+  //       setproductsReviewsByUser([...response.data]);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  //   fetchproductsReviewedByUser();
+  // }, [idSpecificProduct]);
+
+  // console.log("productsReviewsByUser", productsReviewsByUser);
+
+  // function ReviewClick(event) {
+  //   event.preventDefault();
+  //   console.log("The link was clicked.");
+  // }
 
   return (
-    <div className="container mt-5">
+    <div className="col-6 align-items-center m-5">
       {loading ? (
         <LoadingSpinner />
       ) : (
         <>
           <div className="mb-5">
-            <h1 className="h1-title">
-              Results containing... <i> {keyword}</i>
-            </h1>
-            {/* <h4 className="h4-title">
-              Check out the best products by customers review
-            </h4> */}
+            <h1 className="h1-title">Ranking Page</h1>
+            <h4 className="h4-title">Check out your favorite products</h4>
           </div>
           <PaginationSelector
             productsPerPage={productsPerPage}
             setProductsPerPage={setProductsPerPage}
           />
           <div
-            className="row row-cols-1 row-cols-md-5 g-4 mb-5"
+            className="col cols-1 cols-md-5 g-4 mb-5"
             style={{ gap: "2rem 0rem" }}
           >
-            {currentProducts.map((element) => {
+            {userFavorites.map((element) => {
               const { _id, productName, brandName, rating, imageDetails } =
                 element;
               return (
@@ -95,7 +127,7 @@ function Search() {
                       <h6 className="card-title h6-name">{productName}</h6>
                       <p className="card-text p-brand-name">{brandName}</p>
                     </div>
-                    <div className="d-flex ">
+                    <div className="d-flex">
                       <div className="p-ranting">
                         {rating}
                         <ReactStars
@@ -125,5 +157,4 @@ function Search() {
     </div>
   );
 }
-
-export default Search;
+export default Favorites;

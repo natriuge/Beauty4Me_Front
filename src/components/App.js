@@ -13,6 +13,8 @@ import Search from "../pages/search/Search";
 import { AuthContextComponent } from "../contexts/authContext";
 import ProductDetails from "../pages/ProductDetail/ProductDetails";
 import Profile from "../pages/profile/Profile";
+import Favorites from "../components/favorites/Favorites";
+import MyReviews from "../components/my-reviews/MyReviews";
 
 function App() {
   return (
@@ -24,13 +26,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route
-          path="/profile"
+          path="/profile/"
           element={<ProtectedRoute component={Profile} />}
-        />
-        <Route
-          path="/product-detail/:id"
-          element={<ProductDetails />}
-        />
+        >
+          <Route path="favorites" element={<Favorites />} />
+          <Route path="my-reviews" element={<MyReviews />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="/product-detail/:id" element={<ProductDetails />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/search/:keyword" element={<Search />} />;
       </Routes>
@@ -38,5 +41,5 @@ function App() {
   );
 }
 
-
 export default App;
+
