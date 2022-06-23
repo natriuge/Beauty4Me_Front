@@ -78,7 +78,7 @@ function Profile() {
       try {
         setLoading(true);
         const response = await api.get(`/profile/${loggedInUser.user._id}`);
-        console.log("O QUE TA VINU", response.data);
+        // console.log("O QUE TA VINU", response.data);
         setUserInfo({ ...response.data });
         setLoading(false);
       } catch (err) {
@@ -91,7 +91,7 @@ function Profile() {
   return (
     <div className="profile-page">
       <div className="row d-flex flex-nowrap">
-        <div className="col-4 align-items-start me-5">
+        <div className="col-4 side-bar align-items-start me-5">
           <img
             src={userInfo.profilePictureUrl}
             className="card-img mt-5"

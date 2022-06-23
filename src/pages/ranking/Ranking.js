@@ -26,6 +26,7 @@ function Ranking() {
 
   const navigate = useNavigate();
 
+
   //fazer o meu request de produtos no BD
   useEffect(() => {
     async function fetchProducts() {
