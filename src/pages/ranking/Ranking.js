@@ -26,7 +26,6 @@ function Ranking() {
 
   const navigate = useNavigate();
 
-
   //fazer o meu request de produtos no BD
   useEffect(() => {
     async function fetchProducts() {
@@ -41,9 +40,7 @@ function Ranking() {
       }
     }
     fetchProducts();
-  }, [errorMessage]); //PRECISO INSERIR O SETERRORMESSAGE AQUI????
-
-  console.log("STATE RANKING", state);
+  }, []);
 
   useEffect(() => {
     setCurrentPage(0);
@@ -66,7 +63,7 @@ function Ranking() {
             setProductsPerPage={setProductsPerPage}
           />
           <div
-            className="row row-cols-1 row-cols-md-5 g-4 mb-5"
+            className="row  row-cols-1 row-cols-md-5 g-4 mb-5"
             style={{ gap: "2rem 0rem" }}
           >
             {currentProducts.map((element) => {

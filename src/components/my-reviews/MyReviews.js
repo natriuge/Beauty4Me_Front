@@ -27,22 +27,29 @@ function MyReviews() {
   console.log("eachReview!!!", eachReview);
 
   // useEffect(() => {
-  //   async function fetchUserReviewsProducts() {
-  //     try {
-  //       const response = await api.get("review-product");
-  //       console.log("DATA", response.data);
-  //       setproductsReviewsByUser({ ...response.data });
-  //     } catch (err) {
-  //       console.error(err);
+  //   eachReview.map((unaReview) => {
+  //     console.log("productId", unaReview.productId);
+
+  //     const { productId } = unaReview;
+
+  //     async function getProductReviewedByUser() {
+  //       try {
+  //         const response = await api.get(`/specific-product/${productId}`);
+  //         console.log("DATA DOS PRODUTOS", response.data);
+  //         setproductsReviewsByUser({ ...response.data });
+  //       } catch (err) {
+  //         console.error(err);
+  //       }
   //     }
-  //   }
-  //   fetchUserReviewsProducts();
+  //     return getProductReviewedByUser();
+  //   });
   // }, []);
+
   console.log("productsReviewsByUser", productsReviewsByUser);
   return (
     <div className="col-6 align-items-center m-5">
-      {/* <h3>My Reviews</h3>
-      {eachReview.map((oneReview) => {
+      <h3>My Reviews</h3>
+      {/* {eachReview.map((oneReview) => {
         const { authorRating, comment, productId } = oneReview;
         return (
           <div>
