@@ -30,6 +30,7 @@ function MyReviews() {
     listReviews.map((unaReview, index) => {
       console.log("productId", unaReview.productId);
 
+
       let { productId } = unaReview;
 
       async function getProductReviewedByUser(productId) {
