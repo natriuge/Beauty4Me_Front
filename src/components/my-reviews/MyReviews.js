@@ -23,8 +23,8 @@ function MyReviews() {
 
   const eachReview = userReviews.allUserReviews;
 
-  console.log("MEU STATE", userReviews);
-  console.log("eachReview", eachReview);
+  console.log("MEU STATE!!!", userReviews);
+  console.log("eachReview!!!", eachReview);
 
   // useEffect(() => {
   //   async function fetchUserReviewsProducts() {
@@ -41,7 +41,7 @@ function MyReviews() {
   console.log("productsReviewsByUser", productsReviewsByUser);
   return (
     <div className="col-6 align-items-center m-5">
-      <h3>My Reviews</h3>
+      {/* <h3>My Reviews</h3>
       {eachReview.map((oneReview) => {
         const { authorRating, comment, productId } = oneReview;
         return (
@@ -60,7 +60,7 @@ function MyReviews() {
             </ul>
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }
