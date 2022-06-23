@@ -23,11 +23,9 @@
   color: white;
 }
 
-.btn-primary {
+.tn-outline-primary {
   margin-top: 8px;
-  background-color: #aaa8fc !important;
-  border-color: #9f9ef9 !important;
-  color: #fff;
+  color: #fff!important;
 }
 
 .responsive-slogan {
@@ -49,6 +47,9 @@
   text-decoration: overline;
   text-decoration-color: #e4fbff;
   font-size: 25px !important;
+}
+.text-background {
+  background-color: rgb(179, 237, 255);
 }
 
 .p-ranting {

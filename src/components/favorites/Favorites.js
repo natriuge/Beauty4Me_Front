@@ -13,8 +13,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Favorites() {
   const [userFavorites, setuserFavorites] = useState([]);
-  // const [productsFavoritesByUser, setproductsFavoritesByUser] = useState([]);
-  const [userFavoriteProducts, setUserFavoriteProducts] = useState([]);
   const { loggedInUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(20);
@@ -27,10 +25,7 @@ function Favorites() {
       try {
         setLoading(true);
         const response = await api.get(`/profile/${loggedInUser.user._id}`);
-
-        console.log("resposta do response", response.data);
         setuserFavorites([...response.data.favoriteProducts]);
-
         setLoading(false);
       } catch (err) {
         console.error(err);
@@ -49,7 +44,6 @@ function Favorites() {
   const endIndex = startIndex + productsPerPage;
   const currentProducts = userFavorites.slice(startIndex, endIndex);
 
-  console.log("favoritos atualizado", userFavorites);
   // console.log("userReviews", userReviews);
 
   // const idSpecificProduct = userReviews.map((review) => {

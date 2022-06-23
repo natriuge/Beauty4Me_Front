@@ -71,16 +71,16 @@ function Home() {
               </p>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-light"
                 onClick={() => navigate("/signup")}
               >
-                Sign up today
+                <strong>Sign up today</strong>
               </button>
             </div>
           </div>
 
           <div className="container mt-5">
-            <h1 className="h1-title m-5">YOU MAY LIKE</h1>
+            <h3 className="m-5 text-center"><strong className="text-background">YOU MAY LIKE</strong></h3>
             <div className="row">
               <Carousel breakPoints={breakPoints}>
                 {state.map((element) => (

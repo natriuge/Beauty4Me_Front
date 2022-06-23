@@ -23,8 +23,8 @@ function MyReviews() {
 
   const eachReview = userReviews.allUserReviews;
 
-  console.log("MEU STATE", userReviews);
-  console.log("eachReview", eachReview);
+  console.log("MEU STATE!!!", userReviews);
+  console.log("eachReview!!!", eachReview);
 
   // useEffect(() => {
   //   eachReview.map((unaReview) => {
