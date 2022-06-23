@@ -53,8 +53,8 @@ function Ranking() {
       ) : (
         <>
           <div className="mb-5">
-            <h1 className="h1-title">Ranking Page</h1>
-            <h4 className="h4-title">
+            <h1 className="h1-title-ranking">Ranking Page</h1>
+            <h4 className="h4-title-ranking">
               Check out the best products by customers review
             </h4>
           </div>
@@ -88,7 +88,9 @@ function Ranking() {
                       </div>
                     </div>
                     <div className="card-body flex-grow-1">
-                      <h6 className="card-title h6-name">{productName}</h6>
+                      <h6 className="card-title h6-name-ranking">
+                        {productName}
+                      </h6>
                       <p className="card-text p-brand-name">{brandName}</p>
                     </div>
                     <div className="d-flex">
