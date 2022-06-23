@@ -54,7 +54,7 @@ function ProductDetails() {
 
   const { id } = useParams();
 
-  const { loggedInUser, setLoggedInUser, loading, handleLogout } =
+  const { loggedInUser } =
     useContext(AuthContext);
 
   const handleTab1 = () => {
@@ -134,8 +134,19 @@ function ProductDetails() {
     try {
       const clone = { ...userReviewUpdate };
       delete clone._id;
-      const response = await api.patch(`/review/${userReviews[0]._id}`, clone);
-      setUserReviews([...userReviews, response.data]);
+
+      const response = await api.patch(`/review/${userReviewUpdate._id}`, clone);
+
+      const newUserReviews = userReviews.map(review => {
+        if(review._id === response.data._id) {
+          review.authorRating = response.data.authorRating;
+          review.comment = response.data.comment;
+        }
+
+        return review;
+      });
+
+      setUserReviews(newUserReviews);
     } catch (err) {
       console.error(err.reponse);
       // return setErrors({ ...err.response.data.errors });
@@ -144,21 +155,17 @@ function ProductDetails() {
 
   function updateUserReviewHandleChange(event) {
     setUserReviewUpdate({
-      ...userReviews,
-      // productId: id,
-      // authorName: loggedInUser.user.name,
+      ...userReviewUpdate,
       [event.target.name]: event.target.value,
     });
   }
 
   async function addFavoriteProduct() {
     try {
-      console.log(id);
       const response = await api.patch(`/product/${id}`);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (err) {
-      console.error(err.reponse);
-      // setErrors({ ...err.response.data.errors });
+      console.error(err.response);
     }
   }
 
@@ -170,9 +177,11 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
+ 
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
+
   return (
     <>
       {product && (
@@ -278,8 +287,9 @@ function ProductDetails() {
                     <ReactStars
                       count={5}
                       value={review.Rating}
-                      size={24}
-                      activeColor="#ffd700"
+                      size={20}
+                      activeColor="##2b2b2b"
+                      color="#c6c6c6"
                       isHalf={true}
                       edit={false}
                     />
@@ -293,68 +303,59 @@ function ProductDetails() {
               );
             })}
             {userReviews.map((userReview, index) => {
-              console.log("user Review", userReviews);
               return (
                 <div key={userReview._id}>
-                  {/* <div> */}
                   {isAuthor(userReview.authorId) && (
                     <div>
-                      <button onClick={() => deleteUserReview(userReview._id)}>
-                        delete
-                      </button>
-                      <button
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        border="none"
+                        onClick={() => deleteUserReview(userReview._id)}
+                      >
+                        <BsTrash />
+                      </Button>
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        border="none"
                         id={userReview._id}
                         onClick={(event) => {
-                          console.log("TARGET AQUI Ó", event.target);
-                          console.log("TARGET ID ID", event.target.id);
-                          setUserReviews([userReviews[index]]);
-                          setUserReviewUpdate({ ...userReviews[index] });
+                          setUserReviewUpdate(userReviews[index]);
                           setShowModal(true);
                         }}
                       >
-                        edit
-                      </button>
-
-                      {/*                     
-                      <button onClick={() =>  }>
-                        edit
-                      </button> */}
+                        <VscEdit />
+                      </Button>
                     </div>
                   )}
-                  {/* <Ratings>{userReview.Rating}</Ratings> */}
-                  {/* <strong className="mb-5">{userReview.UserNickname}</strong> */}
-                  {/* <br /> */}
-                  {/* </div> */}
-                  {/* {isAuthor() && (
-                    <div>
-                     escrita por
-                    <p>{loggedInUser.user.name}</p>
-                    </div>
-                   )} */}
-                  <br />
-                  <p>{userReview.authorName}</p>
-                  <p>{userReview.comment}</p>
+                  {/* position: relative; top: 2rem; display: flex; justify-content:
+                  flex-end;  */}
                   <ReactStars
                     count={5}
                     value={userReview.authorRating}
-                    size={24}
-                    activeColor="#ffd700"
+                    size={20}
+                    activeColor="##2b2b2b"
+                    color="#c6c6c6"
                     isHalf={true}
                     edit={false}
                   />
-                  {/* TEM Q RENDERIZAR O NOME DO USER(AUTHOR) */}
+                  <strong>{userReview.authorName}</strong>
+                  <p>{userReview.comment}</p>
                   <hr className="featurette-divider" />
                 </div>
               );
             })}
           </div>
-          {/* só aparece se o user não estiver logado */}
-          <div className="align-items">
-            To create a review you need to be&nbsp;
-            <Link className="nav-link active text-dark pl-1" to="/login">
-              <strong>logged!</strong>
-            </Link>
-          </div>
+          
+          {!loggedInUser.user._id && (
+            <div className="align-items">
+              To create a review you need to be&nbsp;
+              <Link className="nav-link active text-dark pl-1" to="/login">
+                <strong>logged!</strong>
+              </Link>
+            </div>
+          )}
           {loggedInUser.user._id && (
             <div className="review-form mt-0">
               <ReviewForm
@@ -385,6 +386,14 @@ function ProductDetails() {
             handleChange={updateUserReviewHandleChange}
             value={userReviewUpdate.comment}
             name="comment"
+            onRatingChange={(newRating) => {
+              setUserReviewUpdate({
+                ...userReviewUpdate,
+                authorRating: newRating,
+              });
+            }}
+            count={userReviewUpdate.authorRating}
+
           />
         </div>
       )}
