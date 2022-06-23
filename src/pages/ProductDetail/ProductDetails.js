@@ -170,17 +170,6 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
-
-  // const authorsId = userReviews.map((reviews) => reviews.authorId);
-
-  //  function isAuthor() {
-  //   const authorsId = userReviews.map(reviews => reviews.authorId)
-  //   const id = authorsId.map((authorId) => authorId === loggedInUser.user._id);
-  //   console.log( "id", id);
-  //   console.log("logged user id", loggedInUser.user._id);
-  //    return id;
-  //  }
-
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
@@ -366,7 +355,6 @@ function ProductDetails() {
               <strong>logged!</strong>
             </Link>
           </div>
-
           {loggedInUser.user._id && (
             <div className="review-form mt-0">
               <ReviewForm
