@@ -78,7 +78,7 @@ function Profile() {
       try {
         setLoading(true);
         const response = await api.get(`/profile/${loggedInUser.user._id}`);
-        console.log("O QUE TA VINU", response.data);
+        // console.log("O QUE TA VINU", response.data);
         setUserInfo({ ...response.data });
         setLoading(false);
       } catch (err) {
@@ -91,7 +91,7 @@ function Profile() {
   return (
     <div className="profile-page">
       <div className="row d-flex flex-nowrap">
-        <div className="col-4 align-items-start me-5">
+        <div className="col-4 side-bar align-items-start me-5">
           <img
             src={userInfo.profilePictureUrl}
             className="card-img mt-5"
@@ -132,32 +132,7 @@ function Profile() {
           </div>
         </div>
         <div className="col-6 align-items-center m-5">
-<<<<<<< HEAD
           <Outlet />
-=======
-          <h1>ONDE O TEXTO ESTÁ</h1>
-          {/* <img src={ilustration} className="ilustration" alt="ilustration" /> */}
-
-          <h3>My Reviews</h3>
-          {userReviews.map((eachReview) => {
-            return (
-              <div>
-                <ul>
-                  <li>
-                    <h7>Nome produto:{eachReview.productId.productName}</h7>
-                  </li>
-                  <li>
-                    {" "}
-                    <h8>Rating:{eachReview.authorRating}</h8>
-                  </li>
-                  <li>
-                    <h8>Comentário:{eachReview.comment}</h8>
-                  </li>
-                </ul>
-              </div>
-            );
-          })}
->>>>>>> 41f4841481583e17378b30c102e216b2a51570ce
         </div>
       </div>
     </div>

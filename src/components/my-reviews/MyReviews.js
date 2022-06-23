@@ -12,72 +12,55 @@ function MyReviews() {
     async function fetchUserReviews() {
       try {
         const response = await api.get(`/profile/${loggedInUser.user._id}`);
-
         console.log("DATA", response.data);
-
         setuserReviews({ ...response.data });
       } catch (err) {
         console.error(err);
       }
     }
     fetchUserReviews();
-  }, [loggedInUser.user._id, userReviews]);
+  }, []);
 
-  const reviews = userReviews.allUserReviews;
+  const eachReview = userReviews.allUserReviews;
 
-  console.log(userReviews);
-  // console.log("userReviews", userReviews);
-
-  // const idSpecificProduct = userReviews.map((review) => {
-  //   return review.productId;
-  // });
-
-  // const id = idSpecificProduct.map((prod) => {
-  //   return prod;
-  // });
-
-  // console.log("id", id);
+  console.log("MEU STATE", userReviews);
+  console.log("eachReview", eachReview);
 
   // useEffect(() => {
-  //   async function fetchproductsReviewedByUser() {
+  //   async function fetchUserReviewsProducts() {
   //     try {
-  //       const response = await api.get(`/product/${idSpecificProduct}`);
-
-  //       // console.log("PRODUTOS", response.data);
-
-  //       setproductsReviewsByUser([...response.data]);
+  //       const response = await api.get("review-product");
+  //       console.log("DATA", response.data);
+  //       setproductsReviewsByUser({ ...response.data });
   //     } catch (err) {
   //       console.error(err);
   //     }
   //   }
-  //   fetchproductsReviewedByUser();
-  // }, [idSpecificProduct]);
-
-  // console.log("productsReviewsByUser", productsReviewsByUser);
-
-  // function ReviewClick(event) {
-  //   event.preventDefault();
-  //   console.log("The link was clicked.");
-  // }
-
+  //   fetchUserReviewsProducts();
+  // }, []);
+  console.log("productsReviewsByUser", productsReviewsByUser);
   return (
     <div className="col-6 align-items-center m-5">
       <h3>My Reviews</h3>
-
-      <div>
-        <ul>
-          <li>
-            <h5>Nome produto:{reviews.productName}</h5>
-          </li>
-          <li>
-            {" "}
-            <h6>Rating:{reviews.authorRating}</h6>
-          </li>
-          <li>
-            <h6>Comentário:{reviews.comment}</h6>
-          </li>
-        </ul>
-      </div>
+      {eachReview.map((oneReview) => {
+        const { authorRating, comment, productId } = oneReview;
+        return (
+          <div>
+            <ul>
+              <li>
+                <h5>Nome produto:{oneReview.productName}</h5>
+              </li>
+              <li>
+                {" "}
+                <h6>Rating:{authorRating}</h6>
+              </li>
+              <li>
+                <h6>Comentário:{comment}</h6>
+              </li>
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 }
