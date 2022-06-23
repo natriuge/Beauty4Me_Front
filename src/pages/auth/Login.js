@@ -3,8 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../../apis/api";
 import { AuthContext } from "../../contexts/authContext";
 import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
-import hands from "../../assets/images/hands.jpg";
-import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
+import Button from "react-bootstrap/Button";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../components/form-control-login-signup/loginSignupStyle.css";
@@ -52,10 +51,12 @@ function Login(props) {
 
   return (
     <div className="container mt-5">
-      <div className="row css-responsive">
+      <div className="row css-responsive justify-content-center">
         <div className="col-6">
           <form onSubmit={handleSubmit} className="needs-validation" noValidate>
-            <h1 className="mb-5 h1-title">Login</h1>
+            <h5 className="mb-5">
+              <strong className="text-background">LOGIN</strong>
+            </h5>
 
             <FormLoginSignUp
               label="E-mail Address"
@@ -79,22 +80,22 @@ function Login(props) {
               }
               onChange={handleChange}
             />
+            <Button
+              className="mb-5 mt-1"
+              variant="outline-secondary"
+              size="sm"
+              border="none"
+              onClick={handleSubmit}
+            >
+              <strong>Let me in!</strong>
+            </Button>
 
-            <BtnLoginSignUp>Let me in!</BtnLoginSignUp>
-
-            <div className="mb-5">
-              <Link className="link-decoration" to="/signup">
+            <div className="mb-5 link-decoration">
+              <Link className="link-effect" to="/signup">
                 Don't have an account? Click here to sign up!
               </Link>
             </div>
           </form>
-        </div>
-        <div className="col-6 css-responsive">
-          <img
-            src={hands}
-            className="image-dec image-dec-responsive"
-            alt="hands ilustration"
-          />
         </div>
       </div>
     </div>
