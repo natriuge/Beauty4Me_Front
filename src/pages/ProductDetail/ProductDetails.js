@@ -1,19 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import Ratings from "../../components/ranking-rating/FixedRatingStars";
+import ReactStars from "react-rating-stars-component";
 import api from "../../apis/api";
 import ReviewForm from "../../components/Review/ReviewForm";
 import HTMLReactParser from "html-react-parser";
-import EditReviewModal from "../../components/EditReviewModal"
+import EditReviewModal from "../../components/EditReviewModal";
 import { AuthContext } from "../../contexts/authContext";
 import { VscEdit } from "react-icons/vsc";
-import  Button  from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import { BsTrash } from "react-icons/bs";
 import ToggleButton from "react-bootstrap/ToggleButton";
-import "../ProductDetail/productDetails.css"
-import "../ranking/rankingStyle.css"
-  
+import "../ProductDetail/productDetails.css";
+import "../ranking/rankingStyle.css";
 
 function ProductDetails() {
   const [product, setProduct] = useState();
@@ -25,8 +24,8 @@ function ProductDetails() {
     authorId: null,
     comment: "",
     authorRating: 0,
-    productId: null
-  })
+    productId: null,
+  });
   const [errors, setErrors] = useState({
     authorName: null,
     authorId: null,
@@ -34,24 +33,30 @@ function ProductDetails() {
     authorRating: null,
     productId: null,
   });
+  const [userReviewUpdate, setUserReviewUpdate] = useState({
+    authorName: "",
+    authorId: null,
+    comment: "",
+    authorRating: 0,
+    productId: null,
+  });
 
-  //  const handleShow = (_id) => {
-  //    setUserReviews(_id);
-  //    setShowModal(true);
-  //  };
-  //  const [showModal, setShowModal] = useState(false);
+  const handleShow = (_id) => {
+    setUserReviews(_id);
+    setShowModal(true);
+  };
 
-  //  const handleClose = () => setShowModal(false);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleClose = () => setShowModal(false);
 
-  
   const navigate = useNavigate();
 
   const { id } = useParams();
-  
-  const { loggedInUser, setLoggedInUser, loading, handleLogout } =
+
+  const { loggedInUser } =
     useContext(AuthContext);
-  
+
   const handleTab1 = () => {
     setActiveTab("tab1");
   };
@@ -80,28 +85,34 @@ function ProductDetails() {
     }
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     getProduct();
   }, [id]);
 
   // This will only run after the product update
-  useEffect(() => { 
-    getUsersReviews()
-  }, [product])
+  useEffect(() => {
+    getUsersReviews();
+  }, [product]);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    try{
+    try {
       const response = await api.post("/review", newReview);
       // Add new review to the list of user's reviews
-      setUserReviews([...userReviews, response.data])
-      
-      setErrors({ authorName: "",authorId: null, comment: "", authorRating: 0, productId: null });
+      setUserReviews([...userReviews, response.data]);
+
+      setErrors({
+        authorName: "",
+        authorId: null,
+        comment: "",
+        authorRating: 0,
+        productId: null,
+      });
       // navigate("/")
-    } catch(err){
+    } catch (err) {
       console.error(err.response);
-      return setErrors({...err.response.data.errors})
+      return setErrors({ ...err.response.data.errors });
     }
   }
 
@@ -109,7 +120,9 @@ function ProductDetails() {
     try {
       const response = await api.delete(`/review/${reviewId}`);
       // Add new review to the list of user's reviews
-      const newReviews = userReviews.filter(reviews => reviews._id !== response.data._id);
+      const newReviews = userReviews.filter(
+        (reviews) => reviews._id !== response.data._id
+      );
       setUserReviews(newReviews);
     } catch (err) {
       console.error(err.response);
@@ -117,44 +130,56 @@ function ProductDetails() {
     }
   }
 
-  async function updateUserReview(reviewId) {
+  async function updateUserReview() {
     try {
-      const response = await api.patch(`/review/${reviewId}`);
-      const newReviews = userReviews.filter(reviews => reviews._id !== response.data._id);
-      setUserReviews(newReviews);
-      } catch (err) {
-        console.error(err.reponse);
-        return setErrors({ ...err.response.data.errors });
-      }
-  }
-   async function addFavoriteProduct() {
+      const clone = { ...userReviewUpdate };
+      delete clone._id;
+      const response = await api.patch(`/review/${userReviewUpdate._id}`, clone);
 
-    try {
-      console.log(id);
-      const response = await api.patch(`/product/${id}`);  
-      console.log(response.data)
-      } catch (err) {
-        console.error(err.reponse);
-        // setErrors({ ...err.response.data.errors });
-      }
-  }
+      const newUserReviews = userReviews.map(review => {
+        if(review._id === response.data._id) {
+          review.authorRating = response.data.authorRating;
+          review.comment = response.data.comment;
+        }
 
-  function handleChange(event){
-    setNewReview({ ...newReview, productId: id, authorName: loggedInUser.user.name, [event.target.name]: event.target.value });
-  }
-    const authorsId = userReviews.map((reviews) => reviews.authorId);
+        return review;
+      });
 
-  //  function isAuthor() {
-  //   const authorsId = userReviews.map(reviews => reviews.authorId)
-  //   const id = authorsId.map((authorId) => authorId === loggedInUser.user._id);
-  //   console.log( "id", id);
-  //   console.log("logged user id", loggedInUser.user._id);
-  //    return id;
-  //  }
-
-    function isAuthor(id){
-       return loggedInUser.user._id === id;
+      setUserReviews(newUserReviews);
+    } catch (err) {
+      console.error(err.reponse);
+      // return setErrors({ ...err.response.data.errors });
     }
+  }
+
+  function updateUserReviewHandleChange(event) {
+    setUserReviewUpdate({
+      ...userReviewUpdate,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  async function addFavoriteProduct() {
+    try {
+      const response = await api.patch(`/product/${id}`);
+      // console.log(response.data);
+    } catch (err) {
+      console.error(err.response);
+    }
+  }
+
+  function handleChange(event) {
+    setNewReview({
+      ...newReview,
+      productId: id,
+      authorName: loggedInUser.user.name,
+      [event.target.name]: event.target.value,
+    });
+  }
+ 
+  function isAuthor(id) {
+    return loggedInUser.user._id === id;
+  }
   return (
     <>
       {product && (
@@ -188,10 +213,18 @@ function ProductDetails() {
                 <h5>
                   <strong>RATING</strong>
                 </h5>
-                {/* <Ratings>{product.rating}</Ratings> */}
+
+                <ReactStars
+                  count={5}
+                  value={product.rating}
+                  size={24}
+                  activeColor="#ffd700"
+                  isHalf={true}
+                  edit={false}
+                />
 
                 <button onClick={addFavoriteProduct}>favorite</button>
-                
+
                 <ToggleButton
                   className="mb-2"
                   id="toggle-check"
@@ -249,7 +282,16 @@ function ProductDetails() {
                 <div key={`${review.ProductId}__${index}`}>
                   <div></div>
                   <div>
-                    <Ratings>{review.Rating}</Ratings>
+                    <ReactStars
+                      count={5}
+                      value={review.Rating}
+                      size={20}
+                      activeColor="##2b2b2b"
+                      color="#c6c6c6"
+                      isHalf={true}
+                      edit={false}
+                    />
+
                     <strong className="mb-5">{review.UserNickname}</strong>
                     <br />
                   </div>
@@ -258,74 +300,97 @@ function ProductDetails() {
                 </div>
               );
             })}
-            {userReviews.map((userReview) => {
+            {userReviews.map((userReview, index) => {
               return (
                 <div key={userReview._id}>
-                  {/* <div> */}
                   {isAuthor(userReview.authorId) && (
-
-                  <div>
-                    <button onClick={() => deleteUserReview(userReview._id)}>
-                      delete
-                    </button>
-                    {/* <button onClick={() => handleShow(userReview._id)}>
-                      edit
-                    </button> */}
-                  </div>
-                  )}
-                  {/* <Ratings>{userReview.Rating}</Ratings> */}
-                  {/* <strong className="mb-5">{userReview.UserNickname}</strong> */}
-                  {/* <br /> */}
-                  {/* </div> */}
-                  {/* {isAuthor() && (
                     <div>
-                     escrita por
-                    <p>{loggedInUser.user.name}</p>
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        border="none"
+                        onClick={() => deleteUserReview(userReview._id)}
+                      >
+                        <BsTrash />
+                      </Button>
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        border="none"
+                        id={userReview._id}
+                        onClick={(event) => {
+                          setUserReviewUpdate(userReviews[index]);
+                          setShowModal(true);
+                        }}
+                      >
+                        <VscEdit />
+                      </Button>
                     </div>
-                   )} */}
-                  <br />
-                  <p>{userReview.authorName}</p>
+                  )}
+                  {/* position: relative; top: 2rem; display: flex; justify-content:
+                  flex-end;  */}
+                  <ReactStars
+                    count={5}
+                    value={userReview.authorRating}
+                    size={20}
+                    activeColor="##2b2b2b"
+                    color="#c6c6c6"
+                    isHalf={true}
+                    edit={false}
+                  />
+                  <strong>{userReview.authorName}</strong>
                   <p>{userReview.comment}</p>
-                  {/* TEM Q RENDERIZAR O NOME DO USER(AUTHOR) */}
                   <hr className="featurette-divider" />
                 </div>
               );
             })}
           </div>
-          {/* só aparece se o user não estiver logado */}
-          <div className="align-items">
-            To create a review you need to be
-            <Link className="nav-link active text-dark pl-1" to="/login">
-              <strong>logged!</strong>
-            </Link>
-          </div>
-          {/* {isAuthor() && ( */}
-          <div className="review-form mt-0">
-            <ReviewForm
-              type="form"
-              id="newReview"
-              value={newReview.comment}
-              name="comment"
-              onChange={handleChange}
-              // onClick={handleSubmit}
-            />
-            <button
-              type="submit"
-              className="btn btn-outline-secondary mt-2"
-              onClick={handleSubmit}
-            >
-              <strong>send</strong>
-            </button>
-          </div>
-          {/* )} */}
-          {/* <EditReviewModal
+          {!loggedInUser.user._id && (
+            <div className="align-items">
+              To create a review you need to be&nbsp;
+              <Link className="nav-link active text-dark pl-1" to="/login">
+                <strong>logged!</strong>
+              </Link>
+            </div>
+          )}
+          {loggedInUser.user._id && (
+            <div className="review-form mt-0">
+              <ReviewForm
+                type="form"
+                id="newReview"
+                value={newReview.comment}
+                name="comment"
+                onChange={handleChange}
+                onRatingChange={(newRating) => {
+                  setNewReview({ ...newReview, authorRating: newRating });
+                }}
+                count={newReview.authorRating}
+              />
+              <button
+                type="submit"
+                className="btn btn-outline-secondary mt-2"
+                onClick={handleSubmit}
+              >
+                <strong>send</strong>
+              </button>
+            </div>
+          )}
+          <EditReviewModal
             show={showModal}
+            setShowModal={setShowModal}
             handleClose={handleClose}
             handleUpdate={updateUserReview}
-            handleChange={handleChange}
-            value={newReview.comment}
+            handleChange={updateUserReviewHandleChange}
+            value={userReviewUpdate.comment}
             name="comment"
-          /> */}
+            onRatingChange={(newRating) => {
+              setUserReviewUpdate({
+                ...userReviewUpdate,
+                authorRating: newRating,
+              });
+            }}
+            count={userReviewUpdate.authorRating}
+          />
         </div>
       )}
     </>

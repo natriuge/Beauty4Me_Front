@@ -20,7 +20,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/" element={<ProtectedRoute component={<Home />} />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ranking" element={<Ranking />} />
@@ -30,14 +29,14 @@ function App() {
         />
         <Route
           path="/product-detail/:id"
-          element={<ProtectedRoute component={ProductDetails} />}
+          element={<ProductDetails />}
         />
         <Route path="*" element={<NotFound />} />
+        <Route path="/search/:keyword" element={<Search />} />;
       </Routes>
     </AuthContextComponent>
   );
 }
 
-<Route path="/search/:keyword" element={<Search />} />;
 
 export default App;

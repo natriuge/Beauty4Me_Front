@@ -1,12 +1,11 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import ReactStars from "react-rating-stars-component";
 function EditReviewModal(props) {
-
-//     const ReviewForm = (props) => {
-//   const ratingChanged = (newRating) => {
-//     console.log(newRating);
+  //     const ReviewForm = (props) => {
+  //   const ratingChanged = (newRating) => {
+  //     console.log(newRating);
 
   return (
     <div>
@@ -14,19 +13,22 @@ function EditReviewModal(props) {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-             {/* <ReactStars
-                 count={props.count}
-                 onChange={ratingChanged}
-                 size={24}
-                 activeColor="#ffd700"
-        /> */}
-              <Form.Label>Comment</Form.Label>
+              <ReactStars
+                count={5}
+                value={props.count}
+                onChange={props.onRatingChange}
+                size={24}
+                activeColor="#ffd700"
+                isHalf={true}
+              />
+              <Form.Label>
+                <strong>Comment</strong>
+              </Form.Label>
               <Form.Control
                 type="form"
                 onChange={props.handleChange}
                 value={props.value}
                 name={props.name}
-                style={{ marginTop: "0.5rem", width: "18rem" }}
               />
             </Form.Group>
           </Form>
@@ -35,7 +37,13 @@ function EditReviewModal(props) {
           <Button variant="secondary" onClick={props.handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.handleUpdate}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              props.setShowModal(false);
+              props.handleUpdate();
+            }}
+          >
             Save Changes
           </Button>
         </Modal.Footer>

@@ -60,6 +60,10 @@
   font-weight: lighter !important;
 }
 
+.card-detail {
+  height: 60vh;
+}
+
 @media (min-width: 150px) and (max-width: 450px) {
   .responsive-slogan {
     font-family: "Roboto", sans-serif;

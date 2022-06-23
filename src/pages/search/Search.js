@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../apis/api";
-import Ratings from "../../components/ranking-rating/FixedRatingStars";
+import ReactStars from "react-rating-stars-component";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
@@ -98,7 +98,14 @@ function Search() {
                     <div className="d-flex ">
                       <div className="p-ranting">
                         {rating}
-                        <Ratings>{rating}</Ratings>
+                        <ReactStars
+                          count={5}
+                          value={rating}
+                          size={24}
+                          activeColor="#ffd700"
+                          isHalf={true}
+                          edit={false}
+                        />
                       </div>
                     </div>
                   </div>
