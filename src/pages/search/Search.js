@@ -105,7 +105,7 @@ function Search() {
                           activeColor="#ffd700"
                           isHalf={true}
                           edit={false}
-                        />{" "}
+                        />
                       </div>
                     </div>
                   </div>
