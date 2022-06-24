@@ -19,13 +19,15 @@ function EditReviewModal(props) {
                 onChange={props.onRatingChange}
                 size={24}
                 activeColor="#ffd700"
-                isHalf={true}
+                isHalf={false}
               />
               <Form.Label>
                 <strong>Comment</strong>
               </Form.Label>
               <Form.Control
                 type="form"
+                as="textarea"
+                rows={4}
                 onChange={props.handleChange}
                 value={props.value}
                 name={props.name}
@@ -34,11 +36,11 @@ function EditReviewModal(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClose}>
+          <Button variant="outline-secondary" onClick={props.handleClose}>
             Close
           </Button>
           <Button
-            variant="primary"
+            variant="outline-secondary"
             onClick={() => {
               props.setShowModal(false);
               props.handleUpdate();
