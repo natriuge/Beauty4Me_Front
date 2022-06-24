@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-
+import "./pagination.css";
 
 const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   const [state, setState] = useState([0, 1, 2, 3]);
 
   const currentPages = Array.from(state, (currentNumber, index) => {
-    console.log('currentNumber', currentNumber)
+    console.log("currentNumber", currentNumber);
     return (
       <button
         key={currentNumber}
         style={
-          currentNumber === currentPage ? { backgroundColor: "#b8b5ff" } : null
+          currentNumber === currentPage ? { backgroundColor: "#e4fbff" } : null
         }
-        className="pagination-btn-css"
+        className="pagination-btn-css-n"
         value={currentNumber}
         onClick={(e) => nextPages(e, index)}
       >
@@ -61,9 +61,9 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
       <span style={{ color: "#b8b5ff" }}>...</span>
       <button
         style={
-          pages - 1 === currentPage ? { backgroundColor: "#b8b5ff" } : null
+          pages - 1 === currentPage ? { backgroundColor: "#e4fbff" } : null
         }
-        className="pagination-btn-css"
+        className="pagination-btn-css-n"
         value={pages - 1}
         onClick={(e) => setCurrentPage(Number(e.target.value))}
       >
@@ -74,4 +74,3 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
 };
 
 export default Pagination;
-

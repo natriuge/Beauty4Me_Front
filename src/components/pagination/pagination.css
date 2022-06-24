@@ -1,0 +1,32 @@
+.selector-css-n {
+  font-weight: lighter;
+  color: rgba(197, 191, 191, 0.984);
+}
+
+.selector-box-n {
+  /* background-color: rgb(179, 237, 255); */
+  border: 2px solid rgb(179, 237, 255);
+  font-weight: bolder;
+  font-weight: 100;
+  color: rgba(197, 191, 191, 0.984);
+  margin-left: 0.3rem;
+  width: 3rem;
+  height: auto;
+}
+
+.pagination-btn-css-n {
+  font-weight: 100;
+  color: rgba(197, 191, 191, 0.984);
+  /* background-color: rgba(245, 239, 239, 0.984); */
+  border: 2px solid #c2eaf1;
+  margin: 4px;
+  cursor: pointer;
+  width: 2rem;
+  height: auto;
+}
+
+.pagination-btn-css-n:hover {
+  background-color: #e4fbff;
+  border: 2px solid #7868e6;
+  font-weight: bolder;
+}
