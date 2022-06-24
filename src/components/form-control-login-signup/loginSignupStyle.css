@@ -2,10 +2,11 @@
   border-radius: 5px;
   border: 1px solid #e4fbff;
   background-color: #b8b5ff;
-  padding: 10px 20px;
   font-size: 1.2em;
   cursor: pointer;
-  color: #7868e6;
+  color: #fff;
+  width: 80px;
+  height: 40px;
 }
 
 .h1-title {

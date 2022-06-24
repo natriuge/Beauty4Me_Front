@@ -91,14 +91,15 @@ function Profile() {
   return (
     <div className="profile-page">
       <div className="row d-flex flex-nowrap">
-        <div className="col-4 side-bar align-items-start me-5">
+        <div className="col-2 side-bar align-items-start me-5">
+        
           <img
             src={userInfo.profilePictureUrl}
             className="card-img mt-5"
             alt="Profile pic"
           />
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-2">
               <label htmlFor="picture">Change Profile Picture</label>
               <input
                 type="file"

@@ -25,17 +25,15 @@
 
 .tn-outline-primary {
   margin-top: 8px;
-  color: #fff!important;
+  color: #fff !important;
 }
 
 .responsive-slogan {
-  font-family: "Roboto", sans-serif;
   font-size: 55px;
   margin-bottom: 5px;
 }
 
 .responsive-txt {
-  font-family: "Roboto", sans-serif;
   font-weight: lighter;
   font-size: 20px;
 }
@@ -62,7 +60,15 @@
 }
 
 .card-detail {
-  height: 60vh;
+  height: 55vh;
+}
+
+.rec.rec-dot {
+  background: #fff;
+  /* border: 2px rgb(179, 237, 255); */
+}
+.rec.rec-dot_active {
+  background: #b8b5ff;
 }
 
 @media (min-width: 150px) and (max-width: 450px) {
@@ -76,5 +82,9 @@
     font-family: "Roboto", sans-serif;
     font-weight: lighter;
     font-size: 18px;
+  }
+
+  .rec.rec-dot {
+    display: none;
   }
 }
