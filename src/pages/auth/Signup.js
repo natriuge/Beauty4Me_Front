@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-import hands from "../../assets/images/hands.jpg";
 import FormLoginSignUp from "../../components/form-control-login-signup/FormLoginSignUp";
-import BtnLoginSignUp from "../../components/form-control-login-signup/BtnLoginSignUp";
+import Button from "react-bootstrap/Button";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../components/form-control-login-signup/loginSignupStyle.css";
@@ -51,10 +50,12 @@ function Signup(props) {
 
   return (
     <div className="container mt-5">
-      <div className="row css-responsive">
+      <div className="row css-responsive justify-content-center">
         <div className="col-6">
           <form onSubmit={handleSubmit}>
-            <h1 className="mb-5 h1-title">Signing Up!</h1>
+            <h5 className="mb-5">
+              <strong className="text-background">SIGNING UP!</strong>
+            </h5>
 
             <FormLoginSignUp
               label="Name"
@@ -88,8 +89,8 @@ function Signup(props) {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="signupFormSkinType" className="text-page">
-                Your Skin Type
+              <label htmlFor="signupFormSkinType">
+                <strong>Your Skin Type</strong>
               </label>
               <div className="text-skinType my-radio">
                 <input
@@ -130,22 +131,22 @@ function Signup(props) {
               </div>
             </div>
 
-            <BtnLoginSignUp>Create Account</BtnLoginSignUp>
+            <Button
+              className="mb-5 mt-1"
+              variant="outline-secondary"
+              size="sm"
+              border="none"
+              onClick={handleSubmit}
+            >
+              <strong>CREATE</strong>
+            </Button>
 
-            <div className="mb-5">
-              <Link className="link-decoration" to="/login">
+            <div className="mb-5 link-decoration">
+              <Link className="link-effect" to="/login">
                 Already have an account? Click here to login.
               </Link>
             </div>
           </form>
-        </div>
-
-        <div className="col-6 css-responsive">
-          <img
-            src={hands}
-            className="image-dec image-dec-responsive"
-            alt="hands ilustration"
-          />
         </div>
       </div>
     </div>

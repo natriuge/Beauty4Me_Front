@@ -1,48 +1,32 @@
-.btn-login-signup {
-  border-radius: 5px;
-  border: 1px solid #e4fbff;
-  background-color: #b8b5ff;
-  font-size: 1.2em;
-  cursor: pointer;
-  color: #fff;
-  width: 80px;
-  height: 40px;
-}
-
-.h1-title {
-  color: #b8b5ff;
-  font-weight: bold;
-  text-decoration: overline;
-  text-decoration-color: #e4fbff;
-  font-size: 2.1rem;
-}
-
-.text-page {
-  font-style: italic;
-  font-weight: bold;
-  color: rgba(197, 191, 191, 0.984);
+.text-background {
+  background-color: rgb(179, 237, 255);
 }
 
 .link-decoration {
   color: #7868e6;
-  background-color: #e4fbff;
+  text-decoration: none;
+}
+
+.link-decoration .link-effect {
+  font-weight: 400;
+  font-size: 17px;
+  color: grey;
+  text-decoration: none;
+}
+
+.link-decoration .link-effect:hover {
+  color: #7868e6;
+  border-bottom: 0.2rem solid #b8b5ff;
+  padding-bottom: 0.1rem;
 }
 
 .text-paragraph {
   font-size: small;
   font-weight: normal;
-  color: rgba(60, 60, 60, 0.984);
 }
 
 .text-skinType {
   font-weight: normal;
-  color: rgba(83, 82, 82, 0.984);
-}
-
-.image-dec {
-  width: 250px;
-  height: 250px;
-  margin: 7rem;
 }
 
 .my-radio {
@@ -63,23 +47,6 @@
     justify-content: center;
     align-items: center;
     text-align: start;
-  }
-
-  .image-dec-responsive {
-    width: 200px;
-    height: 200px;
-    margin: 0px;
-    padding: 0px;
-  }
-
-  .btn-login-signup-responsive {
-    border-radius: 5px;
-    border: 1px solid #e4fbff;
-    background-color: #b8b5ff;
-    padding: 5px 10px;
-    font-size: 0.93em;
-    cursor: pointer;
-    color: #7868e6;
   }
 
   .text-page {
