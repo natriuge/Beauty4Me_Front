@@ -54,7 +54,7 @@ function Profile() {
           ...clone,
           profilePictureUrl: fileUrl,
         });
-        document.location.reload(true);
+       setUserInfo(...clone, response.data)
         setLoading(false);
         console.log("FINAL", response.data);
       } else {
