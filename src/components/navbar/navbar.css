@@ -50,8 +50,8 @@
 }
 
 .navbar-nav li {
-  padding-right: 100px;
-  padding-left: 100px;
+  padding-right: 100px!important;
+  padding-left: 100px!important;
 }
 
 #nav-list {
