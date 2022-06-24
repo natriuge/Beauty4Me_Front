@@ -6,6 +6,10 @@ import api from "../../apis/api";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-elastic-carousel";
+import { Button } from "react-bootstrap";
+
+import "../ranking/rankingStyle.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Home() {
   const [state, setState] = useState([]);
@@ -96,18 +100,21 @@ function Home() {
                             alt={element.productName}
                           />
                           <div className="card-middle-ranking">
-                            <button
+                            <Button
+                              className="mb-5 mt-1 card-text-ranking"
+                              variant="outline-secondary"
+                              size="sm"
+                              border="none"
                               onClick={() =>
                                 navigate(`/product-detail/${element._id}`)
                               }
-                              className="btn card-text-ranking"
                             >
                               <i className="bi bi-search"></i>
-                            </button>
+                            </Button>
                           </div>
                         </div>
                         <div className="card-body flex-grow-1">
-                          <h6 className="card-title h6-name">
+                          <h6 className="card-title h6-name-ranking">
                             {element.productName}
                           </h6>
                           <p className="card-text p-brand-name">

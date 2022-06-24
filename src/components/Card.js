@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Ratings from "../components/ranking-rating/FixedRatingStars";
+import { Button } from "react-bootstrap";
+import ReactStars from "react-rating-stars-component";
+import "../pages/ranking/rankingStyle.css";
 
 function Card(props) {
   const products = props.product;
@@ -15,38 +17,47 @@ function Card(props) {
           const { _id, productName, brandName, rating, imageDetails } = element;
           return (
             <div key={_id} className="col">
-              <div className="card h-100 d-flex border-card">
+              <div className="card h-100 d-flex">
                 <div className="prod-card-container">
                   <img
                     src={imageDetails}
-                    className="card-img-top prod-img p-3"
+                    className="card-img-top prod-img-ranking p-3"
                     alt={productName}
                   />
                   <div className="card-middle-ranking">
-                    <button
-                      onClick={() => navigate("ProductDetails")}
-                      className="btn card-text-ranking"
+                    <Button
+                      className="mb-5 mt-1"
+                      variant="outline-secondary"
+                      size="sm"
+                      border="none"
+                      onClick={() => navigate(`/product-detail/${_id}`)}
                     >
                       <i className="bi bi-search"></i>
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <div className="card-body flex-grow-1">
-                  <h6 className="card-title h6-name">{productName}</h6>
-                  <p className="card-text p-brand-name">{brandName}</p>
+                  <h6 className="card-title h6-name-ranking">{productName}</h6>
+                  <p className="p-brand-name">{brandName}</p>
                 </div>
-                <div className="d-flex justify-content-center">
-                  <p className="card-text p-ranting pb-3">
+                <div className="d-flex">
+                  <div className="p-ranting">
                     {rating}
-                    <Ratings>{rating}</Ratings>
-                  </p>
+                    <ReactStars
+                      count={5}
+                      value={rating}
+                      size={24}
+                      activeColor="(179, 237, 255)"
+                      isHalf={true}
+                      edit={false}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-      <div className=" row justify-content-center"></div>
     </div>
   );
 }
