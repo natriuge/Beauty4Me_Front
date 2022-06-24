@@ -18,7 +18,6 @@ function ProductDetails() {
   const [product, setProduct] = useState();
   const [userReviews, setUserReviews] = useState([]);
   const [activeTab, setActiveTab] = useState("tab1");
-  const [checked, setChecked] = useState(false);
   const [newReview, setNewReview] = useState({
     authorName: "",
     authorId: null,
@@ -232,6 +231,8 @@ function ProductDetails() {
                 <strong>AVERAGE PRICE</strong>
               </h5>
               <h5 className="ml-5">{product.averagePrice}</h5>
+              
+              
               <div
                 className="btn-group mt-5"
                 role="group"
@@ -244,11 +245,12 @@ function ProductDetails() {
                   autocomplete="off"
                   onClick={addFavoriteProduct}
                 />
-                <label className="btn btn-outline-secondary" for="btncheck1">
+                <label className="btn btn-outline-secondary" htmlFor="btncheck1">
                   +
                 </label>
               </div>
-            </div>
+              <h5>Add to favorites</h5>
+              </div>
           </div>
           <div className="Tabs">
             <ul className="nav mb-2 mt-3">
@@ -335,15 +337,15 @@ function ProductDetails() {
                       </Button>
                     </div>
                   )}
-                  {/* position: relative; top: 2rem; display: flex; justify-content:
-                  flex-end;  */}
+    
                   <ReactStars
+                    key={userReview.authorRating}
                     count={5}
                     value={userReview.authorRating}
                     size={20}
                     activeColor="##2b2b2b"
                     color="#c6c6c6"
-                    isHalf={true}
+                    isHalf={false}
                     edit={false}
                   />
                   <strong>{userReview.authorName}</strong>
