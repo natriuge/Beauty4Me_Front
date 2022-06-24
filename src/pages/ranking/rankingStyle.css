@@ -39,20 +39,20 @@
   box-sizing: border-box;
 }
 
-.h1-title {
+.h1-title-ranking {
   color: #b8b5ff;
   font-weight: bold;
   text-decoration: overline;
   text-decoration-color: #e4fbff;
 }
 
-.h4-title {
+.h4-title-ranking {
   font-style: italic;
   font-weight: bold;
   color: rgba(197, 191, 191, 0.984);
 }
 
-.h6-name {
+.h6-name-ranking {
   font-weight: normal;
   color: rgb(0, 0, 0);
 }
@@ -108,4 +108,3 @@
 .border-card {
   border-radius: 2rem;
 }
-
