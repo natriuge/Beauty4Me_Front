@@ -49,15 +49,11 @@
   text-align: left;
 }
 
-/* .navbar-nav li {
-  padding-right: 100px;
-  padding-left: 100px;
-} */
 
-#nav-list {
+.nav-list {
   margin-top: 10px;
   margin-bottom: 10px;
-}
+} 
 
 .navbar-search {
   margin-right: 10px;

@@ -48,7 +48,7 @@ function Navbar() {
         </button>
 
         <div
-          className={isActive ? "navbar-collapse" : "collapse navbar-collapse"}
+          className={isActive ? "collapse navbar-collapse" : "navbar-collapse" }
         >
           <ul id="nav-list" className="navbar-nav m-auto d-flex">
           <div id="nav-list" className="navbar-nav m-auto">
