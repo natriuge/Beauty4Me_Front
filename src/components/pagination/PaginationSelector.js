@@ -1,11 +1,12 @@
 import React from "react";
+import "./pagination.css";
 
 const PaginationSelector = ({ productsPerPage, setProductsPerPage }) => {
   return (
-    <div className="mb-4 d-flex justify-content-end selector-css">
+    <div className="mb-4 d-flex justify-content-end selector-css-n">
       Products by page
       <select
-        className="selector-box"
+        className="selector-box-n"
         value={productsPerPage}
         onChange={(e) => setProductsPerPage(Number(e.target.value))}
       >
