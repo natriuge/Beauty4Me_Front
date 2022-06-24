@@ -135,7 +135,7 @@ function Home() {
           </div>
 
           <footer className="container text-center mt-5">
-            <p className="footer-txt">São Paulo, Junho de 2022</p>
+            <p className="footer-txt">Camila Marconi, Natalia Rudiger e Nathalia Maia • IronHack SP 2022</p>
           </footer>
         </>
       )}
