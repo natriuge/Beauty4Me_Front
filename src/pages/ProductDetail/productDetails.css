@@ -27,7 +27,8 @@ ul.nav {
     flex-wrap: nowrap;
 
     @media (max-width: 768px) {
-        width: 90%;
+        /* width: 90%; */
+        /* padding: 2rem 0; */
     }
 }
 
@@ -43,8 +44,6 @@ ul.nav li {
 ul.nav li:nth-child(2) {
     border-radius: 0;
 
-    /* border-bottom-right-radius: 2rem;
-  border-top-right-radius: 2rem; */
 }
 
 ul.nav li:hover {
