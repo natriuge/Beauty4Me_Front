@@ -17,6 +17,7 @@ function Navbar() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setState('');
   }
 
   const { loggedInUser } = useContext(AuthContext);
@@ -29,10 +30,10 @@ function Navbar() {
     <div>
       <div className="topbar">
         <p className="mb-0 topbar-text">
-          <strong>signup and create your personal skincare calendar!</strong>
+          <strong>signup and create your personal skincare wishlist!</strong>
         </p>
       </div>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light text-center">
         <Link className="navbar-brand" to="/">
           Beauty4Me
         </Link>
@@ -88,6 +89,8 @@ function Navbar() {
             placeholder="Search"
             onSubmit={handleSubmit}
             autocomplete="off"
+            onChange={event => setState(event.target.value)}
+          value={state}
           >
             <FormControlSearch onChange={handleDiscover} value={state} />
 
