@@ -45,6 +45,7 @@
 .navbar-nav {
   float: none;
   margin: 0 auto;
+  display: inline-flex!important ;
   text-align: left;
 }
 
