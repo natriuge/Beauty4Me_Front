@@ -17,6 +17,8 @@ function Profile() {
     picture: "",
   });
 
+  const [updateMyPic, setUpdateMyPic] = useState(true);
+
   function handleChange({ target }) {
     const { name, files } = target;
     if (files) {
@@ -41,6 +43,7 @@ function Profile() {
   async function handleSubmit(event) {
     try {
       event.preventDefault();
+      setLoading(true);
       // Envia o arquivo que o usuário selecionou para a rota de upload de arquivo
       if (profilePicture.picture) {
         const { fileUrl } = await handleFileUpload(profilePicture.picture);
@@ -49,22 +52,22 @@ function Profile() {
 
         delete clone.picture;
         // Mandar os dados pra API
-        setLoading(true);
         const response = await api.patch("/profile/:_id", {
           ...clone,
           profilePictureUrl: fileUrl,
         });
-        document.location.reload(true);
+        // document.location.reload(true);
+        setUpdateMyPic(true);
         setLoading(false);
         console.log("FINAL", response.data);
       } else {
-        setLoading(true);
         await api.patch("/profile/:_id", profilePicture);
-        document.location.reload(true);
+        // document.location.reload(true);
         setLoading(false);
       }
     } catch (err) {
       console.error(err);
+      setLoading(false);
     }
   }
 
@@ -75,12 +78,15 @@ function Profile() {
       try {
         const response = await api.get(`/profile/${loggedInUser.user._id}`);
         setUserInfo({ ...response.data });
+        setUpdateMyPic(false);
       } catch (err) {
         console.error(err);
       }
     }
-    fetchUserInfo();
-  }, [loggedInUser.user._id]);
+    if (updateMyPic) {
+      fetchUserInfo();
+    }
+  }, [loggedInUser.user._id, updateMyPic]);
 
   return (
     <div className="profile-page">
