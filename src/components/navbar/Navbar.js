@@ -32,7 +32,7 @@ function Navbar() {
           <strong>signup and create your personal skincare calendar!</strong>
         </p>
       </div>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light text-center">
         <Link className="navbar-brand" to="/">
           Beauty4Me
         </Link>
