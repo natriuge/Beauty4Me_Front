@@ -23,14 +23,23 @@
   padding-bottom: 0.1rem;
 }
 
+.navbar-brand {
+  margin-left: 20px;
+}
+
 .search-input {
   border-radius: 5rem;
 }
 
 .btn-search {
-  /* background-color: #66de93; */
-  color: rgb(0, 0, 0);
+  color: #000;
   border-radius: 2rem;
+}
+
+.btn-search:hover {
+  background-color: #7868e6!important;
+  border-color: #fff!important;
+  color: #fff!important;
 }
 
 .navbar-nav {
@@ -40,7 +49,16 @@
   text-align: left;
 }
 
+.navbar-nav li {
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
 #nav-list {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.navbar-search {
+  margin-right: 10px;
 }
