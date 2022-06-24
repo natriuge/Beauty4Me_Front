@@ -10,7 +10,6 @@ const api = axios.create({
   baseURL: apis[process.env.NODE_ENV],
 });
 
-
 // Configura a instância do Axios para injetar o cabeçalho de autenticação antes de cada requisição
 //intercepta ANTES de toda a requisição nesta instância específica que configuramos
 api.interceptors.request.use((config) => {

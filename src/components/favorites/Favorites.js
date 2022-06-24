@@ -7,6 +7,7 @@ import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
 import ReactStars from "react-rating-stars-component";
 import { AuthContext } from "../../contexts/authContext";
+import { Button } from "react-bootstrap";
 
 import "../favorites/favorites.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,8 +18,6 @@ function Favorites() {
   const [loading, setLoading] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
-
-  console.log();
 
   useEffect(() => {
     async function fetchUserFavorites() {
@@ -44,39 +43,9 @@ function Favorites() {
   const endIndex = startIndex + productsPerPage;
   const currentProducts = userFavorites.slice(startIndex, endIndex);
 
-  // console.log("userReviews", userReviews);
-
-  // const idSpecificProduct = userReviews.map((review) => {
-  //   return review.productId;
-  // });
-
-  // const id = idSpecificProduct.map((prod) => {
-  //   return prod;
-  // });
-
-  // console.log("id", id);
-
-  // useEffect(() => {
-  //   async function fetchproductsReviewedByUser() {
-  //     try {
-  //       const response = await api.get(`/product/${idSpecificProduct}`);
-
-  //       // console.log("PRODUTOS", response.data);
-
-  //       setproductsReviewsByUser([...response.data]);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  //   fetchproductsReviewedByUser();
-  // }, [idSpecificProduct]);
-
-  // console.log("productsReviewsByUser", productsReviewsByUser);
-
-  // function ReviewClick(event) {
-  //   event.preventDefault();
-  //   console.log("The link was clicked.");
-  // }
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [productsPerPage]);
 
   return (
     <div className="col-6 align-items-center m-5">
@@ -96,7 +65,7 @@ function Favorites() {
             className="col cols-1 cols-md-5 g-4 mb-5"
             style={{ gap: "2rem 0rem" }}
           >
-            {userFavorites.map((element) => {
+            {currentProducts.map((element) => {
               const { _id, productName, brandName, rating, imageDetails } =
                 element;
               return (
@@ -109,12 +78,15 @@ function Favorites() {
                         alt={productName}
                       />
                       <div className="card-middle-ranking">
-                        <button
+                        <Button
+                          className="mb-5 mt-1"
+                          variant="outline-secondary"
+                          size="sm"
+                          border="none"
                           onClick={() => navigate(`/product-detail/${_id}`)}
-                          className="btn card-text-ranking"
                         >
                           <i className="bi bi-search"></i>
-                        </button>
+                        </Button>
                       </div>
                     </div>
                     <div className="card-body flex-grow-1">
@@ -128,7 +100,7 @@ function Favorites() {
                           count={5}
                           value={rating}
                           size={24}
-                          activeColor="#ffd700"
+                          activeColor="(179, 237, 255)"
                           isHalf={true}
                           edit={false}
                         />
@@ -139,7 +111,7 @@ function Favorites() {
               );
             })}
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center text-center">
             <Pagination
               pages={pages}
               currentPage={currentPage}
