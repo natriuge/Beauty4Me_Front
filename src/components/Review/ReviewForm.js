@@ -32,12 +32,6 @@ function ReviewForm(props) {
           name={props.name}
           onChange={props.onChange}
         ></textarea>
-        {/* <button 
-        type="submit"
-         className="btn btn-outline-secondary mt-2" 
-         onClick={props.onClick}>
-          <strong>send</strong>
-        </button> */}
       </div>
     </div>
   );

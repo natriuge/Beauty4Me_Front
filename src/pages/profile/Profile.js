@@ -58,6 +58,7 @@ function Profile() {
         });
         // document.location.reload(true);
         setUpdateMyPic(true);
+        setUserInfo(...clone, response.data);
         setLoading(false);
         console.log("FINAL", response.data);
       } else {

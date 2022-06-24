@@ -54,8 +54,7 @@ function ProductDetails() {
 
   const { id } = useParams();
 
-  const { loggedInUser } =
-    useContext(AuthContext);
+  const { loggedInUser } = useContext(AuthContext);
 
   const handleTab1 = () => {
     setActiveTab("tab1");
@@ -135,10 +134,13 @@ function ProductDetails() {
       const clone = { ...userReviewUpdate };
       delete clone._id;
 
-      const response = await api.patch(`/review/${userReviewUpdate._id}`, clone);
+      const response = await api.patch(
+        `/review/${userReviewUpdate._id}`,
+        clone
+      );
 
-      const newUserReviews = userReviews.map(review => {
-        if(review._id === response.data._id) {
+      const newUserReviews = userReviews.map((review) => {
+        if (review._id === response.data._id) {
           review.authorRating = response.data.authorRating;
           review.comment = response.data.comment;
         }
@@ -177,7 +179,7 @@ function ProductDetails() {
       [event.target.name]: event.target.value,
     });
   }
- 
+
   function isAuthor(id) {
     return loggedInUser.user._id === id;
   }
@@ -186,12 +188,12 @@ function ProductDetails() {
     <>
       {product && (
         <div key={product._id}>
-          <div className="product-container">
+          <div className="product-container Tabs">
             <div>
               <img
+                className="product-image"
                 src={product.imageDetails}
                 alt={product.productName}
-                className="product-image"
               />
             </div>
             <div className="align-text">
@@ -201,7 +203,7 @@ function ProductDetails() {
                   textTransform: "uppercase",
                   fontWeight: "bold",
                 }}
-                className="ml-5 mt-5 mb-0"
+                className="ml-5 mt-0 mb-0"
               >
                 {product.brandName}
               </p>
@@ -219,30 +221,33 @@ function ProductDetails() {
                 <ReactStars
                   count={5}
                   value={product.rating}
-                  size={24}
-                  activeColor="#ffd700"
+                  size={27}
+                  activeColor="#2b2b2b"
+                  color="#c6c6c6"
                   isHalf={true}
                   edit={false}
                 />
-
-                <button onClick={addFavoriteProduct}>favorite</button>
-
-                <ToggleButton
-                  className="mb-2"
-                  id="toggle-check"
-                  type="checkbox"
-                  variant="outline-primary"
-                  checked={checked}
-                  value="1"
-                  onChange={(e) => setChecked(e.currentTarget.checked)}
-                >
-                  <h5>+</h5>
-                </ToggleButton>
               </div>
               <h5 className="ml-5 mt-5">
                 <strong>AVERAGE PRICE</strong>
               </h5>
               <h5 className="ml-5">{product.averagePrice}</h5>
+              <div
+                className="btn-group mt-5"
+                role="group"
+                aria-label="Basic checkbox toggle button group"
+              >
+                <input
+                  type="checkbox"
+                  className="btn-check"
+                  id="btncheck1"
+                  autocomplete="off"
+                  onClick={addFavoriteProduct}
+                />
+                <label className="btn btn-outline-secondary" for="btncheck1">
+                  +
+                </label>
+              </div>
             </div>
           </div>
           <div className="Tabs">
@@ -288,7 +293,7 @@ function ProductDetails() {
                       count={5}
                       value={review.Rating}
                       size={20}
-                      activeColor="##2b2b2b"
+                      activeColor="#2b2b2b"
                       color="#c6c6c6"
                       isHalf={true}
                       edit={false}
@@ -316,6 +321,7 @@ function ProductDetails() {
                         <BsTrash />
                       </Button>
                       <Button
+                        className="button-edit"
                         variant="outline-secondary"
                         size="sm"
                         border="none"
@@ -341,13 +347,15 @@ function ProductDetails() {
                     edit={false}
                   />
                   <strong>{userReview.authorName}</strong>
-                  <p>{userReview.comment}</p>
+                  <p>
+                    <em>{userReview.comment}</em>
+                  </p>
                   <hr className="featurette-divider" />
                 </div>
               );
             })}
           </div>
-          
+
           {!loggedInUser.user._id && (
             <div className="align-items">
               To create a review you need to be&nbsp;
@@ -393,7 +401,6 @@ function ProductDetails() {
               });
             }}
             count={userReviewUpdate.authorRating}
-
           />
         </div>
       )}
