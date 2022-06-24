@@ -80,7 +80,9 @@ function Home() {
           </div>
 
           <div className="container mt-5">
-            <h3 className="m-5 text-center"><strong className="text-background">YOU MAY LIKE</strong></h3>
+            <h3 className="m-5 text-center">
+              <strong className="text-background">YOU MAY LIKE</strong>
+            </h3>
             <div className="row">
               <Carousel breakPoints={breakPoints}>
                 {state.map((element) => (
@@ -119,7 +121,7 @@ function Home() {
                               count={5}
                               value={element.rating}
                               size={24}
-                              activeColor="#ffd700"
+                              activeColor="(179, 237, 255)"
                               isHalf={true}
                               edit={false}
                             />
@@ -135,7 +137,9 @@ function Home() {
           </div>
 
           <footer className="container text-center mt-5">
-            <p className="footer-txt">Camila Marconi, Natalia Rudiger e Nathalia Maia • IronHack SP 2022</p>
+            <p className="footer-txt">
+              Camila Marconi, Natalia Rudiger e Nathalia Maia • IronHack SP 2022
+            </p>
           </footer>
         </>
       )}
