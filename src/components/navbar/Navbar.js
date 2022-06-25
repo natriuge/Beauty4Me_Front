@@ -4,24 +4,19 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import FormControlSearch from "../form-control-search-bar/FormControlSearch";
 import { AuthContext } from "../../contexts/authContext";
-
+import logo from "../../assets/images/BEAUTY4ME_logo.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 function Navbar() {
   const [state, setState] = useState("");
   const navigate = useNavigate();
-
   function handleDiscover(event) {
     setState(event.target.value);
   }
-
   function handleSubmit(event) {
     event.preventDefault();
     setState("");
   }
-
   const { loggedInUser } = useContext(AuthContext);
-
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
     setActive(!isActive);
@@ -30,12 +25,12 @@ function Navbar() {
     <div>
       <div className="topbar">
         <p className="mb-0 topbar-text">
-          <strong>signup and create your personal skincare list!</strong>
+          <strong>signup and create your personal skincare wishlist!</strong>
         </p>
       </div>
       <nav className="navbar navbar-expand-lg navbar-light text-center">
         <Link className="navbar-brand" to="/">
-          Beauty4Me
+          <img className="nav-logo" src={logo} alt="logo" />
         </Link>
         <button
           onClick={handleToggle}
@@ -47,7 +42,6 @@ function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </div>
         </button>
-
         <div
           className={isActive ? "navbar-collapse" : "collapse navbar-collapse"}
         >
@@ -93,7 +87,6 @@ function Navbar() {
               value={state}
             >
               <FormControlSearch onChange={handleDiscover} value={state} />
-
               <button
                 className="btn btn-search"
                 type="submit"
