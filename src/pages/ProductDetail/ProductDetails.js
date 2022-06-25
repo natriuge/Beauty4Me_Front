@@ -250,7 +250,10 @@ function ProductDetails() {
                   autocomplete="off"
                   onClick={addFavoriteProduct}
                 />
-                <label className="btn btn-outline-light" htmlFor="btncheck1">
+                <label
+                  className="btn btn-outline-secundary"
+                  htmlFor="btncheck1"
+                >
                   <BsFillHeartFill className="BsFillHeartFill-fav" />
                 </label>
               </div>
