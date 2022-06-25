@@ -113,3 +113,11 @@ ul.nav li.active {
 .button-edit{
     margin-left: 0.5rem;
 }
+
+.bi-heart-fill-fav {
+color: #0dcaf0!important
+}
+
+.btn-outline-light {
+    border-color: #989898!important;
+}
