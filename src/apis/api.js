@@ -1,18 +1,13 @@
 import axios from "axios";
 
-// const apis = {
-//   development: "http://localhost:4000",
-//   production: "A URL DO SEU SERVIDOR DEPLOYADO NO HEROKU AQUI",
-// };
+const apis = {
+  development: "http://localhost:4000",
+  production: "https://beauty4me.herokuapp.com",
+};
 
 // Pré-configurando a URL padrão do nosso backend em uma instância do Axios
-// const api = axios.create({
-//   baseURL: apis[process.env.NODE_ENV],
-// });
-
-//apagar este depois que tivermos a url do deploy e usar o acima
 const api = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: apis[process.env.NODE_ENV],
 });
 
 // Configura a instância do Axios para injetar o cabeçalho de autenticação antes de cada requisição

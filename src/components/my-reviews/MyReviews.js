@@ -4,9 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthContext } from "../../contexts/authContext";
 
 function MyReviews() {
-  const [userReviews, setuserReviews] = useState([]);
-  const [productsReviewsByUser, setproductsReviewsByUser] = useState([]);
+  const [userReviews, setuserReviews] = useState({});
+  const [productsReviewsByUser, setproductsReviewsByUser] = useState([{}]);
   const { loggedInUser } = useContext(AuthContext);
+  const [listReviews, setListReviews] = useState([]);
 
   useEffect(() => {
     async function fetchUserReviews() {
@@ -14,6 +15,7 @@ function MyReviews() {
         const response = await api.get(`/profile/${loggedInUser.user._id}`);
         console.log("DATA", response.data);
         setuserReviews({ ...response.data });
+        setListReviews([...response.data.allUserReviews]); //set é async
       } catch (err) {
         console.error(err);
       }
@@ -21,29 +23,31 @@ function MyReviews() {
     fetchUserReviews();
   }, []);
 
-  const eachReview = userReviews.allUserReviews;
+  console.log("userReviews", userReviews);
+  console.log("listReviews", listReviews);
 
-  console.log("MEU STATE", userReviews);
-  console.log("eachReview", eachReview);
+  useEffect(() => {
+    listReviews.map((unaReview, index) => {
+      console.log("productId", unaReview.productId);
 
-  // useEffect(() => {
-  //   eachReview.map((unaReview) => {
-  //     console.log("productId", unaReview.productId);
 
-  //     const { productId } = unaReview;
+      let { productId } = unaReview;
 
-  //     async function getProductReviewedByUser() {
-  //       try {
-  //         const response = await api.get(`/specific-product/${productId}`);
-  //         console.log("DATA DOS PRODUTOS", response.data);
-  //         setproductsReviewsByUser({ ...response.data });
-  //       } catch (err) {
-  //         console.error(err);
-  //       }
-  //     }
-  //     return getProductReviewedByUser();
-  //   });
-  // }, []);
+      async function getProductReviewedByUser(productId) {
+        try {
+          const response = await api.get(`/specific-product/${productId}`);
+          console.log("DATA DOS PRODUTOS", index, response.data);
+          // const clone = [...productsReviewsByUser];
+          // clone.push(response.data);
+          // setproductsReviewsByUser(clone);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      getProductReviewedByUser(unaReview.productId);
+      return unaReview;
+    });
+  }, [listReviews]);
 
   console.log("productsReviewsByUser", productsReviewsByUser);
   return (

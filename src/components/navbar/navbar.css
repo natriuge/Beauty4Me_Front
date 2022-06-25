@@ -24,21 +24,35 @@
   padding-bottom: 0.1rem;
 }
 
+.navbar-brand {
+  margin-left: 20px;
+}
+
 .search-input {
   border-radius: 5rem;
 }
 
 .btn-search {
-  /* background-color: #66de93; */
-  color: rgb(0, 0, 0);
+  color: #000;
   border-radius: 2rem;
+}
+
+.btn-search:hover {
+  background-color: #7868e6!important;
+  border-color: #fff!important;
+  color: #fff!important;
 }
 
 .navbar-nav {
   float: none;
   margin: 0 auto;
-  display: block;
-  text-align: left;;
+  display: inline-flex!important ;
+  text-align: left;
+}
+
+.navbar-nav li {
+  padding-right: 100px!important;
+  padding-left: 100px!important;
 }
 
 #nav-list {
@@ -50,6 +64,8 @@
   width: 12rem;
   margin-left: 2rem;
 }
-.navbar{
-  background-color: #fff;
+
+.navbar-search {
+  margin-right: 10px;
 }
+

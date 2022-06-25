@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Roboto:wght@100;300;400&family=Varela+Round&family=Work+Sans:wght@300&display=swap");
-
 .home-layout {
   margin-bottom: -280px;
 }
@@ -23,21 +21,17 @@
   color: white;
 }
 
-.btn-primary {
+.tn-outline-primary {
   margin-top: 8px;
-  background-color: #aaa8fc !important;
-  border-color: #9f9ef9 !important;
-  color: #fff;
+  color: #fff !important;
 }
 
 .responsive-slogan {
-  font-family: "Roboto", sans-serif;
   font-size: 55px;
   margin-bottom: 5px;
 }
 
 .responsive-txt {
-  font-family: "Roboto", sans-serif;
   font-weight: lighter;
   font-size: 20px;
 }
@@ -50,30 +44,45 @@
   text-decoration-color: #e4fbff;
   font-size: 25px !important;
 }
+.text-background {
+  background-color: rgb(179, 237, 255);
+}
 
 .p-ranting {
   margin-top: -25px;
 }
 
 .footer-txt {
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
   font-weight: lighter !important;
 }
 
 .card-detail {
-  height: 60vh;
+  height: 55vh;
+}
+
+.rec.rec-dot {
+  background: #fff;
+  /* border: 2px rgb(179, 237, 255); */
+}
+.rec.rec-dot_active {
+  background: #b8b5ff;
 }
 
 @media (min-width: 150px) and (max-width: 450px) {
   .responsive-slogan {
-    font-family: "Roboto", sans-serif;
+    /* font-family: "Roboto", sans-serif; */
     font-size: 34px;
     padding-bottom: 5px;
   }
 
   .responsive-txt {
-    font-family: "Roboto", sans-serif;
+    /* font-family: "Roboto", sans-serif; */
     font-weight: lighter;
     font-size: 18px;
+  }
+
+  .rec.rec-dot {
+    display: none;
   }
 }

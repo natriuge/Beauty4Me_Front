@@ -6,6 +6,10 @@ import api from "../../apis/api";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-elastic-carousel";
+import { Button } from "react-bootstrap";
+
+import "../ranking/rankingStyle.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Home() {
   const [state, setState] = useState([]);
@@ -71,16 +75,18 @@ function Home() {
               </p>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-light"
                 onClick={() => navigate("/signup")}
               >
-                Sign up today
+                <strong>Sign up today</strong>
               </button>
             </div>
           </div>
 
           <div className="container mt-5">
-            <h1 className="h1-title m-5">YOU MAY LIKE</h1>
+            <h3 className="m-5 text-center">
+              <strong className="text-background">YOU MAY LIKE</strong>
+            </h3>
             <div className="row">
               <Carousel breakPoints={breakPoints}>
                 {state.map((element) => (
@@ -94,18 +100,21 @@ function Home() {
                             alt={element.productName}
                           />
                           <div className="card-middle-ranking">
-                            <button
+                            <Button
+                              className="mb-5 mt-1 card-text-ranking"
+                              variant="outline-secondary"
+                              size="sm"
+                              border="none"
                               onClick={() =>
                                 navigate(`/product-detail/${element._id}`)
                               }
-                              className="btn card-text-ranking"
                             >
                               <i className="bi bi-search"></i>
-                            </button>
+                            </Button>
                           </div>
                         </div>
                         <div className="card-body flex-grow-1">
-                          <h6 className="card-title h6-name">
+                          <h6 className="card-title h6-name-ranking">
                             {element.productName}
                           </h6>
                           <p className="card-text p-brand-name">
@@ -119,7 +128,7 @@ function Home() {
                               count={5}
                               value={element.rating}
                               size={24}
-                              activeColor="#ffd700"
+                              activeColor="(179, 237, 255)"
                               isHalf={true}
                               edit={false}
                             />
@@ -135,7 +144,9 @@ function Home() {
           </div>
 
           <footer className="container text-center mt-5">
-            <p className="footer-txt">São Paulo, Junho de 2022</p>
+            <p className="footer-txt">
+              Camila Marconi, Natalia Rudiger e Nathalia Maia • IronHack SP 2022
+            </p>
           </footer>
         </>
       )}

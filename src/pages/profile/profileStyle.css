@@ -9,7 +9,56 @@
   height: auto;
 }
 
-.side-bar{
-  
+.side-bar {
+  margin-top: -59px;
+}
 
+.prof-pic-css {
+  width: 170px;
+  height: 250px;
+}
+
+.link-decoration {
+  color: #7868e6;
+  text-decoration: none;
+}
+
+.link-decoration .link-effect {
+  font-weight: 400;
+  font-size: 17px;
+  color: grey;
+  text-decoration: none;
+}
+
+.link-decoration .link-effect:hover {
+  color: #7868e6;
+  border-bottom: 0.2rem solid #b8b5ff;
+  padding-bottom: 0.1rem;
+}
+
+.color-my-info {
+  color: #7868e6;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.input-wrapper label {
+  background-color: white;
+  border-radius: 0.25rem;
+  color: #6c757d;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin: 10px;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #6c757d;
+}
+
+.input-wrapper label:hover {
+  background-color: #6c757d;
+  color: white;
 }
