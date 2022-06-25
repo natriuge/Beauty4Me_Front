@@ -250,14 +250,27 @@ function ProductDetails() {
                   autocomplete="off"
                   onClick={addFavoriteProduct}
                 />
-                <label
-                  className="btn btn-outline-secundary"
-                  htmlFor="btncheck1"
-                >
+                <label className="btn btn-outline-secondary" for="btncheck1">
+                  <BsFillHeartFill />
+                </label>
+              </div>
+              {/* <div
+                className="btn-group mt-5"
+                role="group"
+                aria-label="Basic checkbox toggle button group"
+              >
+                <input
+                  type="checkbox"
+                  className="btn-check"
+                  id="btncheck1"
+                  autocomplete="off"
+                  onClick={addFavoriteProduct}
+                />
+                <label className="btn btn-fav" htmlFor="btncheck1">
                   <BsFillHeartFill className="BsFillHeartFill-fav" />
                 </label>
               </div>
-              {/* <h5>Add to favorites</h5> */}
+              <h5>Add to favorites</h5> */}
             </div>
           </div>
           <div className="Tabs">
