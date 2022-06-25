@@ -71,6 +71,16 @@
   background: #b8b5ff;
 }
 
+.button-signup {
+  border: 1px solid white !important;
+  color: white !important;
+}
+
+.button-signup:hover {
+  color: black !important;
+  background-color: #fff !important;
+}
+
 @media (min-width: 150px) and (max-width: 450px) {
   .responsive-slogan {
     font-size: 34px;
