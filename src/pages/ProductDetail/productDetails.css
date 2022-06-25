@@ -114,8 +114,8 @@ ul.nav li.active {
     margin-left: 0.5rem;
 }
 
-.bi-heart-fill {
-color: #0dcaf0
+.bi-heart-fill-fav {
+color: #0dcaf0!important
 }
 
 .btn-outline-light {
