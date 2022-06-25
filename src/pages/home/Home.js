@@ -7,6 +7,7 @@ import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 import Carousel from "react-elastic-carousel";
 import { Button } from "react-bootstrap";
+import { BsSearch } from "react-icons/bs";
 
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -101,7 +102,7 @@ function Home() {
                           />
                           <div className="card-middle-ranking">
                             <Button
-                              className="mb-5 mt-1 card-text-ranking"
+                              className="mb-5 mt-1"
                               variant="outline-secondary"
                               size="sm"
                               border="none"
@@ -109,7 +110,7 @@ function Home() {
                                 navigate(`/product-detail/${element._id}`)
                               }
                             >
-                              <i className="bi bi-search"></i>
+                              <BsSearch />
                             </Button>
                           </div>
                         </div>

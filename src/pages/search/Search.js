@@ -6,6 +6,7 @@ import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 // import Pagination from "../../components/pagination/Pagination";
 // import PaginationSelector from "../../components/pagination/PaginationSelector";
 import { Button } from "react-bootstrap";
+import { BsSearch } from "react-icons/bs";
 
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -91,7 +92,7 @@ function Search() {
                           border="none"
                           onClick={() => navigate(`/product-detail/${_id}`)}
                         >
-                          <i className="bi bi-search"></i>
+                          <BsSearch />
                         </Button>
                         {/* <button
                           onClick={() => navigate(`/product-detail/${_id}`)}

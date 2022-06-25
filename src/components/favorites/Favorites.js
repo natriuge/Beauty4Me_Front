@@ -5,6 +5,7 @@ import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import ReactStars from "react-rating-stars-component";
 import { AuthContext } from "../../contexts/authContext";
 import { Button } from "react-bootstrap";
+import { BsSearch } from "react-icons/bs";
 
 import "../../pages/ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -67,7 +68,7 @@ function Favorites() {
                           border="none"
                           onClick={() => navigate(`/product-detail/${_id}`)}
                         >
-                          <i className="bi bi-search"></i>
+                          <BsSearch />
                         </Button>
                       </div>
                     </div>

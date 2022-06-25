@@ -10,6 +10,7 @@ import { AuthContext } from "../../contexts/authContext";
 import { VscEdit } from "react-icons/vsc";
 import Button from "react-bootstrap/Button";
 import { BsTrash } from "react-icons/bs";
+import { BsFillHeartFill } from "react-icons/bs";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import "../ProductDetail/productDetails.css";
 import "../ranking/rankingStyle.css";
@@ -249,11 +250,8 @@ function ProductDetails() {
                   autocomplete="off"
                   onClick={addFavoriteProduct}
                 />
-                <label
-                  className="btn btn-outline-light"
-                  htmlFor="btncheck1"
-                >
-                  <i className="bi bi-heart-fill-fav"></i>
+                <label className="btn btn-outline-light" htmlFor="btncheck1">
+                  <BsFillHeartFill className="BsFillHeartFill-fav" />
                 </label>
               </div>
               {/* <h5>Add to favorites</h5> */}
