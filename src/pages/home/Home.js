@@ -76,7 +76,7 @@ function Home() {
               </p>
               <button
                 type="button"
-                className="btn btn-outline-light"
+                className="btn button-signup"
                 onClick={() => navigate("/signup")}
               >
                 <strong>Sign up today</strong>
