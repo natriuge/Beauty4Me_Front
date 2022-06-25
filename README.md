@@ -9,9 +9,7 @@ Procure produtos, compartilhe reviews com outros usuários<br>
 e crie sua wishlist de skincare.
 
 <br><br>
-
 BackEnd [aqui](https://github.com/natriuge/Beauty4Me_Back)!
-
 <br><br>
 
 Apresentação de slides [aqui](https://docs.google.com/presentation/d/1SKG41yWYGZviUKKZ1YlFKlrStV6WCHjO96DXzm0KRMs/edit?usp=sharing).
