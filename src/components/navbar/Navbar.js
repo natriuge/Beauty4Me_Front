@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import "../navbar/navbar.css";
 import React, { useState, useContext } from "react";
@@ -6,6 +7,10 @@ import FormControlSearch from "../form-control-search-bar/FormControlSearch";
 import { AuthContext } from "../../contexts/authContext";
 import logo from "../../assets/images/BEAUTY4ME_logo.png";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+
+
+
 function Navbar() {
   const [state, setState] = useState("");
   const navigate = useNavigate();
@@ -29,6 +34,7 @@ function Navbar() {
         </p>
       </div>
       <nav className="navbar navbar-expand-lg navbar-light text-center">
+
         <Link className="navbar-brand" to="/">
           <img className="nav-logo" src={logo} alt="logo" />
         </Link>
