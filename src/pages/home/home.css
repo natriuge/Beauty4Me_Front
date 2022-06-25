@@ -71,6 +71,10 @@
   background: #b8b5ff;
 }
 
+.btn-outline-light {
+  border-color: #fff!important;
+}
+
 @media (min-width: 150px) and (max-width: 450px) {
   .responsive-slogan {
     font-size: 34px;
