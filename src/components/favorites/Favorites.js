@@ -1,23 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
-import Pagination from "../../components/pagination/Pagination";
-import PaginationSelector from "../../components/pagination/PaginationSelector";
 import ReactStars from "react-rating-stars-component";
 import { AuthContext } from "../../contexts/authContext";
 import { Button } from "react-bootstrap";
 
-import "../favorites/favorites.css";
+import "../../pages/ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Favorites() {
   const [userFavorites, setuserFavorites] = useState([]);
   const { loggedInUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-  const [productsPerPage, setProductsPerPage] = useState(20);
-  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     async function fetchUserFavorites() {
@@ -35,42 +30,30 @@ function Favorites() {
 
   const navigate = useNavigate();
 
-  //math.ceil  -> arredonda o número para cima. ex: 11.1 vira 12
-  const pages = Math.ceil(userFavorites.length / productsPerPage);
-
-  //fatiar nosso array de produtos
-  const startIndex = currentPage * productsPerPage;
-  const endIndex = startIndex + productsPerPage;
-  const currentProducts = userFavorites.slice(startIndex, endIndex);
-
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [productsPerPage]);
-
   return (
-    <div className="col-6 align-items-center m-5">
+    <div className="col-12 align-items-center">
       {loading ? (
         <LoadingSpinner />
       ) : (
         <>
-          <div className="mb-5">
-            <h1 className="h1-title">Ranking Page</h1>
-            <h4 className="h4-title">Check out your favorite products</h4>
+          <div className="mb-5 justify-content-center text-center">
+            <h3 className="mb-5">
+              <strong className="text-background-h3-ranking">
+                FAVORITE PRODUCTS
+              </strong>
+            </h3>
           </div>
-          <PaginationSelector
-            productsPerPage={productsPerPage}
-            setProductsPerPage={setProductsPerPage}
-          />
           <div
-            className="col cols-1 cols-md-5 g-4 mb-5"
-            style={{ gap: "2rem 0rem" }}
+            className="row  row-cols-2 row-cols-md-3 g-2 mb-5"
+            style={{ gap: "1rem 0rem" }}
           >
-            {currentProducts.map((element) => {
+            {userFavorites.map((element) => {
               const { _id, productName, brandName, rating, imageDetails } =
                 element;
               return (
                 <div key={_id} className="col">
-                  <div className="card h-100 d-flex border-card">
+                  <div className="card h-100 d-flex">
+                    {/* <div className="card h-100 d-flex border-card-ranking"> */}
                     <div className="prod-card-container">
                       <img
                         src={imageDetails}
@@ -87,10 +70,18 @@ function Favorites() {
                         >
                           <i className="bi bi-search"></i>
                         </Button>
+                        {/* <button
+                          onClick={() => navigate(`/product-detail/${_id}`)}
+                          className="btn card-text-ranking"
+                        >
+                          <i className="bi bi-search"></i>
+                        </button> */}
                       </div>
                     </div>
                     <div className="card-body flex-grow-1">
-                      <h6 className="card-title h6-name">{productName}</h6>
+                      <h6 className="card-title h6-name-ranking">
+                        {productName}
+                      </h6>
                       <p className="card-text p-brand-name">{brandName}</p>
                     </div>
                     <div className="d-flex">
@@ -110,13 +101,6 @@ function Favorites() {
                 </div>
               );
             })}
-          </div>
-          <div className="row justify-content-center text-center">
-            <Pagination
-              pages={pages}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
           </div>
         </>
       )}

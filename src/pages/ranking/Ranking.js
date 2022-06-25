@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Ranking() {
   const [state, setState] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
@@ -86,7 +86,7 @@ function Ranking() {
                       />
                       <div className="card-middle-ranking">
                         <Button
-                          className="mb-5 mt-1"
+                          className="mb-5 mt-1 card-text-ranking"
                           variant="outline-secondary"
                           size="sm"
                           border="none"
@@ -94,12 +94,6 @@ function Ranking() {
                         >
                           <i className="bi bi-search"></i>
                         </Button>
-                        {/* <button
-                          onClick={() => navigate(`/product-detail/${_id}`)}
-                          className="btn card-text-ranking"
-                        >
-                          <i className="bi bi-search"></i>
-                        </button> */}
                       </div>
                     </div>
                     <div className="card-body flex-grow-1">

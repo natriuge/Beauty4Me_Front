@@ -14,7 +14,7 @@ import { AuthContextComponent } from "../contexts/authContext";
 import ProductDetails from "../pages/ProductDetail/ProductDetails";
 import Profile from "../pages/profile/Profile";
 import Favorites from "../components/favorites/Favorites";
-import MyReviews from "../components/my-reviews/MyReviews";
+// import MyReviews from "../components/my-reviews/MyReviews";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
           element={<ProtectedRoute component={Profile} />}
         >
           <Route path="favorites" element={<Favorites />} />
-          <Route path="my-reviews" element={<MyReviews />} />
+          {/* <Route path="my-reviews" element={<MyReviews />} /> */}
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/product-detail/:id" element={<ProductDetails />} />
@@ -42,4 +42,3 @@ function App() {
 }
 
 export default App;
-
