@@ -45,14 +45,11 @@
 .navbar-nav {
   float: none;
   margin: 0 auto;
-  display: inline-flex!important ;
-  text-align: left;
+  display: flex!important ;
+  align-items: flex-end!important;
+  text-align: end!important;
 }
 
-.navbar-nav li {
-  padding-right: 100px!important;
-  padding-left: 100px!important;
-}
 
 #nav-list {
   margin-top: 10px;
