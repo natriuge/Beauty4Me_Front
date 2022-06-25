@@ -3,6 +3,7 @@ import "../navbar/navbar.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormControlSearch from "../form-control-search-bar/FormControlSearch";
+import logo from "../../assets/images/BEAUTY4ME_logo.png"
 
 function Navbar() {
   const [state, setState] = useState("");
@@ -22,64 +23,68 @@ function Navbar() {
   };
   return (
     <div>
-      <div className="topbar">
-        <p className="mb-0 topbar-text">
-          <strong>signup and create your personal skincare calendar!</strong>
-        </p>
-      </div>
-      <nav className="navbar navbar-expand-lg navbar-light">
-        <Link className="navbar-brand" to="/">
-          Beauty4Me
-        </Link>
-        <button
-          onClick={handleToggle}
-          className="navbar-toggler"
-          type="button"
-          aria-label="Toggle navigation"
-        >
-          <div className="navbar-toggler-span">
-            <span className="navbar-toggler-icon"></span>
-          </div>
-        </button>
-
-        <div
-          className={isActive ? "navbar-collapse" : "collapse navbar-collapse"}
-        >
-          <ul id="nav-list" className="navbar-nav m-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/ranking">
-                Ranking
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/signup">
-                Signup
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
-          </ul>
-          <form
-            type="search"
-            placeholder="Search"
-            onSubmit={handleSubmit}
-            autocomplete="off"
-          >
-            <FormControlSearch onChange={handleDiscover} value={state} />
-
-            <button
-              className="btn btn-search"
-              type="submit"
-              onClick={() => navigate(`/search/${state}`)}
-            >
-              Search
-            </button>
-          </form>
+      {/* <nav className="fixed-top"> */}
+        <div className="topbar">
+          <p className="mb-0 topbar-text">
+            <strong>signup and create your personal skincare calendar!</strong>
+          </p>
         </div>
-      </nav>
+        <nav className="navbar navbar-expand-lg navbar-light">
+          <Link className="navbar-brand" to="/">
+            <img className="nav-logo" src={logo} alt="logo" />
+          </Link>
+          <button
+            onClick={handleToggle}
+            className="navbar-toggler"
+            type="button"
+            aria-label="Toggle navigation"
+          >
+            <div className="navbar-toggler-span">
+              <span className="navbar-toggler-icon"></span>
+            </div>
+          </button>
+
+          <div
+            className={
+              isActive ? "navbar-collapse" : "collapse navbar-collapse"
+            }
+          >
+            <ul id="nav-list" className="navbar-nav m-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/ranking">
+                  Ranking
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/signup">
+                  Signup
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+            </ul>
+            <form
+              type="search"
+              placeholder="Search"
+              onSubmit={handleSubmit}
+              autocomplete="off"
+            >
+              <FormControlSearch onChange={handleDiscover} value={state} />
+
+              <button
+                className="btn btn-search"
+                type="submit"
+                onClick={() => navigate(`/search/${state}`)}
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
+      {/* </nav> */}
     </div>
   );
 }

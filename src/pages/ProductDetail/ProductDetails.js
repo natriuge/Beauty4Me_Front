@@ -99,7 +99,6 @@ function ProductDetails() {
       const response = await api.post("/review", newReview);
       // Add new review to the list of user's reviews
       setUserReviews([...userReviews, response.data]);
-
       setErrors({
         authorName: "",
         authorId: null,
