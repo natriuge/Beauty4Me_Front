@@ -63,8 +63,11 @@
 .p-ranting {
   font-weight: bold;
   color: #b8b5ff;
-  padding: 1.25rem;
 }
+  
+  .bi-search {
+    color: #fff!important
+  }
 
 /* .border-card-ranking {
   border-radius: 1.5rem;
