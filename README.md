@@ -1,32 +1,23 @@
-![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
+# Beauty4Me  
 
-# React IronPlate
+## https://beauty4me.netlify.app/
 
-Esse boilerplate já inclui:
+![Captura de Tela 2022-06-25 às 00 43 44](https://user-images.githubusercontent.com/96324159/175756828-4e47f116-cb3c-4f55-a930-98bb4b5b1b73.png)
+<br>
+<br>
+BackEnd [aqui](https://github.com/natriuge/Beauty4Me_Back)!
+<br>
+Apresentação de slides [aqui](https://docs.google.com/presentation/d/1SKG41yWYGZviUKKZ1YlFKlrStV6WCHjO96DXzm0KRMs/edit?usp=sharing).
+<br>
+<br>
 
-- Pré-configuração do Axios para injeção de cabeçalhos de autenticação e BaseURL
-- Context para armazenar state de usuário logado
-- Forms de Login e Signup
-- Roteamento básico
-- Componente de rota protegida
+✨ Camila Marconi - [github](https://github.com/camimarconi) <br>
+✨ Natalia Rudiger Gelinski - [github](https://github.com/natriuge) <br>
+✨ Nathalia Maia - [github](https://github.com/nathaliamaia)
+<br> 
+<br>
 
-## Para Começar
+<i> Final Project Module III <br>
+Ironhack Web Development Bootcamp <br>
+Junho 2022 - São Paulo<br><i>
 
-- Faça o fork e clone deste repositório
-
-## Instalação
-
-```shell
-$ npm install
-```
-
-## Deploy no Netlify
-
-1. Faça login no Netlify e selecione seu repositório
-2. Em 'Deploy settings > build command' escreva: CI=false npm run build
-3. Em 'publish directory' escreva: build/
-4. No arquivo `apis/api.js`, preencha a URL do seu servidor Express deployado no objeto `apis`, chave `production`
-5. Adicione a URL do seu app hospedado no Netlify nas variáveis de ambiente do backend no Heroku
-
-Happy coding! 💙
-# Beauty4Me_Front
