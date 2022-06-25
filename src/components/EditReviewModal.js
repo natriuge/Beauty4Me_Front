@@ -18,7 +18,8 @@ function EditReviewModal(props) {
                 value={props.count}
                 onChange={props.onRatingChange}
                 size={24}
-                activeColor="#ffd700"
+                activeColor="#A584EE"
+                color="#c6c6c6"
                 isHalf={false}
               />
               <Form.Label>
@@ -55,4 +56,3 @@ function EditReviewModal(props) {
 }
 
 export default EditReviewModal;
-
