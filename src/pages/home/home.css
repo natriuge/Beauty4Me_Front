@@ -70,10 +70,6 @@
 .rec.rec-dot_active {
   background: #b8b5ff;
 }
-  
-.bi-search {
-  color: #fff!important
-}
 
 @media (min-width: 150px) and (max-width: 450px) {
   .responsive-slogan {
