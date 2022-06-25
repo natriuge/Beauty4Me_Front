@@ -2,10 +2,9 @@
 
 ## https://beauty4me.netlify.app/
 
-![Captura de Tela 2022-06-25 às 00 12 15](https://user-images.githubusercontent.com/96324159/175756681-58eea0b8-67c2-45ba-8a8e-d94756bbfaa3.png)
-
-
-
+![Captura de Tela 2022-06-25 às 00 43 44](https://user-images.githubusercontent.com/96324159/175756828-4e47f116-cb3c-4f55-a930-98bb4b5b1b73.png)
+<br>
+<br>
 Procure produtos, compartilhe reviews com outros usuários<br>
 e crie sua wishlist de skincare.
 
