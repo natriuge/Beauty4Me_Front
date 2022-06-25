@@ -14,8 +14,8 @@
 }
 
 .prof-pic-css {
-  width: 170px;
   height: 250px;
+  width: auto;
 }
 
 .link-decoration {

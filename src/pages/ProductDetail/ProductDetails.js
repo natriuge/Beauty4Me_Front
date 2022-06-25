@@ -253,7 +253,7 @@ function ProductDetails() {
                   className="btn btn-outline-light"
                   htmlFor="btncheck1"
                 >
-                  <i className="bi bi-heart-fill"></i>
+                  <i className="bi bi-heart-fill-fav"></i>
                 </label>
               </div>
               {/* <h5>Add to favorites</h5> */}
