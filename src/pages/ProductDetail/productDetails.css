@@ -111,13 +111,7 @@ ul.nav li.active {
 }
 
 btn-fav {
-  border: 1px solid rgba(197, 191, 191, 0.984);
-  color: rgba(197, 191, 191, 0.984);
-}
-
-btn-fav :hover {
-  cursor: pointer;
-  background-color: rgba(197, 191, 191, 0.984) !important;
+  background-color: red;
 }
 
 .BsFillHeartFill-fav {

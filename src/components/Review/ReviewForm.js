@@ -14,8 +14,9 @@ function ReviewForm(props) {
           value={props.count}
           onChange={props.onRatingChange}
           size={24}
-          activeColor="#ffd700"
-          isHalf={true}
+          activeColor="#A584EE"
+          color="#c6c6c6"
+          isHalf={false}
         />
       </div>
 
@@ -37,4 +38,3 @@ function ReviewForm(props) {
   );
 }
 export default ReviewForm;
-

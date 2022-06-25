@@ -253,23 +253,6 @@ function ProductDetails() {
                   <BsFillHeartFill />
                 </label>
               </div>
-              {/* <div
-                className="btn-group mt-5"
-                role="group"
-                aria-label="Basic checkbox toggle button group"
-              >
-                <input
-                  type="checkbox"
-                  className="btn-check"
-                  id="btncheck1"
-                  autocomplete="off"
-                  onClick={addFavoriteProduct}
-                />
-                <label className="btn btn-fav" htmlFor="btncheck1">
-                  <BsFillHeartFill className="BsFillHeartFill-fav" />
-                </label>
-              </div>
-              <h5>Add to favorites</h5> */}
             </div>
           </div>
           <div className="Tabs">
@@ -363,7 +346,7 @@ function ProductDetails() {
                     count={5}
                     value={userReview.authorRating}
                     size={20}
-                    activeColor="##2b2b2b"
+                    activeColor="#2b2b2b"
                     color="#c6c6c6"
                     isHalf={false}
                     edit={false}
