@@ -5,6 +5,7 @@ import LoadingSpinner from "../../components/loading-spinner/LoadingSpinner";
 import ReactStars from "react-rating-stars-component";
 import { AuthContext } from "../../contexts/authContext";
 import { Button } from "react-bootstrap";
+import { BsSearch } from "react-icons/bs";
 
 import "../../pages/ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -53,7 +54,6 @@ function Favorites() {
               return (
                 <div key={_id} className="col">
                   <div className="card h-100 d-flex">
-                    {/* <div className="card h-100 d-flex border-card-ranking"> */}
                     <div className="prod-card-container">
                       <img
                         src={imageDetails}
@@ -68,14 +68,8 @@ function Favorites() {
                           border="none"
                           onClick={() => navigate(`/product-detail/${_id}`)}
                         >
-                          <i className="bi bi-search"></i>
+                          <BsSearch />
                         </Button>
-                        {/* <button
-                          onClick={() => navigate(`/product-detail/${_id}`)}
-                          className="btn card-text-ranking"
-                        >
-                          <i className="bi bi-search"></i>
-                        </button> */}
                       </div>
                     </div>
                     <div className="card-body flex-grow-1">

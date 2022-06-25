@@ -6,6 +6,7 @@ import Pagination from "../../components/pagination/Pagination";
 import PaginationSelector from "../../components/pagination/PaginationSelector";
 import ReactStars from "react-rating-stars-component";
 import { Button } from "react-bootstrap";
+import { BsSearch } from "react-icons/bs";
 
 import "../ranking/rankingStyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -86,13 +87,13 @@ function Ranking() {
                       />
                       <div className="card-middle-ranking">
                         <Button
-                          className="mb-5 mt-1 card-text-ranking"
+                          className="mb-5 mt-1"
                           variant="outline-secondary"
                           size="sm"
                           border="none"
                           onClick={() => navigate(`/product-detail/${_id}`)}
                         >
-                          <i className="bi bi-search"></i>
+                          <BsSearch />
                         </Button>
                       </div>
                     </div>

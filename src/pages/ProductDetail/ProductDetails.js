@@ -10,6 +10,7 @@ import { AuthContext } from "../../contexts/authContext";
 import { VscEdit } from "react-icons/vsc";
 import Button from "react-bootstrap/Button";
 import { BsTrash } from "react-icons/bs";
+import { BsFillHeartFill } from "react-icons/bs";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import "../ProductDetail/productDetails.css";
 import "../ranking/rankingStyle.css";
@@ -163,7 +164,6 @@ function ProductDetails() {
   async function addFavoriteProduct() {
     try {
       const response = await api.patch(`/product/${id}`);
-      // console.log(response.data);
     } catch (err) {
       console.error(err.response);
     }
@@ -200,13 +200,19 @@ function ProductDetails() {
                   fontSize: "1.5rem",
                   textTransform: "uppercase",
                   fontWeight: "bold",
+                  textDecoration: "underline 3px #60dbf1",
+                  textUnderlineOffset: "4px",
                 }}
                 className="ml-5 mt-0 mb-0"
               >
                 {product.brandName}
               </p>
               <p
-                style={{ fontSize: "1rem", textTransform: "uppercase" }}
+                style={{
+                  fontSize: "1rem",
+                  textTransform: "uppercase",
+                  marginTop: "10px",
+                }}
                 className="ml-5"
               >
                 {product.productName}
@@ -230,8 +236,7 @@ function ProductDetails() {
                 <strong>AVERAGE PRICE</strong>
               </h5>
               <h5 className="ml-5">{product.averagePrice}</h5>
-              
-              
+
               <div
                 className="btn-group mt-5"
                 role="group"
@@ -244,12 +249,12 @@ function ProductDetails() {
                   autocomplete="off"
                   onClick={addFavoriteProduct}
                 />
-                <label className="btn btn-outline-secondary" htmlFor="btncheck1">
-                  +
+                <label className="btn btn-outline-light" htmlFor="btncheck1">
+                  <BsFillHeartFill className="BsFillHeartFill-fav" />
                 </label>
               </div>
-              <h5>Add to favorites</h5>
-              </div>
+              {/* <h5>Add to favorites</h5> */}
+            </div>
           </div>
           <div className="Tabs">
             <ul className="nav mb-2 mt-3">
@@ -336,7 +341,7 @@ function ProductDetails() {
                       </Button>
                     </div>
                   )}
-    
+
                   <ReactStars
                     key={userReview.authorRating}
                     count={5}
