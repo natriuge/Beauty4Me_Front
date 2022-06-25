@@ -91,15 +91,15 @@ function Profile() {
         <LoadingSpinner />
       ) : (
         <div className="row d-flex flex-nowrap">
-          <div className="col-3 side-bar align-items-start me-5">
+          <div className="col-4 side-bar align-items-center me-5">
             <img
               src={userInfo.profilePictureUrl}
-              className="card-img mt-5 mb-3 prof-pic-css"
+              className="mt-5 mb-3 prof-pic-css"
               alt="Profile pic"
             />
             <form onSubmit={handleSubmit}>
-              <div className="mb-4 row">
-                <div className="col align-self-center">
+              <div className="mb-3 row align-self-center justify-content-center">
+                <div className="justify-content-center">
                   <input
                     type="file"
                     name="picture"
@@ -108,7 +108,7 @@ function Profile() {
                     className="mb-3"
                   />
                   <div class="input-wrapper">
-                    <label for="input-file">Select a photo</label>
+                    <label for="input-file">Select photo</label>
                     <input
                       id="input-file"
                       type="file"
@@ -119,14 +119,14 @@ function Profile() {
                     <span id="file-name"></span>
                   </div>
                 </div>
-                <div className="col align-self-center">
+                <div className="justify-content-center">
                   <Button
                     variant="outline-secondary"
                     size="sm"
                     border="none"
                     onClick={handleSubmit}
                   >
-                    <strong>Save new photo</strong>
+                    <strong>Save photo</strong>
                   </Button>
                 </div>
               </div>

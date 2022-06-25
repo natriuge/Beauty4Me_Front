@@ -249,11 +249,10 @@ function ProductDetails() {
                   autocomplete="off"
                   onClick={addFavoriteProduct}
                 />
-                <label className="btn btn-outline-light" htmlFor="btncheck1">
-                  <BsFillHeartFill className="BsFillHeartFill-fav" />
+                <label className="btn btn-outline-secondary" for="btncheck1">
+                  <BsFillHeartFill />
                 </label>
               </div>
-              {/* <h5>Add to favorites</h5> */}
             </div>
           </div>
           <div className="Tabs">
@@ -347,7 +346,7 @@ function ProductDetails() {
                     count={5}
                     value={userReview.authorRating}
                     size={20}
-                    activeColor="##2b2b2b"
+                    activeColor="#2b2b2b"
                     color="#c6c6c6"
                     isHalf={false}
                     edit={false}
